@@ -1,13 +1,12 @@
 package com.example.viwiki
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.example.viwiki.databinding.FragmentArticleBinding
-import com.example.viwiki.databinding.FragmentHomeBinding
 import com.example.viwiki.model.ArticleResponse
 import com.example.viwiki.utils.dummyArticle
 
@@ -45,7 +44,8 @@ class ArticleFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentArticleBinding>(
-            inflater, R.layout.fragment_article, container, false)
+            inflater, R.layout.fragment_article, container, false
+        )
         // observe
         binding.article = dummyArticle
         binding.executePendingBindings()

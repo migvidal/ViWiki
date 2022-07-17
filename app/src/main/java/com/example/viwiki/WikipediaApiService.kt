@@ -35,14 +35,16 @@ val retrofit = Retrofit.Builder()
  * Interface for Retrofit to handle queries
  */
 interface WikipediaApiService {
-    @GET("/w/api.php?" +
-            "action=query" +
-            "&format=json" +
-            "&prop=extracts" +
-            "&exsentences=1" +
-            "&exlimit=1" +
-            "&explaintext=1" +
-            "&formatversion=2")
+    @GET(
+        "/w/api.php?" +
+                "action=query" +
+                "&format=json" +
+                "&prop=extracts" +
+                "&exsentences=1" +
+                "&exlimit=1" +
+                "&explaintext=1" +
+                "&formatversion=2"
+    )
     /**
      * Fetches the ArticleResponse
      * @param title The exact title of the article
