@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.viwiki.databinding.FragmentArticleBinding
 import com.example.viwiki.databinding.FragmentHomeBinding
 import com.example.viwiki.model.ArticleResponse
+import com.example.viwiki.utils.dummyArticle
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,11 +45,10 @@ class ArticleFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentArticleBinding>(
-            inflater, R.layout.fragment_home, container, false)
-        // TODO dummy data class
+            inflater, R.layout.fragment_article, container, false)
         // observe
-        binding.article = articleResponse.query.pages[0]
-
+        binding.article = dummyArticle
+        binding.executePendingBindings()
         return binding.root
     }
 
