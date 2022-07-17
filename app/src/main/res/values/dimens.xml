@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_header_size">50sp</dimen>
+    <dimen name="emphasized_size">25sp</dimen>
+    <dimen name="body_size">16sp</dimen>
+</resources>

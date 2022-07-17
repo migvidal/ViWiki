@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.viwiki.databinding.FragmentArticleBinding
 import com.example.viwiki.databinding.FragmentHomeBinding
+import com.example.viwiki.model.ArticleResponse
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,6 +25,11 @@ class ArticleFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    // data
+    val articleResponse: ArticleResponse by lazy {
+        ArticleResponse()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -39,6 +45,10 @@ class ArticleFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentArticleBinding>(
             inflater, R.layout.fragment_home, container, false)
+        // TODO dummy data class
+        // observe
+        binding.article = articleResponse.query.pages[0]
+
         return binding.root
     }
 

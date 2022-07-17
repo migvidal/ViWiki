@@ -8,6 +8,14 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
+        <Button
+            android:id="@+id/btn_refetch"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="refetch"/>
+
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
