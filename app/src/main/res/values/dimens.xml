@@ -3,4 +3,5 @@
     <dimen name="main_header_size">50sp</dimen>
     <dimen name="emphasized_size">25sp</dimen>
     <dimen name="body_size">16sp</dimen>
+    <dimen name="margin_small">16dp</dimen>
 </resources>

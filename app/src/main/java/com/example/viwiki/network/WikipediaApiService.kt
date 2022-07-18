@@ -1,9 +1,7 @@
 package com.example.viwiki
 
 import com.example.viwiki.model.ArticleResponse
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import okhttp3.OkHttpClient
+import com.example.viwiki.network.HttpUtils
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -11,24 +9,14 @@ import retrofit2.http.Query
 
 private val WIKIPEDIA_BASE_URL = "https://es.wikipedia.org/"
 
-
-/**
- * Converter from Kotlin to JSON
- */
-private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-
-/**
- * HTTP client
- */
-private val okHttpClient = OkHttpClient.Builder().build()
-
 /**
  * Retrofit client, for creating the API service
  */
-val retrofit = Retrofit.Builder()
+
+private val retrofit = Retrofit.Builder()
     .baseUrl(WIKIPEDIA_BASE_URL)
-    .client(okHttpClient)
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .client(HttpUtils.okHttpClient)
+    .addConverterFactory(MoshiConverterFactory.create(HttpUtils.moshi))
     .build()
 
 /**

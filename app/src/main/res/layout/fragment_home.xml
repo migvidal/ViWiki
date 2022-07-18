@@ -1,17 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <data>
+        <variable
+            name="featuredArticle"
+            type="com.example.viwiki.model.FeaturedArticleResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".HomeFragment">
 
-        <!-- TODO: Update blank fragment layout -->
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:id="@+id/tv_header"
+            style="@style/tapered_box"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_width="wrap_content"
+            android:text="@string/header_text"
+            android:textSize="16sp"
+            android:textAllCaps="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/tapered_box"
+            android:layout_width="wrap_content"
+            android:text="@{featuredArticle.Tfa.title}"
+            android:textSize="@dimen/main_header_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_header"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/tv_definition"
+            style="@style/tapered_box"
+            android:layout_width="wrap_content"
+            android:text="@{featuredArticle.onThisDay.get(0).text}"
+            android:textSize="@dimen/emphasized_size"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:text="Definition definition definition definition" />
+
+        <TextView
+            android:id="@+id/tv_text"
+            style="@style/tapered_box"
+            android:layout_width="match_parent"
+            android:text="Text"
+            android:textSize="@dimen/body_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_definition" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
