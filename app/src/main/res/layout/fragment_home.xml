@@ -30,7 +30,7 @@
             android:id="@+id/tv_title"
             style="@style/tapered_box"
             android:layout_width="wrap_content"
-            android:text="@{featuredArticle.Tfa.title}"
+            android:text="@{featuredArticle.Tfa.displayTitle}"
             android:textSize="@dimen/main_header_size"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,6 +56,15 @@
             android:textSize="@dimen/body_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_definition" />
+
+        <Button
+            android:id="@+id/btn_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="refresh"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

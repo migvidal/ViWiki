@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.viwiki.HomeFragment"
+        android:name="com.example.viwiki.fragments.HomeFragment"
         android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_articleFragment"
@@ -14,6 +14,6 @@
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
-        android:name="com.example.viwiki.ArticleFragment"
+        android:name="com.example.viwiki.fragments.ArticleFragment"
         android:label="ArticleFragment" />
 </navigation>
