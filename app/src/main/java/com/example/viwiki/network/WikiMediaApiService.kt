@@ -1,11 +1,11 @@
 package com.example.viwiki
+
 import com.example.viwiki.model.FeaturedArticleResponse
 import com.example.viwiki.network.HttpUtils
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 private val WIKIMEDIA_BASE_URL: String = "https://api.wikimedia.org/"
 

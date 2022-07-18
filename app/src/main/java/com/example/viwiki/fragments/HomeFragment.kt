@@ -4,17 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.provider.FontsContractCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentHomeBinding
 import com.example.viwiki.utils.Logger
-import com.example.viwiki.utils.dummyFeaturedArticleResponse
 import com.example.viwiki.viewmodel.HomeViewModel
 
 // TODO: Rename parameter arguments, choose names that match

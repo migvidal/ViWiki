@@ -15,6 +15,7 @@ data class FeaturedArticleResponse(
         val title: String = "",
         @Json(name = "displaytitle") val displayTitle: String = ""
     )
+
     data class OnThisDayArticle(
         val text: String = ""
     )

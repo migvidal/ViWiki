@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="featuredArticle"
             type="com.example.viwiki.model.FeaturedArticleResponse" />
@@ -17,13 +18,13 @@
         <TextView
             android:id="@+id/tv_header"
             style="@style/tapered_box"
-            android:layout_marginTop="@dimen/margin_small"
             android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
             android:text="@string/header_text"
-            android:textSize="16sp"
             android:textAllCaps="true"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
