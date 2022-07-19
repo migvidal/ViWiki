@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentArticleBinding
-import com.example.viwiki.utils.dummyArticle
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
