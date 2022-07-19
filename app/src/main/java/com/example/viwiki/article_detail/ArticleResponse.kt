@@ -1,4 +1,4 @@
-package com.example.viwiki.model
+package com.example.viwiki.article_detail
 
 /**
  * Article response from given title

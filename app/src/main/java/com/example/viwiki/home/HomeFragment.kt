@@ -1,4 +1,4 @@
-package com.example.viwiki.fragments
+package com.example.viwiki.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentHomeBinding
 import com.example.viwiki.utils.Logger
-import com.example.viwiki.viewmodel.HomeViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,7 +48,7 @@ class HomeFragment : Fragment() {
             binding.featuredArticle = it
         })
         binding.btnRefresh.setOnClickListener {
-            viewModel.fetchTodaysFeaturedArticle()
+            viewModel.fetchTodayFeaturedArticle()
         }
         return binding.root
     }

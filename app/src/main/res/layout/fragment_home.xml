@@ -7,7 +7,7 @@
 
         <variable
             name="featuredArticle"
-            type="com.example.viwiki.model.FeaturedArticleResponse" />
+            type="com.example.viwiki.home.FeaturedArticleResponse" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

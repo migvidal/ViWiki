@@ -1,4 +1,4 @@
-package com.example.viwiki.model
+package com.example.viwiki.home
 
 import com.squareup.moshi.Json
 

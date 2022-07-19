@@ -2,11 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/articleFragment">
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.viwiki.fragments.HomeFragment"
+        android:name="com.example.viwiki.home.HomeFragment"
         android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_articleFragment"
@@ -14,6 +14,6 @@
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
-        android:name="com.example.viwiki.fragments.ArticleFragment"
+        android:name="com.example.viwiki.article_detail.ArticleFragment"
         android:label="ArticleFragment" />
 </navigation>

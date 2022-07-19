@@ -1,6 +1,6 @@
 package com.example.viwiki
 
-import com.example.viwiki.model.ArticleResponse
+import com.example.viwiki.article_detail.ArticleResponse
 import com.example.viwiki.network.HttpUtils
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -43,7 +43,7 @@ interface WikipediaApiService {
 /**
  * Implementation for the API
  */
-object ApiImpl {
+object WikipediaApiImpl {
     /**
      * Service for the Wikipedia API
      */

@@ -1,7 +1,7 @@
 package com.example.viwiki.utils
 
-import com.example.viwiki.model.ArticleResponse
-import com.example.viwiki.model.FeaturedArticleResponse
+import com.example.viwiki.article_detail.ArticleResponse
+import com.example.viwiki.home.FeaturedArticleResponse
 
 val dummyArticle = ArticleResponse.Query.Page(
     1, 1, "Lorem Ipsum",

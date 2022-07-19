@@ -1,11 +1,10 @@
-package com.example.viwiki.viewmodel
+package com.example.viwiki.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.viwiki.WikiMediaApiImpl
-import com.example.viwiki.model.FeaturedArticleResponse
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -15,7 +14,7 @@ class HomeViewModel : ViewModel() {
     }
     val featuredArticleResponse: LiveData<FeaturedArticleResponse> = _featuredArticleResponse
 
-    fun fetchTodaysFeaturedArticle() {
+    fun fetchTodayFeaturedArticle() {
         val calendar = Calendar.getInstance()
         fetchFeaturedArticle(
             calendar.get(Calendar.YEAR),

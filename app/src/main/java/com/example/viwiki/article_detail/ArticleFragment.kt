@@ -1,4 +1,4 @@
-package com.example.viwiki.fragments
+package com.example.viwiki.article_detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentArticleBinding
-import com.example.viwiki.model.ArticleResponse
 import com.example.viwiki.utils.dummyArticle
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,10 +27,7 @@ class ArticleFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    // data
-    val articleResponse: ArticleResponse by lazy {
-        ArticleResponse()
-    }
+    val viewModel: ArticleViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,8 +46,13 @@ class ArticleFragment : Fragment() {
             inflater, R.layout.fragment_article, container, false
         )
         // observe
-        binding.article = dummyArticle
-        binding.executePendingBindings()
+        viewModel.articleResponse.observe(viewLifecycleOwner, Observer {
+            binding.apply {
+                article = it.query.pages[0]
+                executePendingBindings()
+            }
+        })
+        viewModel.fetchArticleByTitle("Alberto Chicote")
         return binding.root
     }
 
