@@ -2,13 +2,12 @@ package com.example.viwiki.search
 
 import android.app.SearchManager
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.viwiki.R
-import com.example.viwiki.article_detail.ArticleViewModel
 
 class SearchActivity : AppCompatActivity() {
 

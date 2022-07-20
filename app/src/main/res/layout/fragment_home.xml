@@ -60,11 +60,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_small"
-                app:layout_constraintTop_toBottomOf="@id/tv_definition"
-                app:layout_constraintStart_toStartOf="parent"
                 android:adjustViewBounds="true"
                 android:src="@drawable/ic_launcher_background"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_definition" />
 
             <Button
                 android:id="@+id/btn_goto_full_article"
@@ -74,8 +73,6 @@
                 android:text="@string/goto_full_article_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imageView" />
-
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
