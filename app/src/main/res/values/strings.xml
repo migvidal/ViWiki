@@ -4,4 +4,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="header_text">featured article</string>
     <string name="goto_full_article_text">read</string>
+    <string name="search_hint">Search for articles</string>
 </resources>

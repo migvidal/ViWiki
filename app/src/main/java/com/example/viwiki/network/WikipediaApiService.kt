@@ -2,6 +2,7 @@ package com.example.viwiki
 
 import com.example.viwiki.article_detail.ArticleResponse
 import com.example.viwiki.network.HttpUtils
+import com.example.viwiki.search.SearchResponse
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -38,6 +39,12 @@ interface WikipediaApiService {
      * @param title The exact title of the article
      */
     suspend fun getArticleResponse(@Query("titles") title: String): ArticleResponse
+
+    /**
+     * Searches for the provided query
+     * @param query The search query
+     */
+    suspend fun getSearchResults(@Query("srsearch") query: String): SearchResponse
 }
 
 /**
