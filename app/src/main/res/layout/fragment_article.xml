@@ -10,53 +10,59 @@
             type="com.example.viwiki.article_detail.ArticleResponse.Query.Page" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ArticleFragment">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/main_image"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_background"
-            tools:layout_editor_absoluteX="92dp"
-            tools:layout_editor_absoluteY="21dp" />
+            tools:context=".ArticleFragment">
 
-        <TextView
-            android:id="@+id/tv_title"
-            style="@style/text_box"
-            android:layout_width="wrap_content"
-            android:text="@{article.title}"
-            android:textSize="@dimen/main_header_size"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/main_image"
-            tools:text="Title" />
+            <ImageView
+                android:id="@+id/main_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_launcher_background"
+                tools:layout_editor_absoluteX="92dp"
+                tools:layout_editor_absoluteY="21dp" />
 
-        <TextView
-            android:id="@+id/tv_definition"
-            style="@style/text_box"
-            android:layout_width="wrap_content"
-            android:text="@{article.extract}"
-            android:textSize="@dimen/emphasized_size"
-            android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
-            tools:text="Definition definition definition definition" />
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/text_box"
+                android:layout_width="wrap_content"
+                android:text="@{article.title}"
+                android:textSize="@dimen/main_header_size"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/main_image"
+                tools:text="Title" />
 
-        <TextView
-            android:id="@+id/tv_text"
-            style="@style/text_box"
-            android:layout_width="match_parent"
-            android:text="Text"
-            android:textSize="@dimen/body_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_definition" />
+            <TextView
+                android:id="@+id/tv_definition"
+                style="@style/text_box"
+                android:layout_width="wrap_content"
+                android:text="@{article.extract}"
+                android:textSize="@dimen/emphasized_size"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                tools:text="Definition definition definition definition" />
+
+            <TextView
+                android:id="@+id/tv_text"
+                style="@style/text_box"
+                android:layout_width="match_parent"
+                android:text="Text"
+                android:textSize="@dimen/body_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_definition" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

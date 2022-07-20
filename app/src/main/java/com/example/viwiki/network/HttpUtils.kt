@@ -3,6 +3,7 @@ package com.example.viwiki.network
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 
 object HttpUtils {
     /**
@@ -11,8 +12,16 @@ object HttpUtils {
     val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
     /**
+     * Logs the request URL to console
+     */
+    private val loggingInterceptor = HttpLoggingInterceptor()
+        .setLevel(HttpLoggingInterceptor.Level.BASIC)
+
+    /**
      * HTTP client
      */
-    val okHttpClient = OkHttpClient.Builder().build()
+    val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(loggingInterceptor)// TODO remove for final build
+        .build()
 }
 
