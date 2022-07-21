@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.example.viwiki.R
 import com.example.viwiki.databinding.ActivitySearchBinding
 
 class SearchActivity : AppCompatActivity() {

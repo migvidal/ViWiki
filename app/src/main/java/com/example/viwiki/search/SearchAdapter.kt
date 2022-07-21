@@ -1,24 +1,23 @@
 package com.example.viwiki.search
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.viwiki.R
 import com.example.viwiki.databinding.ResultListItemBinding
 
-class SearchAdapter(val context: SearchActivity,
-                    var dataSet: List<SearchResponse.SearchQuery.Search>)
-    : Adapter<SearchAdapter.SearchViewHolder>() {
+class SearchAdapter(
+    val context: SearchActivity,
+    var dataSet: List<SearchResponse.SearchQuery.Search>
+) : Adapter<SearchAdapter.SearchViewHolder>() {
 
     /**
      * Used by onCreateViewHolder
      */
-    inner class SearchViewHolder(val binding: ResultListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class SearchViewHolder(val binding: ResultListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         var searchResult = binding.searchResult
     }
 
