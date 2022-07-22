@@ -7,6 +7,6 @@
         android:icon="@drawable/ic_baseline_search_24"
         android:iconTint="@color/white"
         android:title="Search"
-        app:showAsAction="ifRoom"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom" />
 </menu>

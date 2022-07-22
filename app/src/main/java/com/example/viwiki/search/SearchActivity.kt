@@ -7,12 +7,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
-import com.example.viwiki.article_detail.ArticleFragment
 import com.example.viwiki.databinding.ActivitySearchBinding
-import com.example.viwiki.home.HomeFragment
 import com.example.viwiki.utils.Logger
-import com.example.viwiki.utils.dummySearchQuery
 
 class SearchActivity : AppCompatActivity() {
     private val TAG = "SearchActivity"
@@ -30,7 +26,8 @@ class SearchActivity : AppCompatActivity() {
         // Init adapter
         mSearchAdapter = SearchAdapter(this, listOf(SearchResponse.SearchQuery.Search()))
         binding.rvResultsList.adapter = mSearchAdapter
-        val divider = DividerItemDecoration(binding.rvResultsList.context, DividerItemDecoration.HORIZONTAL)
+        val divider =
+            DividerItemDecoration(binding.rvResultsList.context, DividerItemDecoration.HORIZONTAL)
         binding.rvResultsList.addItemDecoration(divider)
 
         // Observe Search live data

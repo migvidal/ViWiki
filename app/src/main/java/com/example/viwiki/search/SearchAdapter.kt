@@ -1,14 +1,15 @@
 package com.example.viwiki.search
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import com.example.viwiki.MainActivity
+import com.example.viwiki.MainActivity.Companion.ARTICLE_NAME
 import com.example.viwiki.R
-import com.example.viwiki.utils.Logger
 
 class SearchAdapter(
     private val context: SearchActivity,
@@ -23,18 +24,30 @@ class SearchAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
-        // TODO with data binding
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.result_list_item,
             parent,
             false
         )
+
         return SearchViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.tvResult.text = dataSet[position].title
-        // onclick listener...
+        val resultTitle = dataSet[position].title
+        holder.tvResult.text = resultTitle
+
+        // onclick listener
+        holder.view.setOnClickListener {
+            val fragmentTransaction = context.supportFragmentManager
+            /*fragmentTransaction.beginTransaction()
+                .add(R.id.articleFragment, ArticleFragment())
+                .commit()*/
+
+            val intent = Intent(context, MainActivity::class.java)
+                .putExtra(ARTICLE_NAME, resultTitle)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

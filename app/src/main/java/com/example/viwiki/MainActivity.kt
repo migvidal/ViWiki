@@ -12,9 +12,15 @@ import androidx.appcompat.widget.SearchView
 import com.example.viwiki.search.SearchActivity
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var mArticleName: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Handle intent
+        val articleName = intent.getStringExtra(ARTICLE_NAME)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -29,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         val componentName = ComponentName(this, SearchActivity::class.java)
         // Set the searchable info
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
-
         return true
     }
 
@@ -41,5 +46,9 @@ class MainActivity : AppCompatActivity() {
             }
             else -> return super.onOptionsItemSelected(item)
         }
+    }
+
+    companion object {
+        val ARTICLE_NAME = "articleName"
     }
 }

@@ -28,9 +28,13 @@ val dummyFeaturedArticleResponse = FeaturedArticleResponse(
 val dummySearchQuery = SearchResponse.SearchQuery(
     search = listOf(
         SearchResponse.SearchQuery.Search(
-            title = "Morbius"),
+            title = "Morbius"
+        ),
         SearchResponse.SearchQuery.Search(
-            title = "Avengers: Endgame"),
+            title = "Avengers: Endgame"
+        ),
         SearchResponse.SearchQuery.Search(
-            title = "Avatar")
-    ))
+            title = "Avatar"
+        )
+    )
+)
