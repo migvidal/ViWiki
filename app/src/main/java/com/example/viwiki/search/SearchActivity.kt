@@ -6,36 +6,43 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.example.viwiki.databinding.ActivitySearchBinding
+import com.example.viwiki.utils.Logger
+import com.example.viwiki.utils.dummySearchQuery
 
 class SearchActivity : AppCompatActivity() {
+    private val TAG = "SearchActivity"
 
-    val viewModel: SearchViewModel by viewModels()
-    val binding: ActivitySearchBinding by lazy {
+    private val viewModel: SearchViewModel by viewModels()
+    private val binding: ActivitySearchBinding by lazy {
         ActivitySearchBinding.inflate(layoutInflater)
     }
-    lateinit var adapter: SearchAdapter
+    private lateinit var mSearchAdapter: SearchAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        // Init adapter
+        mSearchAdapter = SearchAdapter(this, listOf(SearchResponse.SearchQuery.Search()))
+        binding.rvResultsList.adapter = mSearchAdapter
+
+        // Observe Search live data
+        viewModel.searchResponse.observe(this, Observer { response ->
+            Logger.logInfo(TAG, "Enter_Observer")
+            if (response.query !== null) {
+                //mSearchAdapter.updateResults(response.query.search)
+                mSearchAdapter.updateResults(dummySearchQuery.search)
+            }
+        })
+
         // Verify intent
         if (intent.action == Intent.ACTION_SEARCH) {
             intent.getStringExtra(SearchManager.QUERY)?.also { query ->
-                viewModel.searchResponse.observe(this, Observer { response ->
-                    if (response.query !== null) {
-                        setupRecyclerView(response.query.search)
-                    }
-                })
                 viewModel.searchArticles(query)
             }
         }
-    }
-
-    private fun setupRecyclerView(resultList: List<SearchResponse.SearchQuery.Search>) {
-        adapter = SearchAdapter(this, resultList)
-        binding.resultsList.adapter = adapter
     }
 
 }

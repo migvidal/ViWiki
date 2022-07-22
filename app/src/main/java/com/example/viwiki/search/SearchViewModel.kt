@@ -26,7 +26,12 @@ class SearchViewModel : ViewModel() {
      */
     fun searchArticles(query: String) {
         viewModelScope.launch {
-            WikipediaApiImpl.wikipediaApiService.getSearchResults(query)
+            try {
+                val response = WikipediaApiImpl.wikipediaApiService.getSearchResults(query)
+                _searchResponse.value = response
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 }

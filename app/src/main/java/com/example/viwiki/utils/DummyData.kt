@@ -2,6 +2,7 @@ package com.example.viwiki.utils
 
 import com.example.viwiki.article_detail.ArticleResponse
 import com.example.viwiki.home.FeaturedArticleResponse
+import com.example.viwiki.search.SearchResponse
 
 val dummyArticle = ArticleResponse.Query.Page(
     1, 1, "Lorem Ipsum",
@@ -23,3 +24,12 @@ val dummyFeaturedArticleResponse = FeaturedArticleResponse(
     tfa = FeaturedArticleResponse.Tfa("type", "Title", "Title"),
     onThisDay = listOf(dummyOnThisDayArticle)
 )
+
+val dummySearchQuery = SearchResponse.SearchQuery(listOf(
+    SearchResponse.SearchQuery.Search(
+        title = "Morbius"),
+    SearchResponse.SearchQuery.Search(
+        title = "Avengers: Endgame"),
+    SearchResponse.SearchQuery.Search(
+        title = "Avatar")
+))

@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.viwiki.R
 import com.example.viwiki.databinding.ResultListItemBinding
+import com.example.viwiki.utils.Logger
 
 class SearchAdapter(
-    val context: SearchActivity,
-    var dataSet: List<SearchResponse.SearchQuery.Search>
+    private val context: SearchActivity,
+    private var dataSet: List<SearchResponse.SearchQuery.Search>
 ) : Adapter<SearchAdapter.SearchViewHolder>() {
 
     /**

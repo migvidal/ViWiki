@@ -40,6 +40,7 @@ interface WikipediaApiService {
      */
     suspend fun getArticleResponse(@Query("titles") title: String): ArticleResponse
 
+    @GET("/w/api.php?action=query&format=json&list=search&srlimit=30")
     /**
      * Searches for the provided query
      * @param query The search query

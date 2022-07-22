@@ -20,12 +20,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.action_bar_menu, menu)
 
-        val searchItem: MenuItem = menu.findItem(R.id.action_search)
-        val searchView = searchItem.actionView as SearchView
+        // Search elements
+        val searchItem = menu.findItem(R.id.action_search) //Search menu item
+        val searchView = searchItem.actionView as SearchView //The associated embedded SearchView
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
 
-        val searchManager: SearchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        // The class that will perform the search for this activity
         val componentName = ComponentName(this, SearchActivity::class.java)
-
+        // Set the searchable info
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
 
         return true
