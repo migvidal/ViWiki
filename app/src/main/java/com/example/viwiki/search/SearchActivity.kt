@@ -32,8 +32,8 @@ class SearchActivity : AppCompatActivity() {
         viewModel.searchResponse.observe(this, Observer { response ->
             Logger.logInfo(TAG, "Enter_Observer")
             if (response.query !== null) {
-                //mSearchAdapter.updateResults(response.query.search)
-                mSearchAdapter.updateResults(dummySearchQuery.search)
+                mSearchAdapter.updateResults(response.query.search)
+                //mSearchAdapter.updateResults(dummySearchQuery.search)
             }
         })
 

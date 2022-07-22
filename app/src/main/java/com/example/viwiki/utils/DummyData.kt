@@ -25,11 +25,12 @@ val dummyFeaturedArticleResponse = FeaturedArticleResponse(
     onThisDay = listOf(dummyOnThisDayArticle)
 )
 
-val dummySearchQuery = SearchResponse.SearchQuery(listOf(
-    SearchResponse.SearchQuery.Search(
-        title = "Morbius"),
-    SearchResponse.SearchQuery.Search(
-        title = "Avengers: Endgame"),
-    SearchResponse.SearchQuery.Search(
-        title = "Avatar")
-))
+val dummySearchQuery = SearchResponse.SearchQuery(
+    search = listOf(
+        SearchResponse.SearchQuery.Search(
+            title = "Morbius"),
+        SearchResponse.SearchQuery.Search(
+            title = "Avengers: Endgame"),
+        SearchResponse.SearchQuery.Search(
+            title = "Avatar")
+    ))

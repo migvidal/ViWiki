@@ -1,12 +1,13 @@
 package com.example.viwiki.search
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.viwiki.R
-import com.example.viwiki.databinding.ResultListItemBinding
 import com.example.viwiki.utils.Logger
 
 class SearchAdapter(
@@ -17,24 +18,22 @@ class SearchAdapter(
     /**
      * Used by onCreateViewHolder
      */
-    inner class SearchViewHolder(val binding: ResultListItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        var searchResult = binding.searchResult
+    inner class SearchViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        val tvResult = view.findViewById<TextView>(R.id.tv_result)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         // TODO with data binding
-        val binding = DataBindingUtil.inflate<ResultListItemBinding>(
-            LayoutInflater.from(context), R.layout.result_list_item, parent, false
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.result_list_item,
+            parent,
+            false
         )
-        return SearchViewHolder(binding)
+        return SearchViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.apply {
-            searchResult = dataSet[position]
-            holder.binding.executePendingBindings()
-        }
+        holder.tvResult.text = dataSet[position].title
         // onclick listener...
     }
 
