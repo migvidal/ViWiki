@@ -18,9 +18,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        // Handle intent
-        val articleName = intent.getStringExtra(ARTICLE_NAME)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

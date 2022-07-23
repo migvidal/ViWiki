@@ -5,4 +5,5 @@
     <string name="header_text">featured article</string>
     <string name="goto_full_article_text">read</string>
     <string name="search_hint">Search for articles</string>
+    <string name="saved_article_title_key">savedArticle</string>
 </resources>

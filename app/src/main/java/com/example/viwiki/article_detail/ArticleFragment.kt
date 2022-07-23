@@ -1,5 +1,6 @@
 package com.example.viwiki.article_detail
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,12 +17,19 @@ import com.example.viwiki.databinding.FragmentArticleBinding
  * Use the [ArticleFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+
+// the fragment initialization parameters
+private const val ARG_ARTICLE_NAME = ""
+
 class ArticleFragment : Fragment() {
-
-    private var articleName: String? = null
-
+    private var articleTitle: String? = null
 
     val viewModel: ArticleViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        articleTitle = arguments?.getString(ARG_ARTICLE_NAME)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,9 +40,6 @@ class ArticleFragment : Fragment() {
             inflater, R.layout.fragment_article, container, false
         )
 
-        // handle intents
-        handleNameIntent()
-
         // observe
         viewModel.articleResponse.observe(viewLifecycleOwner, Observer {
             binding.apply {
@@ -42,14 +47,28 @@ class ArticleFragment : Fragment() {
                 executePendingBindings()
             }
         })
-        viewModel.fetchArticleByTitle("Alberto Chicote")
+        if (articleTitle !== null) {
+            viewModel.fetchArticleByTitle(articleTitle!!)
+        }
         return binding.root
-    }
-
-    private fun handleNameIntent() {
     }
 
     companion object {
         val ARTICLE_NAME_CODE = "articleName"
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param articleTitle The tite of the article.
+         * @return A new instance of fragment ArticleFragment.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance(articleTitle: String) =
+            ArticleFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_ARTICLE_NAME, articleTitle)
+                }
+            }
     }
 }

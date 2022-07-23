@@ -1,15 +1,14 @@
 package com.example.viwiki.search
 
-import android.content.Intent
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.example.viwiki.MainActivity
-import com.example.viwiki.MainActivity.Companion.ARTICLE_NAME
 import com.example.viwiki.R
+import com.example.viwiki.article_detail.ArticleFragment
 
 class SearchAdapter(
     private val context: SearchActivity,
@@ -38,17 +37,22 @@ class SearchAdapter(
         holder.tvResult.text = resultTitle
 
         // onclick listener
-        holder.view.setOnClickListener {
-            val fragmentTransaction = context.supportFragmentManager
-            /*fragmentTransaction.beginTransaction()
-                .add(R.id.articleFragment, ArticleFragment())
-                .commit()*/
+        if (resultTitle !== null) {
 
-            val intent = Intent(context, MainActivity::class.java)
-                .putExtra(ARTICLE_NAME, resultTitle)
-            context.startActivity(intent)
+            holder.view.setOnClickListener {
+                val sharedPreferences = context.getPreferences(Context.MODE_PRIVATE)
+                sharedPreferences.edit()
+                    .putString(context.getString(R.string.saved_article_title_key), resultTitle)
+                    .apply()
+                val articleFragment = ArticleFragment.newInstance(resultTitle)
+                val fragmentTransaction = context.supportFragmentManager.beginTransaction()
+                fragmentTransaction.add(R.id.search_container, articleFragment)
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
         }
     }
+
 
     override fun getItemCount(): Int {
         return dataSet.size
