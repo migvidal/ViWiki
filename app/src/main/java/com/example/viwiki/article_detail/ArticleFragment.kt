@@ -1,6 +1,5 @@
 package com.example.viwiki.article_detail
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -55,6 +54,7 @@ class ArticleFragment : Fragment() {
 
     companion object {
         val ARTICLE_NAME_CODE = "articleName"
+
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.

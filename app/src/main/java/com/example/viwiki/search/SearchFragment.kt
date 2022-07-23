@@ -3,14 +3,12 @@ package com.example.viwiki.search
 import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.example.viwiki.MainActivity
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentSearchBinding
 import com.example.viwiki.utils.Logger
@@ -52,7 +50,8 @@ class SearchFragment : Fragment() {
     ): View? {
 
         // Init adapter
-        mSearchAdapter = SearchAdapter(activity as SearchActivity, listOf(SearchResponse.SearchQuery.Search()))
+        mSearchAdapter =
+            SearchAdapter(activity as SearchActivity, listOf(SearchResponse.SearchQuery.Search()))
         binding.rvResultsList.adapter = mSearchAdapter
 
         val divider =
