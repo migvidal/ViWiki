@@ -18,7 +18,7 @@ class SearchViewModel : ViewModel() {
     /**
      * Public immutable live data to expose data to other classes
      */
-    val searchResponse: LiveData<SearchResponse> = _searchResponse
+    val searchLiveData: LiveData<SearchResponse> = _searchResponse
 
     /**
      * Fetches the search results by the provided search term

@@ -8,11 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import com.example.viwiki.R
-import com.example.viwiki.databinding.FragmentSearchBinding
-import com.example.viwiki.utils.Logger
-import com.example.viwiki.utils.dummySearchQuery
 
 /**
  *
@@ -24,46 +21,35 @@ class SearchFragment : Fragment() {
     private val TAG = "SearchFragment"
 
     /**
-     * Search View model instance for the data
+     * SearchViewModel instance
      */
     private val viewModel: SearchViewModel by viewModels()
 
     /**
-     * View binding
-     */
-    private val binding: FragmentSearchBinding by lazy {
-        FragmentSearchBinding.inflate(layoutInflater)
-    }
-
-    /**
      * Adapter for the recycler view
      */
-    private lateinit var mSearchAdapter: SearchAdapter
+    private lateinit var searchAdapter: SearchAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val resultsRecyclerView = activity?.findViewById<RecyclerView>(R.id.recycler_view_results)
+
+        // Set the adapter
 
 
-    /**
-     * Create and return the view
-     */
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        // Init adapter
-        mSearchAdapter =
-            SearchAdapter(activity as SearchActivity, listOf(SearchResponse.SearchQuery.Search()))
-        binding.rvResultsList.adapter = mSearchAdapter
-
-        val divider =
-            DividerItemDecoration(binding.rvResultsList.context, DividerItemDecoration.HORIZONTAL)
-        binding.rvResultsList.addItemDecoration(divider)
+        //  FIXME Add divider
+        /*val divider = DividerItemDecoration(
+            rvResultsList?.context,
+            DividerItemDecoration.HORIZONTAL
+        )
+        rvResultsList?.addItemDecoration(divider)*/
 
         // Observe Search live data
-        viewModel.searchResponse.observe(activity as SearchActivity) { response ->
-            Logger.logInfo(TAG, "Enter_Observer")
+        viewModel.searchLiveData.observe(this) { response ->
             if (response.query !== null) {
-                //mSearchAdapter.updateResults(response.query.search)
-                mSearchAdapter.updateResults(dummySearchQuery.search)
+                searchAdapter.dataSet = response.query.search
+                //mSearchAdapter.updateResults(dummySearchQuery.search)
             }
         }
 
@@ -75,9 +61,30 @@ class SearchFragment : Fragment() {
             }
         }
 
-        // Inflate the layout for this fragment
-        // TODO using binding
-        return inflater.inflate(R.layout.fragment_search, container, false)
     }
+
+
+    /**
+     * Inflate layout and return view
+     */
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_search, container, false)
+        val resultsRecyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_results)
+
+
+        searchAdapter = SearchAdapter(activity as SearchActivity)
+        resultsRecyclerView?.apply {
+            adapter = searchAdapter
+            setHasFixedSize(true)
+        }
+
+        resultsRecyclerView.adapter = searchAdapter
+        // Inflate the layout for this fragment
+        return view
+    }
+
 
 }
