@@ -2,6 +2,7 @@ package com.example.viwiki.search
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,13 +54,18 @@ class SearchAdapter(val context: SearchActivity) : Adapter<SearchAdapter.SearchV
 
         // onclick listener
         holder.tvResult.setOnClickListener {
-            val fragment = ArticleFragment()
-            context.supportFragmentManager.beginTransaction()
-                .replace(R.id.search_container, fragment)
-                .commit()
-        }
+            // Create ArticleFragment
+            if (resultTitle !== null) {
+                val fragment = ArticleFragment.newInstance(resultTitle)
+                // Show the fragment
+                context.supportFragmentManager.beginTransaction()
+                    .replace(R.id.search_container, fragment)
+                    .commit()
+            }
 
+        }
     }
+
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
