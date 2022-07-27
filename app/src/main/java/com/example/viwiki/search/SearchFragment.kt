@@ -47,8 +47,14 @@ class SearchFragment : Fragment() {
 
         // Observe Search live data
         viewModel.searchLiveData.observe(this) { response ->
-            if (response.query !== null) {
-                searchAdapter.dataSet = response.query.search
+            val query = response.query
+            if (query !== null) {
+                if (query.searchInfo.totalHits != 0) {
+                    searchAdapter.dataSet = query.search
+                } else {
+                    // TODO use data binding + put logic in it
+                    // TODO show "No results"
+                }
                 //mSearchAdapter.updateResults(dummySearchQuery.search)
             }
         }

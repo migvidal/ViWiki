@@ -10,8 +10,15 @@ data class SearchResponse(
     val query: SearchQuery? = SearchQuery()
 ) {
     data class SearchQuery(
+        val searchInfo: SearchInfo = SearchInfo(),
         val search: List<Search> = listOf(Search())
     ) {
+        data class SearchInfo(
+            /**
+             * Number of results found. Zero if nothing was found
+             */
+            @Json(name = "totalhits") val totalHits: Int = 0
+        )
         data class Search(
             val ns: Int? = null,
             val title: String? = null,
