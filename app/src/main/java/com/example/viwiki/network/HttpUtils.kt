@@ -14,14 +14,8 @@ object HttpUtils {
     /**
      * Logs the request URL to console
      */
-    private val loggingInterceptor = HttpLoggingInterceptor()
+    val loggingInterceptor = HttpLoggingInterceptor()
         .setLevel(HttpLoggingInterceptor.Level.BASIC)
 
-    /**
-     * HTTP client
-     */
-    val okHttpClient = OkHttpClient.Builder()
-        .addInterceptor(loggingInterceptor)// TODO remove for final build
-        .build()
 }
 

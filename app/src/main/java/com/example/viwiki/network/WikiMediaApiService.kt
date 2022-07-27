@@ -2,6 +2,7 @@ package com.example.viwiki
 
 import com.example.viwiki.home.FeaturedArticleResponse
 import com.example.viwiki.network.HttpUtils
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -10,11 +11,18 @@ import retrofit2.http.Path
 private val WIKIMEDIA_BASE_URL: String = "https://api.wikimedia.org/"
 
 /**
+ * HTTP client
+ */
+private val okHttpClient = OkHttpClient.Builder()
+    .addInterceptor(HttpUtils.loggingInterceptor)// TODO remove for final build
+    .build()
+
+/**
  * Retrofit client, for creating the API service
  */
 private val retrofit = Retrofit.Builder()
     .baseUrl(WIKIMEDIA_BASE_URL)
-    .client(HttpUtils.okHttpClient)
+    .client(okHttpClient)
     .addConverterFactory(MoshiConverterFactory.create(HttpUtils.moshi))
     .build()
 
@@ -22,7 +30,8 @@ private val retrofit = Retrofit.Builder()
  * Interface for Retrofit to handle queries
  */
 interface WikiMediaApiService {
-    @GET("/feed/v1/wikipedia/en/featured/{yyyy}/{mm}/{dd}")
+    @GET("/feed/v1/wikipedia/en/featured/" +
+            "{yyyy}/{mm}/{dd}")
     /**
      * Fetches the featured article for a certain date
      * @param yyyy The year
