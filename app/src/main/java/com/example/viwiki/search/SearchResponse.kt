@@ -10,7 +10,7 @@ data class SearchResponse(
     val query: SearchQuery? = SearchQuery()
 ) {
     data class SearchQuery(
-        val searchInfo: SearchInfo = SearchInfo(),
+        @Json(name = "searchinfo") val searchInfo: SearchInfo = SearchInfo(),
         val search: List<Search> = listOf(Search())
     ) {
         data class SearchInfo(

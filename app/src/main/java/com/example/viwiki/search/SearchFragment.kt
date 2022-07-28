@@ -6,10 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.viwiki.R
+import com.example.viwiki.databinding.FragmentSearchBinding
+import com.example.viwiki.utils.Logger
 
 /**
  *
@@ -26,70 +29,64 @@ class SearchFragment : Fragment() {
     private val viewModel: SearchViewModel by viewModels()
 
     /**
-     * Adapter for the recycler view
+     * Load instance state and trigger search
      */
-    private lateinit var searchAdapter: SearchAdapter
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        Logger.logInfo(TAG, "onCreate Called")
         super.onCreate(savedInstanceState)
 
-        val resultsRecyclerView = activity?.findViewById<RecyclerView>(R.id.recycler_view_results)
-
-        // Set the adapter
-
-
-        //  FIXME Add divider
-        /*val divider = DividerItemDecoration(
-            rvResultsList?.context,
-            DividerItemDecoration.HORIZONTAL
-        )
-        rvResultsList?.addItemDecoration(divider)*/
-
-        // Observe Search live data
-        viewModel.searchLiveData.observe(this) { response ->
-            val query = response.query
-            if (query !== null) {
-                if (query.searchInfo.totalHits != 0) {
-                    searchAdapter.dataSet = query.search
-                } else {
-                    // TODO use data binding + put logic in it
-                    // TODO show "No results"
-                }
-                //mSearchAdapter.updateResults(dummySearchQuery.search)
-            }
-        }
-
-        // Verify intent
+        // Verify intents
         val intent = (activity as SearchActivity).intent
         if (intent.action == Intent.ACTION_SEARCH) {
             intent.getStringExtra(SearchManager.QUERY)?.also { query ->
+                // Trigger search
                 viewModel.searchArticles(query)
             }
         }
-
     }
 
 
     /**
-     * Inflate layout and return view
+     * Create layout and start observers
      */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_search, container, false)
-        val resultsRecyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_results)
+    ): View {
+        Logger.logInfo(TAG, "onCreateView Called")
 
+        /**
+         * Data binding
+         */
+        val binding = DataBindingUtil.inflate<FragmentSearchBinding>(
+            inflater, R.layout.fragment_search, container, false
+        )
+        /**
+         * Adapter for the recycler view
+         */
+        val searchAdapter = SearchAdapter(activity as SearchActivity)
 
-        searchAdapter = SearchAdapter(activity as SearchActivity)
-        resultsRecyclerView?.apply {
+        // Setup recycler view
+        binding.recyclerViewResults.apply {
             adapter = searchAdapter
             setHasFixedSize(true)
         }
 
-        resultsRecyclerView.adapter = searchAdapter
-        // Inflate the layout for this fragment
-        return view
+        // Observe the SearchResponse
+        viewModel.searchLiveData.observe(viewLifecycleOwner) { response ->
+            val query = response.query
+            if (query != null) {
+                // Update binding. UI logic is in the layout file
+                binding.searchInfo = query.searchInfo
+                if (query.searchInfo.totalHits != 0) {
+                    // Update adapter data
+                    searchAdapter.dataSet = query.search
+                }
+            }
+        }
+
+        // Return the view
+        return binding.root
     }
 
 
