@@ -13,8 +13,6 @@ import com.example.viwiki.search.SearchActivity
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var mArticleName: String
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,19 +31,5 @@ class MainActivity : AppCompatActivity() {
         // Set the searchable info
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_search -> {
-                startActivity(Intent(SEARCH_SERVICE))
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
-
-    companion object {
-        val ARTICLE_NAME = "articleName"
     }
 }

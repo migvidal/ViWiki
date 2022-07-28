@@ -4,7 +4,8 @@ A basic but very visual Wikipedia client. Demo app to show my Android knowledge.
 ## Issues and discoveries (will update during the development)
 - To implement a regular SearchView, an additional Activity must be used. Thus, this won't be a single activity app.
 - When the stack trace doesn't go deep enough, add a try-catch(print) block in the error line.
-- To communicate SearchActivity with ArticleFragment, I instantiate a new ArticleFragment with the title as an argument.    
+- To communicate SearchActivity with ArticleFragment, I instantiate a new ArticleFragment with the title as an argument.
+- === compares reference, == compares data. Careful!
 
 ## Naming
 - Fetch or Get?
@@ -14,3 +15,7 @@ A basic but very visual Wikipedia client. Demo app to show my Android knowledge.
   - "Wikipedia": only the 'W' capitalized
   - "WikiMedia": capitalize the 'W' and the 'M'.
   That way, I can tell them apart more easily at a glance
+
+## Style
+- I prefer to leave the SAM constructor, even if redundant, for better legibility
+```viewModel.featuredArticleResponse.observe(viewLifecycleOwner, Observer {```

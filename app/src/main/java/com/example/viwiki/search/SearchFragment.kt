@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentSearchBinding
@@ -73,7 +74,7 @@ class SearchFragment : Fragment() {
         }
 
         // Observe the SearchResponse
-        viewModel.searchLiveData.observe(viewLifecycleOwner) { response ->
+        viewModel.searchLiveData.observe(viewLifecycleOwner, Observer { response ->
             val query = response.query
             if (query != null) {
                 // Update binding. UI logic is in the layout file
@@ -83,7 +84,7 @@ class SearchFragment : Fragment() {
                     searchAdapter.dataSet = query.search
                 }
             }
-        }
+        })
 
         // Return the view
         return binding.root
