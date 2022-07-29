@@ -52,6 +52,7 @@ class ArticleFragment : Fragment() {
         return binding.root
     }
 
+
     companion object {
         val ARTICLE_NAME_CODE = "articleName"
 
