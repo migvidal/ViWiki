@@ -9,13 +9,21 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.example.viwiki.databinding.ActivityMainBinding
 import com.example.viwiki.search.SearchActivity
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        // Set 'up' button
+        val navController = this.findNavController(R.id.search_nav_host)
+        NavigationUI.setupActionBarWithNavController(this, navController)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -31,5 +39,11 @@ class MainActivity : AppCompatActivity() {
         // Set the searchable info
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         return true
+    }
+
+    // Set 'up' button for older devices
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.search_nav_host)
+        return navController.navigateUp()
     }
 }

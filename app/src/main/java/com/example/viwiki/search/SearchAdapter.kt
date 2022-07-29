@@ -1,16 +1,11 @@
 package com.example.viwiki.search
 
-import android.content.Context
-import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.example.viwiki.MainActivity
 import com.example.viwiki.R
 import com.example.viwiki.article_detail.ArticleFragment
 import com.example.viwiki.utils.Logger
@@ -49,23 +44,23 @@ class SearchAdapter(val context: SearchActivity) : Adapter<SearchAdapter.SearchV
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         Logger.logInfo(TAG, "onBindViewHolder")
-        val resultTitle = dataSet[position].title
-        holder.tvResult.text = resultTitle
+        val articleTitle = dataSet[position].title
+        holder.tvResult.text = articleTitle
 
         // onclick listener
         holder.tvResult.setOnClickListener {
-            // Create ArticleFragment
-            if (resultTitle !== null) {
-                val fragment = ArticleFragment.newInstance(resultTitle)
+            if (articleTitle !== null) {
+                // Create ArticleFragment and pass the article title
+                val fragment = ArticleFragment.newInstance(articleTitle)
                 // Show the fragment
                 context.supportFragmentManager.beginTransaction()
-                    .replace(R.id.search_container, fragment)
+                    .replace(R.id.fragment_search, fragment)
+                    .addToBackStack(null)
                     .commit()
             }
 
         }
     }
-
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
