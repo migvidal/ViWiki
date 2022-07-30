@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentSearchBinding
 import com.example.viwiki.utils.Logger
@@ -28,6 +28,7 @@ class SearchFragment : Fragment() {
      * SearchViewModel instance
      */
     private val viewModel: SearchViewModel by viewModels()
+    private lateinit var searchQuery: String
 
     /**
      * Load instance state and trigger search
@@ -37,12 +38,11 @@ class SearchFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         // Verify intents
-        val intent = (activity as SearchActivity).intent
-        if (intent.action == Intent.ACTION_SEARCH) {
-            intent.getStringExtra(SearchManager.QUERY)?.also { query ->
-                // Trigger search
-                viewModel.searchArticles(query)
-            }
+        val intent = getActivitySafely()?.intent
+        if (intent?.action == Intent.ACTION_SEARCH) {
+            searchQuery = intent.getStringExtra(SearchManager.QUERY).toString()
+            // Trigger the search
+            viewModel.searchArticles(searchQuery)
         }
     }
 
@@ -65,7 +65,7 @@ class SearchFragment : Fragment() {
         /**
          * Adapter for the recycler view
          */
-        val searchAdapter = SearchAdapter(activity as SearchActivity)
+        val searchAdapter = getActivitySafely()?.let { SearchAdapter(it) }
 
         // Setup recycler view
         binding.recyclerViewResults.apply {
@@ -77,17 +77,33 @@ class SearchFragment : Fragment() {
         viewModel.searchLiveData.observe(viewLifecycleOwner, Observer { response ->
             val query = response.query
             if (query != null) {
+                val searchInfo = query.searchInfo
                 // Update binding. UI logic is in the layout file
-                binding.searchInfo = query.searchInfo
-                if (query.searchInfo.totalHits != 0) {
+                binding.searchInfo = searchInfo
+                if (searchInfo.totalHits != 0) {
+                    // Show hits in action bar
+                    val totalHitsMessage = "${searchInfo.totalHits} results for '$searchQuery'"
+                    getActivitySafely()?.supportActionBar?.title = totalHitsMessage
                     // Update adapter data
-                    searchAdapter.dataSet = query.search
+                    searchAdapter?.dataSet = query.search
+                } else {
+                    getActivitySafely()?.supportActionBar?.title = "Results for '$searchQuery'"
                 }
             }
         })
 
         // Return the view
         return binding.root
+    }
+
+    /**
+     * Returns the activity, after a type check
+     */
+    private fun getActivitySafely(): SearchActivity? {
+        if (activity is SearchActivity) {
+            return activity as SearchActivity
+        }
+        return null
     }
 
 

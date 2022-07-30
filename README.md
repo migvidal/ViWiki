@@ -6,6 +6,7 @@ A basic but very visual Wikipedia client. Demo app to show my Android knowledge.
 - When the stack trace doesn't go deep enough, add a try-catch(print) block in the error line.
 - To communicate SearchActivity with ArticleFragment, I instantiate a new ArticleFragment with the title as an argument.
 - === compares reference, == compares data. Careful!
+- Making a dynamic action bar label: remove the label in the manifest/navgraph, then set it programatically
 
 ## Naming
 - Fetch or Get?
@@ -17,5 +18,8 @@ A basic but very visual Wikipedia client. Demo app to show my Android knowledge.
   That way, I can tell them apart more easily at a glance
 
 ## Style
+- I do my best to avoid unsafe casting (X as Y) and asserted calls (!!), or at least to reduce their damage
+  - Example: the function `getActivitySafely()`, which first checks the type and then casts it
 - I prefer to leave the SAM constructor, even if redundant, for better legibility
-```viewModel.featuredArticleResponse.observe(viewLifecycleOwner, Observer {```
+`viewModel.featuredArticleResponse.observe(viewLifecycleOwner, Observer {`
+- I leave code blocks inline with comments, rather than in small functions, unless i need to reuse it. This makes it easier to follow the execution flow.

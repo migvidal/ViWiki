@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.viwiki.R
 import com.example.viwiki.article_detail.ArticleFragment
-import com.example.viwiki.utils.Logger
 
 class SearchAdapter(val context: SearchActivity) : Adapter<SearchAdapter.SearchViewHolder>() {
     private val TAG = "SearchAdapter"
@@ -20,7 +19,6 @@ class SearchAdapter(val context: SearchActivity) : Adapter<SearchAdapter.SearchV
         }
 
     override fun getItemCount(): Int {
-        Logger.logInfo(TAG, "getItemCount: " + dataSet.size)
         return dataSet.size
     }
 
@@ -32,7 +30,6 @@ class SearchAdapter(val context: SearchActivity) : Adapter<SearchAdapter.SearchV
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
-        Logger.logInfo(TAG, "onCreateViewHolder")
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(
             R.layout.result_list_item,
@@ -43,7 +40,6 @@ class SearchAdapter(val context: SearchActivity) : Adapter<SearchAdapter.SearchV
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        Logger.logInfo(TAG, "onBindViewHolder")
         val articleTitle = dataSet[position].title
         holder.tvResult.text = articleTitle
 

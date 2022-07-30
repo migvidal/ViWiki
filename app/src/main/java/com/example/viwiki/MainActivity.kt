@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         // Set 'up' button
         val navController = this.findNavController(R.id.search_nav_host)
         NavigationUI.setupActionBarWithNavController(this, navController)
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
