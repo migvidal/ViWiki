@@ -9,11 +9,29 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class HomeViewModel : ViewModel() {
-    val _featuredArticleResponse: MutableLiveData<FeaturedArticleResponse> by lazy {
+
+    /**
+     * Values for the status of the response
+     */
+    enum class WikiMediaApiStatus {LOADING, ERROR, DONE}
+
+    /**
+     * Response from the WikiMediaApi
+     */
+    private val _featuredArticleResponse: MutableLiveData<FeaturedArticleResponse> by lazy {
         MutableLiveData<FeaturedArticleResponse>()
     }
     val featuredArticleResponse: LiveData<FeaturedArticleResponse> = _featuredArticleResponse
 
+    /**
+     * Status of the response
+     */
+    private val _status = MutableLiveData<WikiMediaApiStatus>()
+    val status: LiveData<WikiMediaApiStatus> = _status
+
+    /**
+     * Fetch today's featured article from the API
+     */
     fun fetchTodayFeaturedArticle() {
         val calendar = Calendar.getInstance()
         fetchFeaturedArticle(
@@ -23,16 +41,24 @@ class HomeViewModel : ViewModel() {
         )
     }
 
-
+    /**
+     * Fetch the featured article from the API for a given date
+     */
     private fun fetchFeaturedArticle(year: Int, month: Int, day: Int) {
+        // Format the date for the API
         val yyyy = year.toString()
         val mm = String.format("%02d", month)
         val dd = String.format("%02d", day)
+
+        // Launch API call coroutine while updating status
         viewModelScope.launch {
+            _status.value = WikiMediaApiStatus.LOADING
             try {
                 val response = WikiMediaApiImpl.wikiMediaApiService.getFeatured(yyyy, mm, dd)
                 _featuredArticleResponse.value = response
+                _status.value = WikiMediaApiStatus.DONE
             } catch (e: Exception) {
+                _status.value = WikiMediaApiStatus.ERROR
                 e.printStackTrace()
             }
 

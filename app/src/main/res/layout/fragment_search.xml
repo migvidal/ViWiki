@@ -22,7 +22,7 @@
             android:layout_gravity="center"
             android:textSize="@dimen/header2_size"
             android:visibility="@{searchInfo.totalHits == 0 ? View.VISIBLE : View.GONE}"
-            android:text="No results"
+            android:text="@string/no_results_message"
             tools:visibility="visible"/>
 
         <androidx.recyclerview.widget.RecyclerView

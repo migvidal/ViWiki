@@ -28,9 +28,10 @@ class HomeFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentHomeBinding>(
             inflater, R.layout.fragment_home, container, false
         )
+
+        // TODO just pass viewmodel
         // Data binding
         viewModel.featuredArticleResponse.observe(viewLifecycleOwner, Observer {
-            Logger.logInfo("The_info: ", it.tfa.title)
             binding.apply {
                 featuredArticle = it
                 imageView.load(it.tfa.thumbnail.source)
@@ -38,6 +39,9 @@ class HomeFragment : Fragment() {
             }
         })
         viewModel.fetchTodayFeaturedArticle()
+
+        // Add status to binding
+
 
         // Button
         // ...

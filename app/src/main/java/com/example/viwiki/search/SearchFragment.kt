@@ -82,6 +82,7 @@ class SearchFragment : Fragment() {
                 binding.searchInfo = searchInfo
                 if (searchInfo.totalHits != 0) {
                     // Show hits in action bar
+                    // TODO using string resources
                     val totalHitsMessage = "${searchInfo.totalHits} results for '$searchQuery'"
                     getActivitySafely()?.supportActionBar?.title = totalHitsMessage
                     // Update adapter data
