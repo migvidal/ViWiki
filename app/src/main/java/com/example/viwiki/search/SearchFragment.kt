@@ -78,18 +78,22 @@ class SearchFragment : Fragment() {
             val query = response.query
             if (query != null) {
                 val searchInfo = query.searchInfo
-                // Update binding. UI logic is in the layout file
+
+                // Update binding. (UI logic is in the layout file)
                 binding.searchInfo = searchInfo
-                if (searchInfo.totalHits != 0) {
-                    // Show hits in action bar
-                    // TODO using string resources
-                    val totalHitsMessage = "${searchInfo.totalHits} results for '$searchQuery'"
-                    getActivitySafely()?.supportActionBar?.title = totalHitsMessage
-                    // Update adapter data
-                    searchAdapter?.dataSet = query.search
-                } else {
-                    getActivitySafely()?.supportActionBar?.title = "Results for '$searchQuery'"
+
+                // Generic message for action bar
+                setActionBarTitle("Results for '$searchQuery'")
+
+                // Show hits in action bar
+                searchInfo.totalHits.let {
+                    if (it != 0) {
+                        setActionBarTitle("$it results for '$searchQuery'")
+                    }
                 }
+
+                // Update adapter data
+                searchAdapter?.dataSet = query.search
             }
         })
 
@@ -105,6 +109,13 @@ class SearchFragment : Fragment() {
             return activity as SearchActivity
         }
         return null
+    }
+
+    /**
+     * Sets the action bar title (aka label)
+     */
+    private fun setActionBarTitle(title: String) {
+        getActivitySafely()?.supportActionBar?.title = title
     }
 
 
