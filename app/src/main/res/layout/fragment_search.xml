@@ -6,6 +6,8 @@
     <data>
 
         <import type="android.view.View" />
+        <import type="com.example.viwiki.search.SearchViewModel.WikipediaApiStatus" />
+
 
         <variable
             name="viewModel"
@@ -13,21 +15,38 @@
     </data>
 
     <FrameLayout
-        android:id="@+id/search_fragment_container"
+        android:id="@+id/search_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".search.SearchFragment">
 
-        <TextView
-            android:id="@+id/tv_info_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@{viewModel.infoMessageRes}"
-            android:textAlignment="center"
-            android:textSize="@dimen/header2_size"
-            android:visibility="@{viewModel.searchResponse.query.searchInfo.totalHits == 0 ? View.VISIBLE : View.GONE}"
-            tools:visibility="visible" />
+        <LinearLayout
+            android:id="@+id/tv_status_screen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.status == WikipediaApiStatus.DONE ? View.GONE : View.VISIBLE}"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/tv_info_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.infoMessageRes}"
+                android:textAlignment="center"
+                android:textSize="@dimen/header2_size"
+                tools:text="There was an error" />
+
+            <Button
+                android:id="@+id/btn_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="try again"
+                android:visibility="@{viewModel.status == WikipediaApiStatus.LOADING ? View.GONE : View.VISIBLE}" />
+
+        </LinearLayout>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_results"

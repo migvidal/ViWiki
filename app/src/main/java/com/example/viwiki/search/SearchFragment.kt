@@ -37,12 +37,7 @@ class SearchFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         // Verify intents
-        val intent = getActivitySafely()?.intent
-        if (intent?.action == Intent.ACTION_SEARCH) {
-            searchQuery = intent.getStringExtra(SearchManager.QUERY).toString()
-            // Trigger the search
-            viewModel.searchArticles(searchQuery)
-        }
+        searchFromIntent()
     }
 
 
@@ -79,12 +74,24 @@ class SearchFragment : Fragment() {
             if (query != null) {
 
                 // Generic message for action bar
-                setActionBarTitle("Results for '$searchQuery'")
+                setActionBarTitle(getString(
+                    R.string.action_bar_results_title_generic,
+                    searchQuery))
 
                 // Show hits in action bar
                 query.searchInfo.totalHits.let {
                     if (it != 0) {
-                        setActionBarTitle("$it results for '$searchQuery'")
+                        try {
+                            setActionBarTitle(
+                                getString(
+                                    R.string.action_bar_results_title_number,
+                                    it,
+                                    searchQuery
+                                )
+                            )
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
                     }
                 }
 
@@ -92,6 +99,11 @@ class SearchFragment : Fragment() {
                 searchAdapter?.dataSet = query.search
             }
         })
+
+        // Refresh button listener
+        binding.btnRefresh.setOnClickListener {
+            searchFromIntent() // Do the search again
+        }
 
         // Bind data
         binding.lifecycleOwner = viewLifecycleOwner
@@ -117,6 +129,19 @@ class SearchFragment : Fragment() {
     private fun setActionBarTitle(title: String) {
         getActivitySafely()?.supportActionBar?.title = title
     }
+
+    /**
+     * Searches the query from the SEARCH intent
+     */
+    private fun searchFromIntent() {
+        val intent = getActivitySafely()?.intent
+        if (intent?.action == Intent.ACTION_SEARCH) {
+            searchQuery = intent.getStringExtra(SearchManager.QUERY).toString()
+            // Trigger the search
+            viewModel.searchArticles(searchQuery)
+        }
+    }
+
 
 
 }
