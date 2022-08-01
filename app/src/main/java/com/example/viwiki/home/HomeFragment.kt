@@ -50,6 +50,11 @@ class HomeFragment : Fragment() {
         // Fetch data from API
         viewModel.fetchTodayFeaturedArticle()
 
+        // Wire buttons
+        binding.btnRefresh.setOnClickListener {
+            viewModel.fetchTodayFeaturedArticle()
+        }
+
         return binding.root
     }
 }

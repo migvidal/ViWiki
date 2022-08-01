@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.viwiki.R
 import com.example.viwiki.WikipediaApiImpl
-import com.example.viwiki.home.HomeViewModel
 import kotlinx.coroutines.launch
 
 class SearchViewModel : ViewModel() {
@@ -20,7 +20,7 @@ class SearchViewModel : ViewModel() {
      * Private mutable live data
      */
     private val _searchResponse = MutableLiveData<SearchResponse>()
-    val searchLiveData: LiveData<SearchResponse> = _searchResponse
+    val searchResponse: LiveData<SearchResponse> = _searchResponse
 
     /**
      * Status of the response
@@ -29,10 +29,10 @@ class SearchViewModel : ViewModel() {
     val status: LiveData<WikipediaApiStatus> = _status
 
     /**
-     * Error message
+     * String resource for the information message
      */
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> = _errorMessage
+    private val _infoMessageRes = MutableLiveData<Int>()
+    val infoMessageRes: LiveData<Int> = _infoMessageRes
 
     /**
      * Fetches the search results by the provided search term
@@ -41,12 +41,20 @@ class SearchViewModel : ViewModel() {
     fun searchArticles(query: String) {
         viewModelScope.launch {
             _status.value = WikipediaApiStatus.LOADING
+            _infoMessageRes.value = R.string.loading_message
             try {
                 val response = WikipediaApiImpl.wikipediaApiService.getSearchResults(query)
                 _searchResponse.value = response
                 _status.value = WikipediaApiStatus.DONE
+
+                // Set message if there are no results
+                if (_searchResponse.value?.query?.searchInfo?.totalHits == 0) {
+                    _infoMessageRes.value = R.string.no_results_message
+                }
+
             } catch (e: Exception) {
                 _status.value = WikipediaApiStatus.ERROR
+                _infoMessageRes.value = R.string.error_message
                 e.printStackTrace()
             }
         }

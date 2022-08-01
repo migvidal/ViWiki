@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.viwiki.R
@@ -74,19 +73,15 @@ class SearchFragment : Fragment() {
         }
 
         // Observe the SearchResponse
-        viewModel.searchLiveData.observe(viewLifecycleOwner, Observer { response ->
+        viewModel.searchResponse.observe(viewLifecycleOwner, Observer { response ->
             val query = response.query
             if (query != null) {
-                val searchInfo = query.searchInfo
-
-                // Update binding. (UI logic is in the layout file)
-                binding.searchInfo = searchInfo
 
                 // Generic message for action bar
                 setActionBarTitle("Results for '$searchQuery'")
 
                 // Show hits in action bar
-                searchInfo.totalHits.let {
+                query.searchInfo.totalHits.let {
                     if (it != 0) {
                         setActionBarTitle("$it results for '$searchQuery'")
                     }
@@ -96,6 +91,10 @@ class SearchFragment : Fragment() {
                 searchAdapter?.dataSet = query.search
             }
         })
+
+        // Bind data
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
 
         // Return the view
         return binding.root

@@ -1,10 +1,10 @@
 package com.example.viwiki.home
 
-import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.viwiki.R
 import com.example.viwiki.WikiMediaApiImpl
 import com.example.viwiki.utils.Logger
 import kotlinx.coroutines.launch
@@ -31,6 +31,12 @@ class HomeViewModel : ViewModel() {
     val status: LiveData<WikiMediaApiStatus> = _status
 
     /**
+     * String resource for the information message
+     */
+    private val _infoMessageRes = MutableLiveData<Int>()
+    val infoMessageRes: LiveData<Int> = _infoMessageRes
+
+    /**
      * Fetch today's featured article from the API
      */
     fun fetchTodayFeaturedArticle() {
@@ -55,12 +61,14 @@ class HomeViewModel : ViewModel() {
         // Launch API call coroutine while updating status
         viewModelScope.launch {
             _status.value = WikiMediaApiStatus.LOADING
+            _infoMessageRes.value = R.string.loading_message
             try {
                 val response = WikiMediaApiImpl.wikiMediaApiService.getFeatured(yyyy, mm, dd)
                 _featuredArticleResponse.value = response
                 _status.value = WikiMediaApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = WikiMediaApiStatus.ERROR
+                _infoMessageRes.value = R.string.error_message
                 e.printStackTrace()
             }
 

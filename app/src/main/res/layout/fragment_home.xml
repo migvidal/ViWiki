@@ -12,25 +12,46 @@
     </data>
 
     <FrameLayout
+        android:id="@+id/home_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_loading_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:layout_gravity="center"
-            android:textSize="@dimen/header2_size"
+        <LinearLayout
+            android:id="@+id/tv_status_screen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:visibility="@{viewModel.status == WikiMediaApiStatus.DONE ? View.GONE : View.VISIBLE}"
-            android:text="@{viewModel.status.toString()}"
-            tools:visibility="visible"/>
+            android:orientation="vertical"
+            android:gravity="center"
+            tools:visibility="visible"
+            >
+
+            <TextView
+                android:id="@+id/tv_info_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="@{viewModel.infoMessageRes}"
+                android:textSize="@dimen/header2_size"
+                tools:text="There was an error" />
+
+            <Button
+                android:id="@+id/btn_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="try again"
+                android:visibility="@{viewModel.status == WikiMediaApiStatus.LOADING ? View.GONE : View.VISIBLE}"
+                />
+
+        </LinearLayout>
+
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".HomeFragment"
             android:visibility="@{viewModel.status == WikiMediaApiStatus.DONE ? View.VISIBLE : View.GONE}"
+            tools:visibility="gone"
             >
 
             <androidx.constraintlayout.widget.ConstraintLayout
