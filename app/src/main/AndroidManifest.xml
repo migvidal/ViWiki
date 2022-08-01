@@ -18,11 +18,12 @@
         <activity
             android:name=".search.SearchActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:label="@string/search_label">
+            android:label="@string/search_label"
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />

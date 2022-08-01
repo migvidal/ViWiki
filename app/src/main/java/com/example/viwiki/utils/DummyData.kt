@@ -39,7 +39,8 @@ val dummySearchQuery = SearchResponse.SearchQuery(
     )
 )
 
-val dummySearchResponse = SearchResponse("",
+val dummySearchResponse = SearchResponse(
+    "",
     SearchResponse.SearchQuery(
         searchInfo = SearchResponse.SearchQuery.SearchInfo(0),
         search = listOf(

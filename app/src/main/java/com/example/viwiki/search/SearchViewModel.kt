@@ -13,7 +13,7 @@ class SearchViewModel : ViewModel() {
     /**
      * Values for the status of the response
      */
-    enum class WikipediaApiStatus {LOADING, ERROR, DONE}
+    enum class WikipediaApiStatus { LOADING, ERROR, DONE }
 
 
     /**

@@ -61,6 +61,7 @@ class SearchFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentSearchBinding>(
             inflater, R.layout.fragment_search, container, false
         )
+
         /**
          * Adapter for the recycler view
          */

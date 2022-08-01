@@ -5,17 +5,22 @@ import com.squareup.moshi.Json
 /**
  * Featured article response from given date
  */
-
 data class FeaturedArticleResponse(
     val tfa: Tfa = Tfa(),
     @Json(name = "onthisday") val onThisDay: List<OnThisDayArticle> = listOf(OnThisDayArticle())
 ) {
+    /**
+     * The featured article of the day
+     */
     data class Tfa(
         val type: String = "",
         val title: String = "",
         @Json(name = "displaytitle") val displayTitle: String = "",
         val thumbnail: Thumbnail = Thumbnail()
     ) {
+        /**
+         * The photo thumbnail
+         */
         data class Thumbnail(
             val source: String = "",
             val width: Int = 0,
@@ -23,6 +28,9 @@ data class FeaturedArticleResponse(
         )
     }
 
+    /**
+     * The "on this day" article
+     */
     data class OnThisDayArticle(
         val text: String = ""
     )

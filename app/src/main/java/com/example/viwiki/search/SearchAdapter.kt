@@ -67,6 +67,4 @@ class SearchAdapter(val context: SearchActivity) : Adapter<SearchAdapter.SearchV
     }
 
 
-
-
 }

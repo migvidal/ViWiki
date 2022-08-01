@@ -3,10 +3,8 @@ package com.example.viwiki
 import android.app.SearchManager
 import android.content.ComponentName
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
@@ -14,7 +12,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.viwiki.databinding.ActivityMainBinding
 import com.example.viwiki.search.SearchActivity
-import com.example.viwiki.utils.Logger
 
 class MainActivity : AppCompatActivity() {
 

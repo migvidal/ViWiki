@@ -2,7 +2,6 @@ package com.example.viwiki.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
 object HttpUtils {
@@ -16,6 +15,5 @@ object HttpUtils {
      */
     val loggingInterceptor = HttpLoggingInterceptor()
         .setLevel(HttpLoggingInterceptor.Level.BASIC)
-
 }
 

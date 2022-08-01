@@ -30,8 +30,10 @@ private val retrofit = Retrofit.Builder()
  * Interface for Retrofit to handle queries
  */
 interface WikiMediaApiService {
-    @GET("/feed/v1/wikipedia/en/featured/" +
-            "{yyyy}/{mm}/{dd}")
+    @GET(
+        "/feed/v1/wikipedia/en/featured/" +
+                "{yyyy}/{mm}/{dd}"
+    )
     /**
      * Fetches the featured article for a certain date
      * @param yyyy The year

@@ -16,7 +16,7 @@ class HomeViewModel : ViewModel() {
     /**
      * Values for the status of the response
      */
-    enum class WikiMediaApiStatus {LOADING, ERROR, DONE}
+    enum class WikiMediaApiStatus { LOADING, ERROR, DONE }
 
     /**
      * Response from the WikiMediaApi

@@ -19,6 +19,7 @@ data class SearchResponse(
              */
             @Json(name = "totalhits") val totalHits: Int = 0
         )
+
         data class Search(
             val ns: Int? = null,
             val title: String? = null,

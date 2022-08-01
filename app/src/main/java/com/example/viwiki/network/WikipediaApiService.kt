@@ -52,7 +52,7 @@ private val retrofit = Retrofit.Builder()
  */
 interface WikipediaApiService {
     /**
-     * Fetch the ArticleResponse
+     * Fetch and return the ArticleResponse
      * @param title The exact title of the article
      */
     @GET("/")
@@ -61,14 +61,17 @@ interface WikipediaApiService {
         @Query("prop") prop: String = "extracts",
         @Query("exsentences") exsentences: Int = 1,
         @Query("explaintext") explaintext: Int = 1,
-        @Query("formatversion") formatversion: Int = 2,
+        @Query("formatversion") formatversion: Int = 2
     ): ArticleResponse
 
+    /**
+     * Fetch and return the images response
+     */
     @GET("/")
     suspend fun getImagesResponse(
         @Query("titles") title: String,
         @Query("prop") prop: String = "pageimages",
-        @Query("piprop") piprop: String = "original",
+        @Query("piprop") piprop: String = "original"
     ): ArticleResponse
 
     /**
@@ -80,7 +83,7 @@ interface WikipediaApiService {
         @Query("srsearch") query: String,
         @Query("srlimit") resultLimit: Int = 30,
         @Query("list") list: String = "search"
-    ) : SearchResponse
+    ): SearchResponse
 }
 
 /**

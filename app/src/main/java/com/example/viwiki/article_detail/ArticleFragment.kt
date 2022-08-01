@@ -54,17 +54,11 @@ class ArticleFragment : Fragment() {
 
 
     companion object {
-        val ARTICLE_NAME_CODE = "articleName"
-
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param articleTitle The tite of the article.
-         * @return A new instance of fragment ArticleFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
+                /**
+                 * Creates an instance of this ArticleFragment
+                 * @param articleTitle The exact title of the article
+                 */
         fun newInstance(articleTitle: String) =
             ArticleFragment().apply {
                 arguments = Bundle().apply {

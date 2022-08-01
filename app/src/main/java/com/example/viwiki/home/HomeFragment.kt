@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -18,6 +17,9 @@ import com.example.viwiki.utils.Logger
  * Home screen of the App. Shows the article of the day.
  */
 class HomeFragment : Fragment() {
+    /**
+     * Tag for debugging
+     */
     val TAG = "HomeFragment"
 
     val viewModel: HomeViewModel by viewModels()
@@ -39,11 +41,11 @@ class HomeFragment : Fragment() {
         // TODO adapter for photo?
 
         viewModel.featuredArticleResponse.observe(viewLifecycleOwner, Observer {
-                Logger.logInfo(TAG, "DisplayTitle" + it.tfa.displayTitle)
-                // Pass data into binding variables
-                binding.imageFeatured.load(it.tfa.thumbnail.source)
-                // Refresh binding
-                binding.executePendingBindings()
+            Logger.logInfo(TAG, "DisplayTitle" + it.tfa.displayTitle)
+            // Pass data into binding variables
+            binding.imageFeatured.load(it.tfa.thumbnail.source)
+            // Refresh binding
+            binding.executePendingBindings()
         })
 
 
