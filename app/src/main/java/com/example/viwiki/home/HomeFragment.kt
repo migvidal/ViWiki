@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentHomeBinding
@@ -55,6 +56,11 @@ class HomeFragment : Fragment() {
         // Wire buttons
         binding.btnRefresh.setOnClickListener {
             viewModel.fetchTodayFeaturedArticle()
+        }
+        binding.btnGotoFullArticle.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToArticleFragment()
+            // TODO finish
+            findNavController().navigate(action)
         }
 
         return binding.root
