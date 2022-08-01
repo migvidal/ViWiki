@@ -1,14 +1,17 @@
 package com.example.viwiki.home
 
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.viwiki.WikiMediaApiImpl
+import com.example.viwiki.utils.Logger
 import kotlinx.coroutines.launch
 import java.util.*
 
 class HomeViewModel : ViewModel() {
+    private val TAG = "HomeViewModel"
 
     /**
      * Values for the status of the response
@@ -18,9 +21,7 @@ class HomeViewModel : ViewModel() {
     /**
      * Response from the WikiMediaApi
      */
-    private val _featuredArticleResponse: MutableLiveData<FeaturedArticleResponse> by lazy {
-        MutableLiveData<FeaturedArticleResponse>()
-    }
+    private val _featuredArticleResponse = MutableLiveData<FeaturedArticleResponse>()
     val featuredArticleResponse: LiveData<FeaturedArticleResponse> = _featuredArticleResponse
 
     /**
@@ -45,6 +46,7 @@ class HomeViewModel : ViewModel() {
      * Fetch the featured article from the API for a given date
      */
     private fun fetchFeaturedArticle(year: Int, month: Int, day: Int) {
+        Logger.logInfo(TAG, "fetchFeaturedArticle called")
         // Format the date for the API
         val yyyy = year.toString()
         val mm = String.format("%02d", month)

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,6 +18,7 @@ import com.example.viwiki.utils.Logger
  * Home screen of the App. Shows the article of the day.
  */
 class HomeFragment : Fragment() {
+    val TAG = "HomeFragment"
 
     val viewModel: HomeViewModel by viewModels()
 
@@ -25,27 +27,30 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
+        // TODO try removing R.layout.fragment_home
         val binding = DataBindingUtil.inflate<FragmentHomeBinding>(
             inflater, R.layout.fragment_home, container, false
         )
 
-        // TODO just pass viewmodel
-        // Data binding
+        // Allow for binding to observe LiveData
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
+        // TODO error message for blank response
+        // TODO adapter for photo?
+
         viewModel.featuredArticleResponse.observe(viewLifecycleOwner, Observer {
-            binding.apply {
-                featuredArticle = it
-                imageView.load(it.tfa.thumbnail.source)
-                executePendingBindings()
-            }
+                Logger.logInfo(TAG, "DisplayTitle" + it.tfa.displayTitle)
+                // Pass data into binding variables
+                binding.imageFeatured.load(it.tfa.thumbnail.source)
+                // Refresh binding
+                binding.executePendingBindings()
         })
+
+
+        // Fetch data from API
         viewModel.fetchTodayFeaturedArticle()
-
-        // Add status to binding
-
-
-        // Button
-        // ...
 
         return binding.root
     }
 }
+
