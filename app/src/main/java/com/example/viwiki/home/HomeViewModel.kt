@@ -52,7 +52,6 @@ class HomeViewModel : ViewModel() {
      * Fetch the featured article from the API for a given date
      */
     private fun fetchFeaturedArticle(year: Int, month: Int, day: Int) {
-        Logger.logInfo(TAG, "fetchFeaturedArticle called")
         // Format the date for the API
         val yyyy = year.toString()
         val mm = String.format("%02d", month)
