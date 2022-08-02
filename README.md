@@ -7,6 +7,8 @@ A basic but very visual Wikipedia client. Demo app to show my Android knowledge.
 - To communicate SearchActivity with ArticleFragment, I instantiate a new ArticleFragment with the title as an argument.
 - === compares reference, == compares data. Careful!
 - Making a dynamic action bar label: remove the label in the manifest/navgraph, then set it programatically
+- A binding adapter can serve as a middleman (e.g., to remove HTML tags).
+- The value parameter(s) in a binding adapter must to be nullable. Then null-checked inside the method. If they aren't nullable, a binding error comes up.
 
 ## Naming
 - Fetch or Get?

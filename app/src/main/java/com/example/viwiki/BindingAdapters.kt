@@ -5,9 +5,12 @@ import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 
 @BindingAdapter("htmlText")
-fun bindTextView(tv: TextView, html: String) {
-    val textWithoutTags = HtmlCompat
-        .fromHtml(html, HtmlCompat.FROM_HTML_MODE_COMPACT)
-        .toString()
-    tv.text = textWithoutTags
+fun bindTextView(tv: TextView, htmlText: String?) {
+    if (htmlText !== null) {
+        val textWithoutTags = HtmlCompat
+            .fromHtml(htmlText, HtmlCompat.FROM_HTML_MODE_COMPACT)
+            .toString()
+        tv.text = textWithoutTags
+
+    }
 }
