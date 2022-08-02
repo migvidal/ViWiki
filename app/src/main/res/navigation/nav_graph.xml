@@ -13,9 +13,9 @@
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
-        android:name="com.example.viwiki.article_detail.ArticleFragment" >
+        android:name="com.example.viwiki.article_detail.ArticleFragment">
         <argument
             android:name="arg_article_name"
-            app:argType="string"/>
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -6,6 +6,7 @@
     <data>
 
         <import type="android.view.View" />
+
         <import type="com.example.viwiki.search.SearchViewModel.WikipediaApiStatus" />
 
 

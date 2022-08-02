@@ -74,9 +74,12 @@ class SearchFragment : Fragment() {
             if (query != null) {
 
                 // Generic message for action bar
-                setActionBarTitle(getString(
-                    R.string.action_bar_results_title_generic,
-                    searchQuery))
+                setActionBarTitle(
+                    getString(
+                        R.string.action_bar_results_title_generic,
+                        searchQuery
+                    )
+                )
 
                 // Show hits in action bar
                 query.searchInfo.totalHits.let {
@@ -141,7 +144,6 @@ class SearchFragment : Fragment() {
             viewModel.searchArticles(searchQuery)
         }
     }
-
 
 
 }

@@ -4,16 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import coil.load
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentHomeBinding
-import com.example.viwiki.utils.Logger
 
 /**
  * Home screen of the App. Shows the article of the day.
@@ -40,8 +36,6 @@ class HomeFragment : Fragment() {
         binding.viewModel = viewModel
         // TODO error message for blank response
         // TODO adapter for photo?
-
-        
 
 
         // Fetch data from API

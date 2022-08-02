@@ -74,10 +74,10 @@
                     android:id="@+id/tv_title"
                     style="@style/tapered_box"
                     android:layout_width="wrap_content"
-                    app:htmlText="@{viewModel.featuredArticleResponse.tfa.displayTitle}"
                     android:text=""
                     android:textSize="@dimen/header2_size"
                     android:textStyle="bold"
+                    app:htmlText="@{viewModel.featuredArticleResponse.tfa.displayTitle}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_header"
                     tools:text="Title" />
@@ -100,8 +100,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_small"
                     android:adjustViewBounds="true"
-                    app:imageUrl="@{viewModel.featuredArticleResponse.tfa.thumbnail.source}"
                     android:src="@drawable/ic_launcher_background"
+                    app:imageUrl="@{viewModel.featuredArticleResponse.tfa.thumbnail.source}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_definition" />
 
