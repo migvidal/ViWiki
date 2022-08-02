@@ -53,16 +53,20 @@ class HomeFragment : Fragment() {
         // Fetch data from API
         viewModel.fetchTodayFeaturedArticle()
 
-        // Wire buttons
+        // Wire buttons:
+        // - refresh button
         binding.btnRefresh.setOnClickListener {
             viewModel.fetchTodayFeaturedArticle()
         }
-        binding.btnGotoFullArticle.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToArticleFragment()
-            // TODO finish
-            findNavController().navigate(action)
-        }
 
+        // - gotoFullArticle button
+        binding.btnGotoFullArticle.setOnClickListener {
+            val articleName = viewModel.featuredArticleResponse.value?.tfa?.title
+            if (articleName !== null) {
+                val action = HomeFragmentDirections.actionHomeFragmentToArticleFragment(articleName)
+                findNavController().navigate(action)
+            }
+        }
         return binding.root
     }
 }
