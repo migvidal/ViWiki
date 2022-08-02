@@ -31,7 +31,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        // TODO try removing R.layout.fragment_home
         val binding = DataBindingUtil.inflate<FragmentHomeBinding>(
             inflater, R.layout.fragment_home, container, false
         )
@@ -42,13 +41,7 @@ class HomeFragment : Fragment() {
         // TODO error message for blank response
         // TODO adapter for photo?
 
-        viewModel.featuredArticleResponse.observe(viewLifecycleOwner, Observer {
-            Logger.logInfo(TAG, "DisplayTitle" + it.tfa.displayTitle)
-            // Pass data into binding variables
-            binding.imageFeatured.load(it.tfa.thumbnail.source)
-            // Refresh binding
-            binding.executePendingBindings()
-        })
+        
 
 
         // Fetch data from API

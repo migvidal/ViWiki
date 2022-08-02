@@ -100,6 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_small"
                     android:adjustViewBounds="true"
+                    app:imageUrl="@{viewModel.featuredArticleResponse.tfa.thumbnail.source}"
                     android:src="@drawable/ic_launcher_background"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_definition" />
