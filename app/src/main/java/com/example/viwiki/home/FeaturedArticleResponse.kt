@@ -15,8 +15,9 @@ data class FeaturedArticleResponse(
     data class Tfa(
         val type: String = "",
         val title: String = "",
-        @Json(name = "displaytitle") val displayTitle: String = "",
-        val thumbnail: Thumbnail = Thumbnail()
+        @Json(name = "normalizedtitle") val normalizedTitle: String = "",
+        val thumbnail: Thumbnail = Thumbnail(),
+        val extract: String = ""
     ) {
         /**
          * The photo thumbnail
