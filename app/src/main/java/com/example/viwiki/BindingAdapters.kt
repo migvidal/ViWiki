@@ -12,6 +12,9 @@ import coil.load
 import com.example.viwiki.network.ApiUtils
 import com.example.viwiki.network.ApiUtils.ApiStatus.*
 
+/**
+ * Strips HTML tags and sets the text to the textView
+ */
 @BindingAdapter("htmlText")
 fun bindButton(tv: TextView, htmlText: String?) {
     if (htmlText !== null) {
@@ -22,6 +25,9 @@ fun bindButton(tv: TextView, htmlText: String?) {
     }
 }
 
+/**
+ * Loads the url into the imageView
+ */
 @BindingAdapter("imageUrl")
 fun bindImageView(imageView: ImageView, imageUrl: String?) {
     imageUrl.let {
@@ -32,14 +38,19 @@ fun bindImageView(imageView: ImageView, imageUrl: String?) {
     }
 }
 
+/**
+ * Modifies a viewGroup depending on status
+ */
 @BindingAdapter("status")
 fun bindMessageViewGroup(viewGroup: ViewGroup, status: ApiUtils.ApiStatus?) {
-    when (status) {
-        LOADING -> viewGroup.visibility = View.VISIBLE
-        ERROR -> viewGroup.visibility = View.VISIBLE
-        else  -> viewGroup.visibility = View.GONE
+    if (status == DONE) {
+        viewGroup.visibility = View.GONE
     }
 }
+
+/**
+ * Modifies a button depending on status
+ */
 @BindingAdapter("status")
 fun bindButton(button: Button, status: ApiUtils.ApiStatus?) {
     when (status) {

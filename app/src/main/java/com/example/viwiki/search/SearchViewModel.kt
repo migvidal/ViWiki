@@ -44,7 +44,8 @@ class SearchViewModel : ViewModel() {
 
                 // Set message if there are no results
                 if (_searchResponse.value?.query?.searchInfo?.totalHits == 0) {
-                   _infoMessageRes.value = R.string.no_results_message
+                    _status.value = ApiUtils.ApiStatus.BLANK
+                    _infoMessageRes.value = R.string.no_results_message
                 }
 
             } catch (e: Exception) {
