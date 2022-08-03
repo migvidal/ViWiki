@@ -4,7 +4,11 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.logging.HttpLoggingInterceptor
 
-object HttpUtils {
+object ApiUtils {
+    /**
+     * Values for the status of the response
+     */
+    enum class ApiStatus { LOADING, ERROR, DONE }
     /**
      * Converter from Kotlin to JSON
      */
@@ -15,5 +19,6 @@ object HttpUtils {
      */
     val loggingInterceptor = HttpLoggingInterceptor()
         .setLevel(HttpLoggingInterceptor.Level.BASIC)
+
 }
 

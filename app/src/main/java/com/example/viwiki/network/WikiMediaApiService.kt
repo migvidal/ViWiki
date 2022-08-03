@@ -1,7 +1,7 @@
 package com.example.viwiki
 
 import com.example.viwiki.home.FeaturedArticleResponse
-import com.example.viwiki.network.HttpUtils
+import com.example.viwiki.network.ApiUtils
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -14,7 +14,7 @@ private val WIKIMEDIA_BASE_URL: String = "https://api.wikimedia.org/"
  * HTTP client
  */
 private val okHttpClient = OkHttpClient.Builder()
-    .addInterceptor(HttpUtils.loggingInterceptor)// TODO remove for final build
+    .addInterceptor(ApiUtils.loggingInterceptor)// TODO remove for final build
     .build()
 
 /**
@@ -23,7 +23,7 @@ private val okHttpClient = OkHttpClient.Builder()
 private val retrofit = Retrofit.Builder()
     .baseUrl(WIKIMEDIA_BASE_URL)
     .client(okHttpClient)
-    .addConverterFactory(MoshiConverterFactory.create(HttpUtils.moshi))
+    .addConverterFactory(MoshiConverterFactory.create(ApiUtils.moshi))
     .build()
 
 /**

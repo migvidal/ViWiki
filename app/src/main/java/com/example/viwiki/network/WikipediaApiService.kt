@@ -1,7 +1,7 @@
 package com.example.viwiki
 
 import com.example.viwiki.article_detail.ArticleResponse
-import com.example.viwiki.network.HttpUtils
+import com.example.viwiki.network.ApiUtils
 import com.example.viwiki.search.SearchResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -34,7 +34,7 @@ private val paramsInterceptor = Interceptor { chain ->
  */
 private val okHttpClient = OkHttpClient.Builder()
     .addInterceptor(paramsInterceptor)
-    .addInterceptor(HttpUtils.loggingInterceptor)// TODO remove for final build
+    .addInterceptor(ApiUtils.loggingInterceptor)// TODO remove for final build
     .build()
 
 /**
@@ -44,7 +44,7 @@ private val okHttpClient = OkHttpClient.Builder()
 private val retrofit = Retrofit.Builder()
     .baseUrl(WIKIPEDIA_BASE_URL)
     .client(okHttpClient)
-    .addConverterFactory(MoshiConverterFactory.create(HttpUtils.moshi))
+    .addConverterFactory(MoshiConverterFactory.create(ApiUtils.moshi))
     .build()
 
 /**

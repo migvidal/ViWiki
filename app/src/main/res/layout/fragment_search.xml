@@ -7,7 +7,7 @@
 
         <import type="android.view.View" />
 
-        <import type="com.example.viwiki.search.SearchViewModel.WikipediaApiStatus" />
+        <import type="com.example.viwiki.network.ApiUtils.ApiStatus" />
 
 
         <variable
@@ -27,7 +27,8 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="@{viewModel.status == WikipediaApiStatus.DONE ? View.GONE : View.VISIBLE}"
+            app:status="@{viewModel.status}"
+            android:visibility="gone"
             tools:visibility="visible">
 
             <TextView
@@ -43,8 +44,10 @@
                 android:id="@+id/btn_refresh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:status="@{viewModel.status}"
                 android:text="try again"
-                android:visibility="@{viewModel.status == WikipediaApiStatus.LOADING ? View.GONE : View.VISIBLE}" />
+                android:visibility="invisible"
+                tools:visibility="visible"/>
 
         </LinearLayout>
 

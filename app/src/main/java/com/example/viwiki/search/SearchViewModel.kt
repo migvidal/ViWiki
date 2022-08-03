@@ -6,15 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.viwiki.R
 import com.example.viwiki.WikipediaApiImpl
+import com.example.viwiki.network.ApiUtils
 import kotlinx.coroutines.launch
 
 class SearchViewModel : ViewModel() {
-
-    /**
-     * Values for the status of the response
-     */
-    enum class WikipediaApiStatus { LOADING, ERROR, DONE }
-
 
     /**
      * Private mutable live data
@@ -25,8 +20,8 @@ class SearchViewModel : ViewModel() {
     /**
      * Status of the response
      */
-    private val _status = MutableLiveData<WikipediaApiStatus>()
-    val status: LiveData<WikipediaApiStatus> = _status
+    private val _status = MutableLiveData<ApiUtils.ApiStatus>()
+    val status: LiveData<ApiUtils.ApiStatus> = _status
 
     /**
      * String resource for the information message
@@ -40,20 +35,20 @@ class SearchViewModel : ViewModel() {
      */
     fun searchArticles(query: String) {
         viewModelScope.launch {
-            _status.value = WikipediaApiStatus.LOADING
+            _status.value = ApiUtils.ApiStatus.LOADING
             _infoMessageRes.value = R.string.loading_message
             try {
                 val response = WikipediaApiImpl.wikipediaApiService.getSearchResults(query)
                 _searchResponse.value = response
-                _status.value = WikipediaApiStatus.DONE
+                _status.value = ApiUtils.ApiStatus.DONE
 
                 // Set message if there are no results
                 if (_searchResponse.value?.query?.searchInfo?.totalHits == 0) {
-                    _infoMessageRes.value = R.string.no_results_message
+                   _infoMessageRes.value = R.string.no_results_message
                 }
 
             } catch (e: Exception) {
-                _status.value = WikipediaApiStatus.ERROR
+                _status.value = ApiUtils.ApiStatus.ERROR
                 _infoMessageRes.value = R.string.error_message
                 e.printStackTrace()
             }
