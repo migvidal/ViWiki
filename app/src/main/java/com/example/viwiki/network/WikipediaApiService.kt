@@ -72,7 +72,8 @@ interface WikipediaApiService {
     suspend fun getImagesResponse(
         @Query("titles") title: String,
         @Query("prop") prop: String = "pageimages",
-        @Query("piprop") piprop: String = "original",
+        @Query("piprop") piprop: String = "thumbnail",
+        @Query("pithumbsize") maxThumbnailWidth: Int = 1000,
         @Query("formatversion") formatversion: Int = 2
     ): ArticleImagesResponse
 

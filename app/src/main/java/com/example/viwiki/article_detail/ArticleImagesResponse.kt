@@ -23,7 +23,7 @@ data class ArticleImagesResponse(
             @Json(name = "pageid") val pageId: Long = 0,
             val ns: Long = 0,
             val title: String = "",
-            val original: Thumbnail = Thumbnail()
+            val thumbnail: Thumbnail = Thumbnail()
         )
     }
 }
