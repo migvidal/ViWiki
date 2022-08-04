@@ -1,5 +1,6 @@
 package com.example.viwiki.home
 
+import com.example.viwiki.Thumbnail
 import com.squareup.moshi.Json
 
 /**
@@ -18,16 +19,7 @@ data class FeaturedArticleResponse(
         @Json(name = "normalizedtitle") val normalizedTitle: String = "",
         val thumbnail: Thumbnail = Thumbnail(),
         val extract: String = ""
-    ) {
-        /**
-         * The photo thumbnail
-         */
-        data class Thumbnail(
-            val source: String = "",
-            val width: Int = 0,
-            val height: Int = 0
-        )
-    }
+    )
 
     /**
      * The "on this day" article

@@ -1,5 +1,6 @@
 package com.example.viwiki
 
+import com.example.viwiki.article_detail.ArticleImagesResponse
 import com.example.viwiki.article_detail.ArticleResponse
 import com.example.viwiki.network.ApiUtils
 import com.example.viwiki.search.SearchResponse
@@ -10,7 +11,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-private val WIKIPEDIA_BASE_URL = "https://es.wikipedia.org/"
+private val WIKIPEDIA_BASE_URL = "https://en.wikipedia.org/"
 
 
 /**
@@ -71,8 +72,9 @@ interface WikipediaApiService {
     suspend fun getImagesResponse(
         @Query("titles") title: String,
         @Query("prop") prop: String = "pageimages",
-        @Query("piprop") piprop: String = "original"
-    ): ArticleResponse
+        @Query("piprop") piprop: String = "original",
+        @Query("formatversion") formatversion: Int = 2
+    ): ArticleImagesResponse
 
     /**
      * Search for the provided query

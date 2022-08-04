@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
-            name="article"
-            type="com.example.viwiki.article_detail.ArticleResponse.Query.Page" />
+            name="viewModel"
+            type="com.example.viwiki.article_detail.ArticleViewModel" />
     </data>
 
     <ScrollView
@@ -25,6 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
+                app:imageUrl="@{viewModel.articleImagesResponse.query.pages.get(0).original.source}"
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -35,7 +35,7 @@
                 android:id="@+id/tv_title"
                 style="@style/text_box"
                 android:layout_width="wrap_content"
-                android:text="@{article.title}"
+                android:text="@{viewModel.articleResponse.query.pages.get(0).title}"
                 android:textSize="@dimen/main_header_size"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
                 android:id="@+id/tv_definition"
                 style="@style/text_box"
                 android:layout_width="wrap_content"
-                android:text="@{article.extract}"
+                android:text="@{viewModel.articleResponse.query.pages.get(0).extract}"
                 android:textSize="@dimen/emphasized_size"
                 android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,7 @@
                 android:id="@+id/tv_text"
                 style="@style/text_box"
                 android:layout_width="match_parent"
-                android:text="Text"
+                android:text=""
                 android:textSize="@dimen/body_size"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_definition" />

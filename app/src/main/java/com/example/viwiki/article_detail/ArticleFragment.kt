@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentArticleBinding
@@ -63,19 +62,14 @@ class ArticleFragment : Fragment() {
             inflater, R.layout.fragment_article, container, false
         )
 
-        // Observe viewModel
-        viewModel.articleResponse.observe(viewLifecycleOwner, Observer {
-            binding.apply {
-                article = it.query.pages[0]
-                executePendingBindings()
-            }
-        })
-
         // Trigger the API request
         if (articleName !== null) {
             viewModel.fetchArticleByTitle(articleName!!)
         }
 
+        // Allow for binding to observe LiveData
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
         return binding.root
     }
 

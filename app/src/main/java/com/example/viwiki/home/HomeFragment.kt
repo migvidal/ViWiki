@@ -51,7 +51,8 @@ class HomeFragment : Fragment() {
         binding.btnGotoFullArticle.setOnClickListener {
             val articleName = viewModel.featuredArticleResponse.value?.tfa?.title
             if (articleName !== null) {
-                val action = HomeFragmentDirections.actionHomeFragmentToArticleFragment(articleName)
+                val action = HomeFragmentDirections.actionHomeFragmentToArticleFragment()
+                action.argArticleName = articleName
                 findNavController().navigate(action)
             }
         }

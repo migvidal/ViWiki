@@ -9,16 +9,15 @@ import kotlinx.coroutines.launch
 
 class ArticleViewModel : ViewModel() {
     /**
-     * Private mutable live data
+     * The recieved article
      */
-    private val _articleResponse: MutableLiveData<ArticleResponse> by lazy {
-        MutableLiveData<ArticleResponse>()
-    }
-
-    /**
-     * Public immutable live data to expose data to other classes
-     */
+    private val _articleResponse = MutableLiveData<ArticleResponse>()
     val articleResponse: LiveData<ArticleResponse> = _articleResponse
+    /**
+     * The recieved article images
+     */
+    private val _articleImagesResponse = MutableLiveData<ArticleImagesResponse>()
+    val articleImagesResponse: LiveData<ArticleImagesResponse> = _articleImagesResponse
 
     /**
      * Fetches an article by the provided title
@@ -26,8 +25,20 @@ class ArticleViewModel : ViewModel() {
      */
     fun fetchArticleByTitle(name: String) {
         viewModelScope.launch {
-            val response = WikipediaApiImpl.wikipediaApiService.getArticleResponse(name)
-            _articleResponse.value = response
+            try {
+                val response = WikipediaApiImpl.wikipediaApiService.getArticleResponse(name)
+                _articleResponse.value = response
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        viewModelScope.launch {
+            try {
+                val imagesResponse = WikipediaApiImpl.wikipediaApiService.getImagesResponse(name)
+                _articleImagesResponse.value = imagesResponse
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 }

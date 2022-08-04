@@ -1,11 +1,12 @@
 package com.example.viwiki.article_detail
 
+import com.example.viwiki.Thumbnail
 import com.squareup.moshi.Json
 
 /**
- * Article response from given title
+ * Article images response from given title
  */
-data class ArticleResponse(
+data class ArticleImagesResponse(
     @Json(name = "batchcomplete") val batchComplete: Boolean = false,
     val query: Query = Query()
 ) {
@@ -22,7 +23,7 @@ data class ArticleResponse(
             @Json(name = "pageid") val pageId: Long = 0,
             val ns: Long = 0,
             val title: String = "",
-            val extract: String = ""
+            val original: Thumbnail = Thumbnail()
         )
     }
 }

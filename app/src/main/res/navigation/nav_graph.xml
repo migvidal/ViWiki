@@ -16,6 +16,7 @@
         android:name="com.example.viwiki.article_detail.ArticleFragment">
         <argument
             android:name="arg_article_name"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue=""/>
     </fragment>
 </navigation>
