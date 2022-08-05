@@ -15,10 +15,6 @@ import com.example.viwiki.databinding.FragmentHomeBinding
  * Home screen of the App. Shows the article of the day.
  */
 class HomeFragment : Fragment() {
-    /**
-     * Tag for debugging
-     */
-    val TAG = "HomeFragment"
 
     val viewModel: HomeViewModel by viewModels()
 

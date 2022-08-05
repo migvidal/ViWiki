@@ -12,16 +12,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentSearchBinding
-import com.example.viwiki.utils.Logger
 
 /**
  *
  */
 class SearchFragment : Fragment() {
-    /**
-     * Tag for logging
-     */
-    private val TAG = "SearchFragment"
 
     /**
      * SearchViewModel instance
@@ -33,7 +28,6 @@ class SearchFragment : Fragment() {
      * Load instance state and trigger search
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        Logger.logInfo(TAG, "onCreate Called")
         super.onCreate(savedInstanceState)
 
         // Verify intents
@@ -48,8 +42,6 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Logger.logInfo(TAG, "onCreateView Called")
-
         /**
          * Data binding
          */

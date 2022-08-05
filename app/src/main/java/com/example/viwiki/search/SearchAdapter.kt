@@ -10,7 +10,6 @@ import com.example.viwiki.R
 import com.example.viwiki.article_detail.ArticleFragment
 
 class SearchAdapter(val context: SearchActivity) : Adapter<SearchAdapter.SearchViewHolder>() {
-    private val TAG = "SearchAdapter"
 
     var dataSet = listOf(SearchResponse.SearchQuery.Search())
         set(value) {

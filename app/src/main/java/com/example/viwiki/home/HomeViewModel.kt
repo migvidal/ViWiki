@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class HomeViewModel : ViewModel() {
-    private val TAG = "HomeViewModel"
 
     /**
      * Values for the status of the response

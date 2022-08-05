@@ -9,6 +9,7 @@ A basic but very visual Wikipedia client. Demo app to show my Android knowledge.
 - Making a dynamic action bar label: remove the label in the manifest/navgraph, then set it programatically
 - A binding adapter can serve as a middleman (e.g., to remove HTML tags).
 - The value parameter(s) in a binding adapter must to be nullable. Then null-checked inside the method. If they aren't nullable, a binding error comes up.
+- Don't forget to add android:name to manifest when using a custom Application class
 
 ## Naming
 - Fetch or Get?
