@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.viwiki.article_detail.ArticleViewModel" />
@@ -24,8 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                app:imageUrl="@{viewModel.articleImagesResponse.query.pages.get(0).thumbnail.source}"
                 android:src="@drawable/ic_launcher_background"
+                app:imageUrl="@{viewModel.articleImagesResponse.query.pages.get(0).thumbnail.source}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="92dp"

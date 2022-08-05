@@ -27,8 +27,8 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-            app:status="@{viewModel.status}"
             android:visibility="visible"
+            app:status="@{viewModel.status}"
             tools:visibility="visible">
 
             <TextView
@@ -44,10 +44,10 @@
                 android:id="@+id/btn_refresh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:status="@{viewModel.status}"
                 android:text="try again"
                 android:visibility="invisible"
-                tools:visibility="visible"/>
+                app:status="@{viewModel.status}"
+                tools:visibility="visible" />
 
         </LinearLayout>
 

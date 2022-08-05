@@ -6,11 +6,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
-import androidx.core.view.children
 import androidx.databinding.BindingAdapter
 import coil.load
 import com.example.viwiki.network.ApiUtils
-import com.example.viwiki.network.ApiUtils.ApiStatus.*
+import com.example.viwiki.network.ApiUtils.ApiStatus.DONE
+import com.example.viwiki.network.ApiUtils.ApiStatus.ERROR
 
 /**
  * Strips HTML tags and sets the text to the textView
@@ -55,6 +55,6 @@ fun bindMessageViewGroup(viewGroup: ViewGroup, status: ApiUtils.ApiStatus?) {
 fun bindButton(button: Button, status: ApiUtils.ApiStatus?) {
     when (status) {
         ERROR -> button.visibility = View.VISIBLE
-        else  -> button.visibility = View.INVISIBLE
+        else -> button.visibility = View.INVISIBLE
     }
 }

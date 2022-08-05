@@ -13,6 +13,7 @@ class ArticleViewModel : ViewModel() {
      */
     private val _articleResponse = MutableLiveData<ArticleResponse>()
     val articleResponse: LiveData<ArticleResponse> = _articleResponse
+
     /**
      * The recieved article images
      */
