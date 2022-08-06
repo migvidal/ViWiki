@@ -9,7 +9,6 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.Query
 
 private val WIKIPEDIA_BASE_URL = "https://en.wikipedia.org/"
@@ -48,7 +47,6 @@ private val retrofit = Retrofit.Builder()
     .client(okHttpClient)
     .addConverterFactory(MoshiConverterFactory.create(ApiUtils.moshi))
     .build()
-
 
 
 /**

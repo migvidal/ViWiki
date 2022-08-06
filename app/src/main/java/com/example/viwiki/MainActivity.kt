@@ -13,7 +13,6 @@ import androidx.navigation.ui.NavigationUI
 import com.example.viwiki.databinding.ActivityMainBinding
 import com.example.viwiki.search.SearchActivity
 import timber.log.Timber
-import java.util.logging.Logger
 
 class MainActivity : AppCompatActivity() {
 
