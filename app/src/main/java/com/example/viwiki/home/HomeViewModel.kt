@@ -71,4 +71,8 @@ class HomeViewModel : ViewModel() {
 
         }
     }
+
+    init {
+        fetchTodayFeaturedArticle()
+    }
 }

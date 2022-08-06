@@ -11,7 +11,6 @@ val dummyArticle = ArticleResponse.Query.Page(
 )
 
 val dummyArticleResponse = ArticleResponse(
-    true,
     ArticleResponse.Query(
         listOf(dummyArticle)
     )

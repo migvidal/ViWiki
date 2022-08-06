@@ -12,10 +12,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.viwiki.databinding.ActivityMainBinding
 import com.example.viwiki.search.SearchActivity
+import timber.log.Timber
+import java.util.logging.Logger
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Timber.i("Activity onCreate Called")
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         // Set 'up' button

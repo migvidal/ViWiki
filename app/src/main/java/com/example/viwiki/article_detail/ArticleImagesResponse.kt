@@ -7,7 +7,6 @@ import com.squareup.moshi.Json
  * Article images response from given title
  */
 data class ArticleImagesResponse(
-    @Json(name = "batchcomplete") val batchComplete: Boolean = false,
     val query: Query = Query()
 ) {
     /**

@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Query
 
 private val WIKIPEDIA_BASE_URL = "https://en.wikipedia.org/"
@@ -48,6 +49,8 @@ private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(ApiUtils.moshi))
     .build()
 
+
+
 /**
  * Interface for Retrofit to handle queries
  */
@@ -62,7 +65,7 @@ interface WikipediaApiService {
         @Query("prop") prop: String = "extracts",
         @Query("exsentences") exsentences: Int = 1,
         @Query("explaintext") explaintext: Int = 1,
-        @Query("formatversion") formatversion: Int = 2
+        @Query("formatversion") formatVersion: Int = 2
     ): ArticleResponse
 
     /**
@@ -73,8 +76,9 @@ interface WikipediaApiService {
         @Query("titles") title: String,
         @Query("prop") prop: String = "pageimages",
         @Query("piprop") piprop: String = "thumbnail",
-        @Query("pithumbsize") maxThumbnailWidth: Int = 1000,
-        @Query("formatversion") formatversion: Int = 2
+        @Query("pithumbsize") maxThumbnailWidth: Int = 2000,
+        @Query("formatversion") formatVersion: Int = 2,
+        @Query("pilicense") piLicense: String = "any"
     ): ArticleImagesResponse
 
     /**

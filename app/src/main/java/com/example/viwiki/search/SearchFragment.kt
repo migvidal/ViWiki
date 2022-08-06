@@ -31,7 +31,7 @@ class SearchFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         // Verify intents
-        searchFromIntent()
+        doSearch()
     }
 
 
@@ -97,7 +97,7 @@ class SearchFragment : Fragment() {
 
         // Refresh button listener
         binding.btnRefresh.setOnClickListener {
-            searchFromIntent() // Do the search again
+            doSearch() // Do the search again
         }
 
         // Bind data
@@ -128,7 +128,7 @@ class SearchFragment : Fragment() {
     /**
      * Searches the query from the SEARCH intent
      */
-    private fun searchFromIntent() {
+    private fun doSearch() {
         val intent = getActivitySafely()?.intent
         if (intent?.action == Intent.ACTION_SEARCH) {
             searchQuery = intent.getStringExtra(SearchManager.QUERY).toString()

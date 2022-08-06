@@ -11,6 +11,7 @@ import coil.load
 import com.example.viwiki.network.ApiUtils
 import com.example.viwiki.network.ApiUtils.ApiStatus.DONE
 import com.example.viwiki.network.ApiUtils.ApiStatus.ERROR
+import timber.log.Timber
 
 /**
  * Strips HTML tags and sets the text to the textView
@@ -34,6 +35,10 @@ fun bindImageView(imageView: ImageView, imageUrl: String?) {
         imageView.load(it) {
             placeholder(android.R.color.darker_gray)
             error(R.drawable.ic_round_broken_image_24)
+            listener(onError = { _, error ->
+                Timber.i("Url: ", imageUrl)
+                error.throwable.printStackTrace()
+            })
         }
     }
 }
@@ -58,3 +63,6 @@ fun bindButton(button: Button, status: ApiUtils.ApiStatus?) {
         else -> button.visibility = View.INVISIBLE
     }
 }
+
+
+//File:5_Livres_à_l'effigie_de_la_reine_Victoria_commémorant_le_Jublilée_de_la_monarque..jpg
