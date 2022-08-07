@@ -4,9 +4,14 @@
 
     <item
         android:id="@+id/action_search"
-        android:icon="@drawable/ic_baseline_search_24"
-        android:iconTint="@color/white"
+        android:icon="@drawable/ic_search"
         android:title="Search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_refresh"
+        android:icon="@drawable/ic_refresh"
+        android:title="Refresh"
+        app:showAsAction="never"/>
 </menu>

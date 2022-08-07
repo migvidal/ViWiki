@@ -28,6 +28,12 @@
             android:visibility="@{viewModel.status == WikiMediaApiStatus.DONE ? View.GONE : View.VISIBLE}"
             tools:visibility="visible">
 
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.status == WikiMediaApiStatus.LOADING ? View.VISIBLE : View.GONE}"/>
+
             <TextView
                 android:id="@+id/tv_info_message"
                 android:layout_width="wrap_content"

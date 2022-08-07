@@ -5,6 +5,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
@@ -45,4 +46,5 @@ class MainActivity : AppCompatActivity() {
         val navController = this.findNavController(R.id.search_nav_host)
         return navController.navigateUp()
     }
+
 }
