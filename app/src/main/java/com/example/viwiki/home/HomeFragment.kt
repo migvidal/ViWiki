@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
         }
 
         // - gotoFullArticle button
-        binding.btnGotoFullArticle.setOnClickListener {
+        binding.cardFeatured.setOnClickListener {
             val articleName = viewModel.featuredArticleResponse.value?.tfa?.title
             if (articleName !== null) {
                 val action = HomeFragmentDirections.actionHomeFragmentToArticleFragment()

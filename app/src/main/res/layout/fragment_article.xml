@@ -23,14 +23,14 @@
             <ImageView
                 android:id="@+id/main_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/ic_launcher_background"
                 app:imageUrl="@{viewModel.articleImagesResponse.query.pages.get(0).thumbnail.source}"
+                app:layout_constraintDimensionRatio="1:1"
+                android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="92dp"
-                tools:layout_editor_absoluteY="21dp" />
+                tools:src="@drawable/ic_launcher_background" />
 
             <TextView
                 android:id="@+id/tv_title"
