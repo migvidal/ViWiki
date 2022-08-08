@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.navArgs
+import com.example.viwiki.MainActivity
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentArticleBinding
+import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
@@ -19,7 +21,7 @@ import com.example.viwiki.databinding.FragmentArticleBinding
  */
 
 // The fragment initialization parameters
-private const val ARG_ARTICLE_NAME = ""
+private const val ARG_ARTICLE_TITLE = ""
 
 class ArticleFragment : Fragment() {
 
@@ -29,9 +31,9 @@ class ArticleFragment : Fragment() {
     private val navArgs: ArticleFragmentArgs by navArgs()
 
     /**
-     * The name of the article to show
+     * The title of the article to show
      */
-    private var articleName: String? = null
+    private var articleTitle: String? = null
 
     /**
      * View model for the data
@@ -39,24 +41,28 @@ class ArticleFragment : Fragment() {
     private val viewModel: ArticleViewModel by viewModels()
 
     /**
-     * Get the articleName passed by safe navArgs or by newInstance(arg)
+     * Get the article title passed either by `navArgs` or `newInstance(args)`
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Get article name from newInstance args
-        articleName = arguments?.getString(ARG_ARTICLE_NAME)
+        // From `newInstance` args
+        articleTitle = arguments?.getString(ARG_ARTICLE_TITLE)
 
-        // Get article name from the navigation safeargs
-        navArgs.argArticleName.let {
-            if (it.isNotBlank()) articleName = it
+        // From `navArgs`
+        navArgs.apply {
+            if (argArticleTitle.isNotBlank()) {
+                articleTitle = argArticleTitle
+            }
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+
+        Timber.i("onCreateView_title: $articleTitle")
 
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentArticleBinding>(
@@ -64,8 +70,8 @@ class ArticleFragment : Fragment() {
         )
 
         // Trigger the API request if there's an article name
-        if (articleName !== null) {
-            viewModel.fetchArticleByTitle(articleName!!)
+        if (articleTitle !== null) {
+            viewModel.fetchArticleByTitle(articleTitle!!)
         }
 
         // Allow for binding to observe LiveData
@@ -75,6 +81,8 @@ class ArticleFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Timber.i("onViewCreated_title: $articleTitle")
+
         // Override the options menu in this fragment. Used to hide / show the options menu.
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(object : MenuProvider {
@@ -87,13 +95,16 @@ class ArticleFragment : Fragment() {
                 menu.clear() // Don't show the menu
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
+        // Set action bar title
+        getActivitySafely()?.supportActionBar?.title = articleTitle
     }
 
-    /**
-     * Sets the action bar title (aka label)
-     */
-    private fun setActionBarTitle(title: String) {
-        activity?.actionBar?.title = title
+    private fun getActivitySafely(): MainActivity? {
+        if (activity is MainActivity) {
+            return activity as MainActivity
+        }
+        return null
     }
 
     companion object {
@@ -106,7 +117,7 @@ class ArticleFragment : Fragment() {
         fun newInstance(articleTitle: String) =
             ArticleFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_ARTICLE_NAME, articleTitle)
+                    putString(ARG_ARTICLE_TITLE, articleTitle)
                 }
             }
     }

@@ -49,10 +49,12 @@ class HomeFragment : Fragment() {
 
         // - gotoFullArticle button
         binding.cardFeatured.setOnClickListener {
-            val articleName = viewModel.featuredArticleResponse.value?.tfa?.title
-            if (articleName !== null) {
+            // Get the tfa (featured article)
+            viewModel.featuredArticleResponse.value?.tfa?.let {tfa ->
                 val action = HomeFragmentDirections.actionHomeFragmentToArticleFragment()
-                action.argArticleName = articleName
+                // Pass its title as an argument
+                action.argArticleTitle = tfa.normalizedTitle
+                // Navigate to fragment
                 findNavController().navigate(action)
             }
         }
