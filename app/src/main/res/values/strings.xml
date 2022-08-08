@@ -9,6 +9,7 @@
     <string name="error_message">There was an unexpected error</string>
     <string name="loading_message">Loading...</string>
     <string name="no_results_message">No results</string>
-    <string name="action_bar_results_title_generic">Results for %1$s</string>
-    <string name="action_bar_results_title_number">%1$d results for %2$s</string>
+    <string name="action_bar_results_label_generic">Results for %1$s</string>
+    <string name="action_bar_results_label_number">%1$d results for %2$s</string>
+    <string name="article_label">Article</string>
 </resources>

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.viwiki.R
 import com.example.viwiki.WikiMediaApiImpl
+import com.example.viwiki.utils.dummyFeaturedArticleResponse
 import kotlinx.coroutines.launch
 import java.util.*
 

@@ -63,7 +63,7 @@ class ArticleFragment : Fragment() {
             inflater, R.layout.fragment_article, container, false
         )
 
-        // Trigger the API request
+        // Trigger the API request if there's an article name
         if (articleName !== null) {
             viewModel.fetchArticleByTitle(articleName!!)
         }
@@ -72,6 +72,28 @@ class ArticleFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // Override the options menu in this fragment. Used to hide / show the options menu.
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.action_bar_menu, menu)
+            }
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean =
+                false // Let the parent activity handle the selections (e.g. Search or the Up button)
+            override fun onPrepareMenu(menu: Menu) {
+                menu.clear() // Don't show the menu
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+
+    /**
+     * Sets the action bar title (aka label)
+     */
+    private fun setActionBarTitle(title: String) {
+        activity?.actionBar?.title = title
     }
 
     companion object {

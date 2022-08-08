@@ -68,7 +68,7 @@ class SearchFragment : Fragment() {
                 // Generic message for action bar
                 setActionBarTitle(
                     getString(
-                        R.string.action_bar_results_title_generic,
+                        R.string.action_bar_results_label_generic,
                         searchQuery
                     )
                 )
@@ -79,7 +79,7 @@ class SearchFragment : Fragment() {
                         try {
                             setActionBarTitle(
                                 getString(
-                                    R.string.action_bar_results_title_number,
+                                    R.string.action_bar_results_label_number,
                                     it,
                                     searchQuery
                                 )
