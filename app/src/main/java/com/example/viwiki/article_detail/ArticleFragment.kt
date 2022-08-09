@@ -15,15 +15,6 @@ import com.example.viwiki.databinding.FragmentArticleBinding
 import timber.log.Timber
 import java.util.logging.Logger
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ArticleFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-
-// The fragment initialization parameters
-private const val ARG_ARTICLE_TITLE = ""
-
 class ArticleFragment : Fragment() {
 
     /**
@@ -41,18 +32,13 @@ class ArticleFragment : Fragment() {
      */
     private val viewModel: ArticleViewModel by viewModels()
 
-    /**
-     * Get the article title passed either by `navArgs` or `newInstance(args)`
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Timber.i("The_args: " + navArgs.argArticleTitle)
+        // Set up icon as an X
+        getActivitySafely()?.supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close)
 
-        // From `newInstance` args
-        articleTitle = arguments?.getString(ARG_ARTICLE_TITLE)
-
-        // From `navArgs`
+        // Get the article title passed by `navArgs`
         navArgs.apply {
             if (argArticleTitle.isNotBlank()) {
                 articleTitle = argArticleTitle
@@ -64,8 +50,6 @@ class ArticleFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        Timber.i("onCreateView_title: $articleTitle")
 
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentArticleBinding>(
@@ -84,7 +68,6 @@ class ArticleFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Timber.i("onViewCreated_title: $articleTitle")
 
         // Override the options menu in this fragment. Used to hide / show the options menu.
         val menuHost: MenuHost = requireActivity()
@@ -108,20 +91,5 @@ class ArticleFragment : Fragment() {
             return activity as MainActivity
         }
         return null
-    }
-
-    companion object {
-        /**
-         * Creates an instance of this ArticleFragment.
-         * It's used to show the fragment in a different Activity.
-         * @param articleTitle The exact title of the article
-         */
-        @JvmStatic
-        fun newInstance(articleTitle: String) =
-            ArticleFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_ARTICLE_TITLE, articleTitle)
-                }
-            }
     }
 }
