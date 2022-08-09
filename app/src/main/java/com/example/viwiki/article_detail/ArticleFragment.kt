@@ -12,8 +12,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.viwiki.MainActivity
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentArticleBinding
-import timber.log.Timber
-import java.util.logging.Logger
 
 class ArticleFragment : Fragment() {
 
@@ -75,8 +73,10 @@ class ArticleFragment : Fragment() {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.action_bar_menu, menu)
             }
+
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean =
                 false // Let the parent activity handle the selections (e.g. Search or the Up button)
+
             override fun onPrepareMenu(menu: Menu) {
                 menu.clear() // Don't show the menu
             }

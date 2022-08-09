@@ -12,8 +12,13 @@ A basic but very visual Wikipedia client. Demo app to show my programming and An
 - When the stack trace doesn't go deep enough, add a try-catch(print) block in the error line.
 
 ### Workarounds and tricks
-- To communicate SearchActivity with ArticleFragment, I instantiate a new ArticleFragment with the title as an argument.
-- Making a dynamic action bar label: remove the label in the manifest/navgraph, then set it programatically.
+- To communicate SearchActivity with ArticleFragment, I first instantiated a new ArticleFragment with the title as an argument.
+  Then, I changed it to a simpler way:
+    1. SearchActivity starts MainActivity with a new intent (passing the articleTitle as an extra).
+    2. MainActivity grabs the intent and saves the articleTitle in a bundle.
+    3. Navigate to the ArticleFragment using the safeArg and passing the bundle.
+  
+- Making a dynamic action bar label: remove the label in the manifest/navGraph, then set it programmatically.
 
 - A binding adapter can serve as a middleman (e.g., to remove HTML tags). (In the end this was not needed).
 - The value parameter(s) in a binding adapter must be nullable. Then null-checked inside the method. If they aren't nullable, a binding error comes up.

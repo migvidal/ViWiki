@@ -12,7 +12,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.viwiki.databinding.ActivityMainBinding
 import com.example.viwiki.search.SearchActivity
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 

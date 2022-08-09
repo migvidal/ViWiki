@@ -56,6 +56,7 @@ class SearchAdapter(val context: SearchActivity) : Adapter<SearchAdapter.SearchV
 
         }
     }
+
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
