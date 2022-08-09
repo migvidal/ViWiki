@@ -5,7 +5,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
@@ -18,13 +17,26 @@ import timber.log.Timber
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Timber.i("Activity onCreate Called")
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+
         // Set 'up' button
         val navController = this.findNavController(R.id.search_nav_host)
         NavigationUI.setupActionBarWithNavController(this, navController)
 
+        // Handle intent
+        if (intent.hasExtra(ARTICLE_TITLE_EXTRA_KEY)) {
+            // Get intent
+            val searchedArticleName = intent.getStringExtra(ARTICLE_TITLE_EXTRA_KEY)
+
+            // Put article name into a bundle
+            val bundle = Bundle()
+            bundle.putString("arg_article_title", searchedArticleName)
+
+            // Navigate to fragment using nav controller and the Bundle
+            findNavController(R.id.search_nav_host).navigate(R.id.articleFragment, bundle)
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -47,5 +59,13 @@ class MainActivity : AppCompatActivity() {
         val navController = this.findNavController(R.id.search_nav_host)
         return navController.navigateUp()
     }
+
+    companion object {
+        /**
+         * The key for the extra `articleTitle` in the received intent
+         */
+        val ARTICLE_TITLE_EXTRA_KEY = "articleTitle"
+    }
+
 
 }

@@ -15,5 +15,6 @@
             android:layout_height="match_parent"
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_graph" />
+        <!-- NavGraph is set in MainActivity to allow to communicate with the search activity -->
     </FrameLayout>
 </layout>

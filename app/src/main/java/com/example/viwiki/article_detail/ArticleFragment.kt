@@ -13,6 +13,7 @@ import com.example.viwiki.MainActivity
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentArticleBinding
 import timber.log.Timber
+import java.util.logging.Logger
 
 /**
  * A simple [Fragment] subclass.
@@ -45,6 +46,8 @@ class ArticleFragment : Fragment() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Timber.i("The_args: " + navArgs.argArticleTitle)
 
         // From `newInstance` args
         articleTitle = arguments?.getString(ARG_ARTICLE_TITLE)

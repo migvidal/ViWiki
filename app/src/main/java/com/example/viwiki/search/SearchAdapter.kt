@@ -1,13 +1,15 @@
 package com.example.viwiki.search
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import com.example.viwiki.MainActivity
+import com.example.viwiki.MainActivity.Companion.ARTICLE_TITLE_EXTRA_KEY
 import com.example.viwiki.R
-import com.example.viwiki.article_detail.ArticleFragment
 
 class SearchAdapter(val context: SearchActivity) : Adapter<SearchAdapter.SearchViewHolder>() {
 
@@ -45,18 +47,15 @@ class SearchAdapter(val context: SearchActivity) : Adapter<SearchAdapter.SearchV
         // onclick listener
         holder.tvResult.setOnClickListener {
             if (articleTitle !== null) {
-                // Create ArticleFragment and pass the article title
-                val fragment = ArticleFragment.newInstance(articleTitle)
-                // Show the fragment
-                context.supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_search, fragment)
-                    .addToBackStack(null)
-                    .commit()
+
+                // Create intent
+                val intent = Intent(context, MainActivity::class.java)
+                intent.putExtra(ARTICLE_TITLE_EXTRA_KEY, articleTitle)
+                context.startActivity(intent)
             }
 
         }
     }
-
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
