@@ -16,7 +16,7 @@ import timber.log.Timber
 /**
  * Strips HTML tags and sets the text to the textView
  */
-@BindingAdapter("htmlText")
+/*@BindingAdapter("htmlText")
 fun bindButton(tv: TextView, htmlText: String?) {
     if (htmlText !== null) {
         val textWithoutTags = HtmlCompat
@@ -24,7 +24,7 @@ fun bindButton(tv: TextView, htmlText: String?) {
             .toString()
         tv.text = textWithoutTags
     }
-}
+}*/
 
 /**
  * Loads the url into the imageView

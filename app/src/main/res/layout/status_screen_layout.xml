@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View" />
+        <import type="com.example.viwiki.network.ApiUtils.ApiStatus" />
+        <variable name="message_string" type="String" />
+        <variable name="status_code" type="com.example.viwiki.network.ApiUtils.ApiStatus" />
+    </data>
+    <LinearLayout
+        android:id="@+id/status_screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="@{status_code == ApiStatus.DONE ? View.GONE : View.VISIBLE}"
+        tools:visibility="visible"
+        tools:showIn="@layout/fragment_home">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{status_code == ApiStatus.LOADING ? View.VISIBLE : View.GONE}" />
+
+        <TextView
+            android:id="@+id/tv_info_message_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{message_string}"
+            android:textAlignment="center"
+            android:textSize="@dimen/header2_size"
+            tools:text="There was an error" />
+
+        <Button
+            android:id="@+id/btn_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="try again"
+            android:visibility="@{status_code == ApiStatus.LOADING ? View.GONE : View.VISIBLE}" />
+
+    </LinearLayout>
+</layout>

@@ -40,12 +40,11 @@ class HomeFragment : Fragment() {
         binding.viewModel = viewModel
         // TODO error message for blank response
 
-        // TODO fragment for error / status screen?
         // Wire buttons:
         // - refresh button
-        binding.btnRefresh.setOnClickListener {
+        /*binding.btnRefresh.setOnClickListener {
             viewModel.fetchTodayFeaturedArticle()
-        }
+        }*/
 
         // - gotoFullArticle button
         binding.cardFeatured.setOnClickListener {

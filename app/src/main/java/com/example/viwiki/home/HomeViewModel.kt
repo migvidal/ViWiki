@@ -6,15 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.viwiki.R
 import com.example.viwiki.WikiMediaApiImpl
+import com.example.viwiki.network.ApiUtils.ApiStatus
 import kotlinx.coroutines.launch
 import java.util.*
 
 class HomeViewModel : ViewModel() {
-
-    /**
-     * Values for the status of the response
-     */
-    enum class WikiMediaApiStatus { LOADING, ERROR, DONE }
+    
 
     /**
      * Response from the WikiMediaApi
@@ -25,8 +22,8 @@ class HomeViewModel : ViewModel() {
     /**
      * Status of the response
      */
-    private val _status = MutableLiveData<WikiMediaApiStatus>()
-    val status: LiveData<WikiMediaApiStatus> = _status
+    private val _status = MutableLiveData<ApiStatus>()
+    val status: LiveData<ApiStatus> = _status
 
     /**
      * String resource for the information message
@@ -57,14 +54,14 @@ class HomeViewModel : ViewModel() {
 
         // Launch API call coroutine while updating status
         viewModelScope.launch {
-            _status.value = WikiMediaApiStatus.LOADING
+            _status.value = ApiStatus.LOADING
             _infoMessageRes.value = R.string.loading_message
             try {
                 val response = WikiMediaApiImpl.wikiMediaApiService.getFeatured(yyyy, mm, dd)
                 _featuredArticleResponse.value = response
-                _status.value = WikiMediaApiStatus.DONE
+                _status.value = ApiStatus.DONE
             } catch (e: Exception) {
-                _status.value = WikiMediaApiStatus.ERROR
+                _status.value = ApiStatus.ERROR
                 _infoMessageRes.value = R.string.error_message
                 e.printStackTrace()
             }
