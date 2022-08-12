@@ -5,6 +5,8 @@
     xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View" />
+        <import type="com.example.viwiki.GenericWikiViewModel.ResponseStatus" />
 
         <variable
             name="viewModel"
@@ -20,8 +22,10 @@
             bind:viewModel="@{viewModel}"/>
 
         <ScrollView
+            android:id="@+id/fragment_article_scroll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.status == ResponseStatus.DONE ? View.VISIBLE : View.GONE}">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout

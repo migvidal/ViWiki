@@ -39,16 +39,6 @@ fun bindImageView(imageView: ImageView, imageUrl: String?) {
     }
 }
 
-/**
- * Modifies a viewGroup depending on status
- */
-@BindingAdapter("status")
-fun bindMessageViewGroup(viewGroup: ViewGroup, status: GenericWikiViewModel.ResponseStatus?) {
-    if (status == DONE) {
-        viewGroup.visibility = View.GONE
-    }
-}
-
 
 /**
  * Sets text of text view depending on status

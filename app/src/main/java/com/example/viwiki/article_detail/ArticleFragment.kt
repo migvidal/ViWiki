@@ -55,14 +55,23 @@ class ArticleFragment : Fragment() {
         )
 
         // Trigger the API request if there's an article name
-        if (articleTitle !== null) {
-            viewModel.fetchArticleByTitle(articleTitle!!)
+        fetchArticle()
+
+        // Refresh button listener
+        binding.statusScreen.btnRefresh.setOnClickListener {
+            fetchArticle() // fetch the article again
         }
 
         // Allow for binding to observe LiveData
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         return binding.root
+    }
+
+    private fun fetchArticle() {
+        if (articleTitle !== null) {
+            viewModel.fetchArticleByTitle(articleTitle!!)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

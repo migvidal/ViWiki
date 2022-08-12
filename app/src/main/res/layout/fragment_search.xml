@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -21,36 +22,9 @@
         android:layout_height="match_parent"
         tools:context=".search.SearchFragment">
 
-        <LinearLayout
+        <include layout="@layout/status_screen_layout"
             android:id="@+id/status_screen"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="visible"
-            app:status="@{viewModel.status}"
-            tools:visibility="visible">
-
-            <TextView
-                android:id="@+id/tv_info_message"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{viewModel.infoMessageRes}"
-                android:textAlignment="center"
-                android:textSize="@dimen/header2_size"
-                tools:text="There was an error" />
-
-            <Button
-                android:id="@+id/btn_refresh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="try again"
-                android:visibility="invisible"
-                app:status="@{viewModel.status}"
-                tools:visibility="visible" />
-
-        </LinearLayout>
-
+            bind:viewModel="@{viewModel}"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_results"

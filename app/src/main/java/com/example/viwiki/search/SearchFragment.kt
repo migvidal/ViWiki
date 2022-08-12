@@ -98,8 +98,8 @@ class SearchFragment : Fragment() {
         }
 
         // Refresh button listener
-        binding.btnRefresh.setOnClickListener {
-            doSearch() // Do the search again
+        binding.statusScreen.btnRefresh.setOnClickListener {
+            doSearch() // search again
         }
 
         // Bind data

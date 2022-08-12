@@ -21,7 +21,6 @@ private val WIKIMEDIA_BASE_URL: String = "https://api.wikimedia.org/"
  * HTTP client
  */
 private val okHttpClient = OkHttpClient.Builder()
-    .addInterceptor(ApiCommons.loggingInterceptor)// TODO remove for final build
     .build()
 
 /**

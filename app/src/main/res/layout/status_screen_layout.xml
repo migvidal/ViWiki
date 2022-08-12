@@ -15,9 +15,8 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="@{viewModel.status != ResponseStatus.DONE ? View.VISIBLE : View.INVISIBLE}"
         tools:visibility="visible"
-        app:status="@{viewModel.status}"
         tools:showIn="@layout/fragment_home">
 
         <ProgressBar
@@ -32,8 +31,7 @@
             android:layout_height="wrap_content"
             app:status="@{viewModel.status}"
             android:textAlignment="center"
-            android:textSize="@dimen/header2_size"
-            android:visibility="visible"/>
+            android:textSize="@dimen/body_size" />
 
         <Button
             android:id="@+id/btn_refresh"

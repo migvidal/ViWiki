@@ -37,15 +37,15 @@ class HomeFragment : Fragment() {
         // Allow for binding to observe LiveData
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        // TODO error message for blank response
 
-        // Wire buttons:
+        // Click listeners:
+
         // - refresh button
         binding.statusScreen.btnRefresh.setOnClickListener {
             viewModel.fetchTodayFeaturedArticle()
         }
 
-        // - gotoFullArticle button
+        // - article card
         binding.cardFeatured.setOnClickListener {
             // Get the tfa (featured article)
             viewModel.featuredArticleResponse.value?.tfa?.let { tfa ->
@@ -63,10 +63,7 @@ class HomeFragment : Fragment() {
         val menuHost: MenuHost = requireActivity()
 
         menuHost.addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                //menuInflater.inflate(R.menu.action_bar_menu, menu)
-            }
-
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {}
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 // Refresh action
                 if (R.id.action_refresh == menuItem.itemId) {
