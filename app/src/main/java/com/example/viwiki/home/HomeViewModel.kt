@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.viwiki.R
+import com.example.viwiki.GenericWikiViewModel
 import com.example.viwiki.WikiMediaApiImpl
-import com.example.viwiki.network.ApiUtils.ApiStatus
+import com.example.viwiki.GenericWikiViewModel.ResponseStatus
 import kotlinx.coroutines.launch
 import java.util.*
 
-class HomeViewModel : ViewModel() {
+class  HomeViewModel : ViewModel(), GenericWikiViewModel {
     
 
     /**
@@ -19,11 +19,8 @@ class HomeViewModel : ViewModel() {
     private val _featuredArticleResponse = MutableLiveData<FeaturedArticleResponse>()
     val featuredArticleResponse: LiveData<FeaturedArticleResponse> = _featuredArticleResponse
 
-    /**
-     * Status of the response
-     */
-    private val _status = MutableLiveData<ApiStatus>()
-    val status: LiveData<ApiStatus> = _status
+    private val _status = MutableLiveData<ResponseStatus>()
+    override val status: LiveData<ResponseStatus> = _status
 
     /**
      * Fetch today's featured article from the API
@@ -48,13 +45,13 @@ class HomeViewModel : ViewModel() {
 
         // Launch API call coroutine while updating status
         viewModelScope.launch {
-            _status.value = ApiStatus.LOADING
+            _status.value = ResponseStatus.LOADING
             try {
                 val response = WikiMediaApiImpl.wikiMediaApiService.getFeatured(yyyy, mm, dd)
                 _featuredArticleResponse.value = response
-                _status.value = ApiStatus.DONE
+                _status.value = ResponseStatus.DONE
             } catch (e: Exception) {
-                _status.value = ApiStatus.ERROR
+                _status.value = ResponseStatus.ERROR
                 _featuredArticleResponse.value = FeaturedArticleResponse()
             }
 

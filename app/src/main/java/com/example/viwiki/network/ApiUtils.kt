@@ -5,10 +5,6 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.logging.HttpLoggingInterceptor
 
 object ApiUtils {
-    /**
-     * Values for the status of the response
-     */
-    enum class ApiStatus { LOADING, ERROR, DONE, BLANK }
 
     /**
      * Converter from Kotlin to JSON

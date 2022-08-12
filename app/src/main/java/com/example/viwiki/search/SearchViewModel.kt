@@ -4,12 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.viwiki.GenericWikiViewModel
+import com.example.viwiki.GenericWikiViewModel.ResponseStatus
 import com.example.viwiki.R
 import com.example.viwiki.WikipediaApiImpl
-import com.example.viwiki.network.ApiUtils
 import kotlinx.coroutines.launch
 
-class SearchViewModel : ViewModel() {
+class SearchViewModel : ViewModel(), GenericWikiViewModel {
 
     /**
      * Private mutable live data
@@ -17,11 +18,8 @@ class SearchViewModel : ViewModel() {
     private val _searchResponse = MutableLiveData<SearchResponse>()
     val searchResponse: LiveData<SearchResponse> = _searchResponse
 
-    /**
-     * Status of the response
-     */
-    private val _status = MutableLiveData<ApiUtils.ApiStatus>()
-    val status: LiveData<ApiUtils.ApiStatus> = _status
+    private val _status = MutableLiveData<ResponseStatus>()
+    override val status: LiveData<ResponseStatus> = _status
 
     /**
      * String resource for the information message
@@ -35,21 +33,21 @@ class SearchViewModel : ViewModel() {
      */
     fun searchArticles(query: String) {
         viewModelScope.launch {
-            _status.value = ApiUtils.ApiStatus.LOADING
+            _status.value = ResponseStatus.LOADING
             _infoMessageRes.value = R.string.loading_message
             try {
                 val response = WikipediaApiImpl.wikipediaApiService.getSearchResults(query)
                 _searchResponse.value = response
-                _status.value = ApiUtils.ApiStatus.DONE
 
                 // Set message if there are no results
                 if (_searchResponse.value?.query?.searchInfo?.totalHits == 0) {
-                    _status.value = ApiUtils.ApiStatus.BLANK
+                    _status.value = ResponseStatus.BLANK
                     _infoMessageRes.value = R.string.no_results_message
                 }
+                _status.value = ResponseStatus.DONE
 
             } catch (e: Exception) {
-                _status.value = ApiUtils.ApiStatus.ERROR
+                _status.value = ResponseStatus.ERROR
                 _infoMessageRes.value = R.string.error_message
                 e.printStackTrace()
             }

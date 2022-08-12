@@ -4,10 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="android.view.View" />
-        <import type="com.example.viwiki.network.ApiUtils.ApiStatus" />
+        <import type="com.example.viwiki.GenericWikiViewModel.ResponseStatus" />
         <variable
             name="viewModel"
-            type="com.example.viwiki.home.HomeViewModel" />
+            type="com.example.viwiki.GenericWikiViewModel" />
     </data>
     <LinearLayout
         android:id="@+id/status_screen"
@@ -24,7 +24,7 @@
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{viewModel.status == ApiStatus.LOADING ? View.VISIBLE : View.INVISIBLE}" />
+            android:visibility="@{viewModel.status == ResponseStatus.LOADING ? View.VISIBLE : View.INVISIBLE}" />
 
         <TextView
             android:id="@+id/tv_info_message_string"
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="try again"
-            android:visibility="@{viewModel.status == ApiStatus.ERROR ? View.VISIBLE : View.INVISIBLE}" />
+            android:visibility="@{viewModel.status == ResponseStatus.ERROR ? View.VISIBLE : View.INVISIBLE}" />
 
     </LinearLayout>
 </layout>

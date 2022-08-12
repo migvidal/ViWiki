@@ -7,7 +7,7 @@
     <data>
         <import type="android.view.View" />
 
-        <import type="com.example.viwiki.network.ApiUtils.ApiStatus" />
+        <import type="com.example.viwiki.GenericWikiViewModel.ResponseStatus" />
 
         <variable
             name="viewModel"
@@ -26,7 +26,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="@{viewModel.status == ApiStatus.DONE ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewModel.status == ResponseStatus.DONE ? View.VISIBLE : View.GONE}"
             tools:context=".HomeFragment">
 
             <com.google.android.material.card.MaterialCardView

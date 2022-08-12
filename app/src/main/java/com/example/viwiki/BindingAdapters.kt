@@ -2,15 +2,11 @@ package com.example.viwiki
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.StringRes
-import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import coil.load
-import com.example.viwiki.network.ApiUtils
-import com.example.viwiki.network.ApiUtils.ApiStatus.*
+import com.example.viwiki.GenericWikiViewModel.ResponseStatus.*
 import timber.log.Timber
 
 /**
@@ -47,7 +43,7 @@ fun bindImageView(imageView: ImageView, imageUrl: String?) {
  * Modifies a viewGroup depending on status
  */
 @BindingAdapter("status")
-fun bindMessageViewGroup(viewGroup: ViewGroup, status: ApiUtils.ApiStatus?) {
+fun bindMessageViewGroup(viewGroup: ViewGroup, status: GenericWikiViewModel.ResponseStatus?) {
     if (status == DONE) {
         viewGroup.visibility = View.GONE
     }
@@ -58,7 +54,7 @@ fun bindMessageViewGroup(viewGroup: ViewGroup, status: ApiUtils.ApiStatus?) {
  * Sets text of text view depending on status
  */
 @BindingAdapter("status")
-fun bindTextView(tv: TextView, status: ApiUtils.ApiStatus?) {
+fun bindTextView(tv: TextView, status: GenericWikiViewModel.ResponseStatus?) {
     when (status) {
         LOADING -> tv.setText(R.string.loading_message)
         BLANK -> tv.setText(R.string.blank_response_message)
