@@ -14,7 +14,7 @@ import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentSearchBinding
 
 /**
- *
+ * Fragment for the search results screen
  */
 class SearchFragment : Fragment() {
 
@@ -60,8 +60,10 @@ class SearchFragment : Fragment() {
             setHasFixedSize(true)
         }
 
+        // TODO USE OBSERVER
+
         // Observe the SearchResponse
-        viewModel.searchResponse.observe(viewLifecycleOwner, Observer { response ->
+        viewModel.searchResponse.observe(viewLifecycleOwner) { response ->
             val query = response.query
             if (query != null) {
 
@@ -93,7 +95,7 @@ class SearchFragment : Fragment() {
                 // Update adapter data
                 searchAdapter?.dataSet = query.search
             }
-        })
+        }
 
         // Refresh button listener
         binding.btnRefresh.setOnClickListener {

@@ -34,7 +34,7 @@ class ArticleFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         // Set up icon as an X
-        getActivitySafely()?.supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close)
+        getMainActivity()?.supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close)
 
         // Get the article title passed by `navArgs`
         navArgs.apply {
@@ -67,13 +67,13 @@ class ArticleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        // Override the options menu in this fragment. Used to hide / show the options menu.
+        // Override control of the options menu in this fragment.
+        // Used to hide / show the menu.
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.action_bar_menu, menu)
             }
-
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean =
                 false // Let the parent activity handle the selections (e.g. Search or the Up button)
 
@@ -83,10 +83,14 @@ class ArticleFragment : Fragment() {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         // Set action bar title
-        getActivitySafely()?.supportActionBar?.title = articleTitle
+        getMainActivity()?.supportActionBar?.title = articleTitle
     }
 
-    private fun getActivitySafely(): MainActivity? {
+    /**
+     * Gets the parent `MainActivity`
+     * @return the main activity, `null` if type is not `MainActivity`
+     */
+    private fun getMainActivity(): MainActivity? {
         if (activity is MainActivity) {
             return activity as MainActivity
         }

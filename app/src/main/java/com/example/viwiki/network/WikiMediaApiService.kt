@@ -1,20 +1,27 @@
 package com.example.viwiki
 
 import com.example.viwiki.home.FeaturedArticleResponse
-import com.example.viwiki.network.ApiUtils
+import com.example.viwiki.network.ApiCommons
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 
+/**
+ * WikiMedia API. Used to get the featured article.
+ */
+
+/**
+ * Base URL for the Wikimedia API
+ */
 private val WIKIMEDIA_BASE_URL: String = "https://api.wikimedia.org/"
 
 /**
  * HTTP client
  */
 private val okHttpClient = OkHttpClient.Builder()
-    .addInterceptor(ApiUtils.loggingInterceptor)// TODO remove for final build
+    .addInterceptor(ApiCommons.loggingInterceptor)// TODO remove for final build
     .build()
 
 /**
@@ -23,7 +30,7 @@ private val okHttpClient = OkHttpClient.Builder()
 private val retrofit = Retrofit.Builder()
     .baseUrl(WIKIMEDIA_BASE_URL)
     .client(okHttpClient)
-    .addConverterFactory(MoshiConverterFactory.create(ApiUtils.moshi))
+    .addConverterFactory(MoshiConverterFactory.create(ApiCommons.moshi))
     .build()
 
 /**

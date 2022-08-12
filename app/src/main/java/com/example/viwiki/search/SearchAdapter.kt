@@ -11,17 +11,19 @@ import com.example.viwiki.MainActivity
 import com.example.viwiki.MainActivity.Companion.ARTICLE_TITLE_EXTRA_KEY
 import com.example.viwiki.R
 
+/**
+ * Adapter for the search RecyclerView
+ */
 class SearchAdapter(val context: SearchActivity) : Adapter<SearchAdapter.SearchViewHolder>() {
 
+    /**
+     * The data set
+     */
     var dataSet = listOf(SearchResponse.SearchQuery.Search())
         set(value) {
             field = value
             notifyDataSetChanged()
         }
-
-    override fun getItemCount(): Int {
-        return dataSet.size
-    }
 
     /**
      * Used by onCreateViewHolder
@@ -29,6 +31,11 @@ class SearchAdapter(val context: SearchActivity) : Adapter<SearchAdapter.SearchV
     inner class SearchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvResult = view.findViewById<TextView>(R.id.tv_result)
     }
+
+    override fun getItemCount(): Int {
+        return dataSet.size
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -47,13 +54,11 @@ class SearchAdapter(val context: SearchActivity) : Adapter<SearchAdapter.SearchV
         // onclick listener
         holder.tvResult.setOnClickListener {
             if (articleTitle !== null) {
-
                 // Create intent
                 val intent = Intent(context, MainActivity::class.java)
                 intent.putExtra(ARTICLE_TITLE_EXTRA_KEY, articleTitle)
                 context.startActivity(intent)
             }
-
         }
     }
 
@@ -64,6 +69,5 @@ class SearchAdapter(val context: SearchActivity) : Adapter<SearchAdapter.SearchV
     override fun getItemViewType(position: Int): Int {
         return position
     }
-
 
 }
