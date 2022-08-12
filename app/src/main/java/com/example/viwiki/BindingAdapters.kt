@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.StringRes
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import coil.load
 import com.example.viwiki.network.ApiUtils
-import com.example.viwiki.network.ApiUtils.ApiStatus.DONE
-import com.example.viwiki.network.ApiUtils.ApiStatus.ERROR
+import com.example.viwiki.network.ApiUtils.ApiStatus.*
 import timber.log.Timber
 
 /**
@@ -53,16 +53,16 @@ fun bindMessageViewGroup(viewGroup: ViewGroup, status: ApiUtils.ApiStatus?) {
     }
 }
 
+
 /**
- * Modifies a button depending on status
+ * Sets text of text view depending on status
  */
 @BindingAdapter("status")
-fun bindButton(button: Button, status: ApiUtils.ApiStatus?) {
+fun bindTextView(tv: TextView, status: ApiUtils.ApiStatus?) {
     when (status) {
-        ERROR -> button.visibility = View.VISIBLE
-        else -> button.visibility = View.INVISIBLE
+        LOADING -> tv.setText(R.string.loading_message)
+        BLANK -> tv.setText(R.string.blank_response_message)
+        ERROR -> tv.setText(R.string.error_message)
+        else -> tv.text = null
     }
 }
-
-
-//File:5_Livres_à_l'effigie_de_la_reine_Victoria_commémorant_le_Jublilée_de_la_monarque..jpg

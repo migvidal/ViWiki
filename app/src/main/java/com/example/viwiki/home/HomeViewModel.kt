@@ -26,12 +26,6 @@ class HomeViewModel : ViewModel() {
     val status: LiveData<ApiStatus> = _status
 
     /**
-     * String resource for the information message
-     */
-    private val _infoMessageRes = MutableLiveData<Int>()
-    val infoMessageRes: LiveData<Int> = _infoMessageRes
-
-    /**
      * Fetch today's featured article from the API
      */
     fun fetchTodayFeaturedArticle() {
@@ -55,15 +49,13 @@ class HomeViewModel : ViewModel() {
         // Launch API call coroutine while updating status
         viewModelScope.launch {
             _status.value = ApiStatus.LOADING
-            _infoMessageRes.value = R.string.loading_message
             try {
                 val response = WikiMediaApiImpl.wikiMediaApiService.getFeatured(yyyy, mm, dd)
                 _featuredArticleResponse.value = response
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR
-                _infoMessageRes.value = R.string.error_message
-                e.printStackTrace()
+                _featuredArticleResponse.value = FeaturedArticleResponse()
             }
 
         }

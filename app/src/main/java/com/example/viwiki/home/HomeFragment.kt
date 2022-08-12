@@ -31,9 +31,8 @@ class HomeFragment : Fragment() {
     ): View {
         Timber.i("Fragment onCreateView Called")
         // Inflate the layout for this fragment
-        val binding = DataBindingUtil.inflate<FragmentHomeBinding>(
-            inflater, R.layout.fragment_home, container, false
-        )
+        val binding = FragmentHomeBinding.inflate(inflater, container, false)
+
 
         // Allow for binding to observe LiveData
         binding.lifecycleOwner = viewLifecycleOwner
@@ -42,9 +41,9 @@ class HomeFragment : Fragment() {
 
         // Wire buttons:
         // - refresh button
-        /*binding.btnRefresh.setOnClickListener {
+        binding.statusScreen.btnRefresh.setOnClickListener {
             viewModel.fetchTodayFeaturedArticle()
-        }*/
+        }
 
         // - gotoFullArticle button
         binding.cardFeatured.setOnClickListener {

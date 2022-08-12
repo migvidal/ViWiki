@@ -21,9 +21,7 @@
 
         <include layout="@layout/status_screen_layout"
             android:id="@+id/status_screen"
-            bind:message_string="@{&quot;Email&quot;}"
-            bind:status_code="@{viewModel.status}"
-            />
+            bind:viewModel="@{viewModel}"/>
 
         <ScrollView
             android:layout_width="match_parent"
