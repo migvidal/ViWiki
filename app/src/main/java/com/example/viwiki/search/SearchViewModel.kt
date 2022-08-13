@@ -49,7 +49,6 @@ class SearchViewModel : ViewModel(), GenericWikiViewModel {
             } catch (e: Exception) {
                 _status.value = ResponseStatus.ERROR
                 _infoMessageRes.value = R.string.error_message
-                e.printStackTrace()
             }
         }
     }

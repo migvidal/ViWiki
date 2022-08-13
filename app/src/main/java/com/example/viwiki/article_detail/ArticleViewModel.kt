@@ -40,17 +40,13 @@ class ArticleViewModel : ViewModel(), GenericWikiViewModel {
                 _articleResponse.value = response
                 _status.value = ResponseStatus.DONE
             } catch (e: Exception) {
-                e.printStackTrace()
+                _status.value = ResponseStatus.ERROR
             }
         }
         viewModelScope.launch {
-            try {
-                val imagesResponse = WikipediaApiImpl.wikipediaApiService.getImagesResponse(name)
-                _articleImagesResponse.value = imagesResponse
-            } catch (e: Exception) {
-                _status.value = ResponseStatus.ERROR
-                e.printStackTrace()
-            }
+            // Image has its own status. Errors are handled by the loader (Coil)
+            val imagesResponse = WikipediaApiImpl.wikipediaApiService.getImagesResponse(name)
+            _articleImagesResponse.value = imagesResponse
         }
     }
 

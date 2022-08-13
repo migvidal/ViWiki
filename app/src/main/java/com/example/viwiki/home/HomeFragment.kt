@@ -11,7 +11,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentHomeBinding
-import timber.log.Timber
 
 /**
  * Home screen of the App. Shows the article of the day.
@@ -22,14 +21,12 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Timber.i("Fragment onCreate Called")
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Timber.i("Fragment onCreateView Called")
         // Inflate the layout for this fragment
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
 

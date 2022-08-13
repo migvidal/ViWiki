@@ -78,17 +78,13 @@ class SearchFragment : Fragment() {
                 // Show hits in action bar
                 query.searchInfo.totalHits.let {
                     if (it != 0) {
-                        try {
-                            setActionBarTitle(
-                                getString(
-                                    R.string.action_bar_results_label_number,
-                                    it,
-                                    searchQuery
-                                )
+                        setActionBarTitle(
+                            getString(
+                                R.string.action_bar_results_label_number,
+                                it,
+                                searchQuery
                             )
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
+                        )
                     }
                 }
 
