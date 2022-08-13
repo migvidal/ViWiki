@@ -5,12 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.viwiki.GenericWikiViewModel
-import com.example.viwiki.WikiMediaApiImpl
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus
+import com.example.viwiki.WikiMediaApiImpl
 import kotlinx.coroutines.launch
 import java.util.*
 
-class  HomeViewModel : ViewModel(), GenericWikiViewModel {
+class HomeViewModel : ViewModel(), GenericWikiViewModel {
 
     private val _status = MutableLiveData<ResponseStatus>()
     override val status: LiveData<ResponseStatus> = _status

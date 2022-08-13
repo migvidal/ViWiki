@@ -83,6 +83,7 @@ class ArticleFragment : Fragment() {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.action_bar_menu, menu)
             }
+
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean =
                 false // Let the parent activity handle the selections (e.g. Search or the Up button)
 

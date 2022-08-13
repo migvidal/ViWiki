@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
 
         <import type="com.example.viwiki.GenericWikiViewModel.ResponseStatus" />
@@ -19,9 +20,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/status_screen_layout"
+        <include
             android:id="@+id/status_screen"
-            bind:viewModel="@{viewModel}"/>
+            layout="@layout/status_screen_layout"
+            bind:viewModel="@{viewModel}" />
 
         <ScrollView
             android:layout_width="match_parent"

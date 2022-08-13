@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <import type="android.view.View" />
+
         <import type="com.example.viwiki.GenericWikiViewModel.ResponseStatus" />
+
         <variable
             name="viewModel"
             type="com.example.viwiki.GenericWikiViewModel" />
     </data>
+
     <LinearLayout
         android:id="@+id/status_screen"
         android:layout_width="match_parent"
@@ -16,8 +21,8 @@
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="@{viewModel.status != ResponseStatus.DONE ? View.VISIBLE : View.INVISIBLE}"
-        tools:visibility="visible"
-        tools:showIn="@layout/fragment_home">
+        tools:showIn="@layout/fragment_home"
+        tools:visibility="visible">
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -29,9 +34,9 @@
             android:id="@+id/tv_info_message_string"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:status="@{viewModel.status}"
             android:textAlignment="center"
-            android:textSize="@dimen/body_size" />
+            android:textSize="@dimen/body_size"
+            app:status="@{viewModel.status}" />
 
         <Button
             android:id="@+id/btn_refresh"

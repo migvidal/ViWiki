@@ -27,7 +27,6 @@ class ArticleViewModel : ViewModel(), GenericWikiViewModel {
     val articleImagesResponse: LiveData<ArticleImagesResponse> = _articleImagesResponse
 
 
-
     /**
      * Fetches an article by the provided title
      * @param name The title of the article
