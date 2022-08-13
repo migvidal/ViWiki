@@ -22,14 +22,14 @@
         <include
             android:id="@+id/status_screen"
             layout="@layout/status_screen_layout"
-            bind:viewModel="@{viewModel}" />
+            bind:viewModel="@{viewModel}"
+            tools:visibility="gone"/>
 
         <ScrollView
             android:id="@+id/fragment_article_scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="@{viewModel.status == ResponseStatus.DONE ? View.VISIBLE : View.GONE}">
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     app:imageUrl="@{viewModel.articleImagesResponse.query.pages.get(0).thumbnail.source}"
-                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintDimensionRatio="3:2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="@drawable/ic_launcher_background" />
@@ -55,6 +55,7 @@
                     android:text="@{viewModel.articleResponse.query.pages.get(0).title}"
                     android:textSize="@dimen/main_header_size"
                     android:textStyle="bold"
+                    android:layout_marginTop="@dimen/margin_large"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/main_image"
                     tools:text="Title" />

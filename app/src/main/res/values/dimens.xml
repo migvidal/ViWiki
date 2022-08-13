@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="main_header_size">50sp</dimen>
-    <dimen name="header2_size">30sp</dimen>
-    <dimen name="emphasized_size">20sp</dimen>
-    <dimen name="body_size">16sp</dimen>
+    <dimen name="main_header_size">35sp</dimen>
+    <dimen name="header2_size">20sp</dimen>
+    <dimen name="emphasized_size">16sp</dimen>
+    <dimen name="body_size">10sp</dimen>
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_large">16dp</dimen>
 </resources>

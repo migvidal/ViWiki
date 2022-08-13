@@ -7,8 +7,8 @@
 
     <TextView
         android:id="@+id/tv_result"
-        style="@style/text_box"
+        style="@style/result_list_item"
         android:layout_width="match_parent"
-        android:textSize="@dimen/body_size"
+        android:textSize="@dimen/emphasized_size"
         tools:text="Lorem ipsum Dolor sit amet" />
 </FrameLayout>
