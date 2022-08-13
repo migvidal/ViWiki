@@ -11,6 +11,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+/**
+ * Base URL for the WikiPedia API
+ */
 private val WIKIPEDIA_BASE_URL = "https://en.wikipedia.org/"
 
 
@@ -40,7 +43,6 @@ private val okHttpClient = OkHttpClient.Builder()
 /**
  * Retrofit client, for creating the API service
  */
-
 private val retrofit = Retrofit.Builder()
     .baseUrl(WIKIPEDIA_BASE_URL)
     .client(okHttpClient)
@@ -55,6 +57,7 @@ interface WikipediaApiService {
     /**
      * Fetch and return the ArticleResponse
      * @param title The exact title of the article
+     * @return the article response
      */
     @GET("/")
     suspend fun getArticleResponse(
@@ -67,6 +70,9 @@ interface WikipediaApiService {
 
     /**
      * Fetch and return the images response
+     * @param title The exact title of the article
+     * @param maxThumbnailWidth Maximum desired width for the image
+     * @return The images response
      */
     @GET("/")
     suspend fun getImagesResponse(
@@ -81,6 +87,7 @@ interface WikipediaApiService {
     /**
      * Search for the provided query
      * @param query The search query
+     * @param resultLimit The max number of results fetched
      */
     @GET("/")
     suspend fun getSearchResults(
@@ -91,7 +98,7 @@ interface WikipediaApiService {
 }
 
 /**
- * Implementation for the API
+ * Implementation of the interface
  */
 object WikipediaApiImpl {
     /**

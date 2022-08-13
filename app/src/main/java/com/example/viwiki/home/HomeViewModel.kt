@@ -11,16 +11,15 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class  HomeViewModel : ViewModel(), GenericWikiViewModel {
-    
+
+    private val _status = MutableLiveData<ResponseStatus>()
+    override val status: LiveData<ResponseStatus> = _status
 
     /**
      * Response from the WikiMediaApi
      */
     private val _featuredArticleResponse = MutableLiveData<FeaturedArticleResponse>()
     val featuredArticleResponse: LiveData<FeaturedArticleResponse> = _featuredArticleResponse
-
-    private val _status = MutableLiveData<ResponseStatus>()
-    override val status: LiveData<ResponseStatus> = _status
 
     /**
      * Fetch today's featured article from the API

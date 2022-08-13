@@ -15,13 +15,13 @@ class ArticleViewModel : ViewModel(), GenericWikiViewModel {
     override val status: LiveData<ResponseStatus> = _status
 
     /**
-     * The recieved article
+     * Received article from the WikipediaAPI
      */
     private val _articleResponse = MutableLiveData<ArticleResponse>()
     val articleResponse: LiveData<ArticleResponse> = _articleResponse
 
     /**
-     * The recieved article images
+     * Received article image(s) from the WikipediaAPI
      */
     private val _articleImagesResponse = MutableLiveData<ArticleImagesResponse>()
     val articleImagesResponse: LiveData<ArticleImagesResponse> = _articleImagesResponse

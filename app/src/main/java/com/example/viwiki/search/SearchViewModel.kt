@@ -12,14 +12,15 @@ import kotlinx.coroutines.launch
 
 class SearchViewModel : ViewModel(), GenericWikiViewModel {
 
+    private val _status = MutableLiveData<ResponseStatus>()
+    override val status: LiveData<ResponseStatus> = _status
+
     /**
-     * Private mutable live data
+     * Response from a search in the WikipediaAPI
      */
     private val _searchResponse = MutableLiveData<SearchResponse>()
     val searchResponse: LiveData<SearchResponse> = _searchResponse
 
-    private val _status = MutableLiveData<ResponseStatus>()
-    override val status: LiveData<ResponseStatus> = _status
 
     /**
      * String resource for the information message

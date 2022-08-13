@@ -54,12 +54,11 @@ interface WikiMediaApiService {
 }
 
 /**
- * Implementation for the API. To get featured articles,
- * the WikiMedia API must be used.
+ * Implementation of the interface.
  */
 object WikiMediaApiImpl {
     /**
-     * Service for the Wikimedia API
+     * Service for the WikiMedia API
      */
     val wikiMediaApiService: WikiMediaApiService by lazy {
         retrofit.create(WikiMediaApiService::class.java)
