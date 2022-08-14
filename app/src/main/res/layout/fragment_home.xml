@@ -60,7 +60,7 @@
                         android:layout_marginTop="@dimen/margin_large"
                         android:text="@string/header_text"
                         android:textAllCaps="true"
-                        android:textColor="@color/header_color"
+                        android:textColor="@color/primaryDarkColor"
                         android:textSize="12sp"
                         android:letterSpacing="0.05"
                         app:layout_constraintStart_toStartOf="parent"

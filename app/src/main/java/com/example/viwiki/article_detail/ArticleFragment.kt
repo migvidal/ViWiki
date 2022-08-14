@@ -34,7 +34,8 @@ class ArticleFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         // Set up icon as an X
-        getMainActivity()?.supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close)
+        getMainActivity()?.supportActionBar?.setHomeAsUpIndicator(
+            resources.getDrawable(R.drawable.ic_close, getMainActivity()?.theme))
 
         // Get the article title passed by `navArgs`
         navArgs.apply {
