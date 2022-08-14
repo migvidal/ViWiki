@@ -13,4 +13,5 @@
     <string name="action_bar_results_label_number">%1$d results for %2$s</string>
     <string name="article_label">Article</string>
     <string name="blank_response_message">There are no results</string>
+    <string name="about_text">A lightweight and visual Wikipedia client. App made by Miguel Vidal. Soon to be updated with more features.</string>
 </resources>
