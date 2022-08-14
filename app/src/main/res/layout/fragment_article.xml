@@ -41,44 +41,76 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
+                    android:background="@android:color/darker_gray"
                     android:scaleType="centerCrop"
                     app:imageUrl="@{viewModel.articleImagesResponse.query.pages.get(0).thumbnail.source}"
-                    android:background="@android:color/darker_gray"
                     app:layout_constraintDimensionRatio="3:2"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ImageContrastCheck" />
 
                 <TextView
                     android:id="@+id/tv_title"
                     style="@style/text_box"
-                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:ellipsize="end"
+                    android:letterSpacing="-0.04"
+                    android:lineSpacingMultiplier="0.9"
+                    android:maxLines="3"
                     android:text="@{viewModel.articleResponse.query.pages.get(0).title}"
+                    android:textAlignment="viewStart"
                     android:textSize="@dimen/main_header_size"
                     android:textStyle="bold"
-                    android:layout_marginTop="@dimen/margin_large"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/right_guideline"
+                    app:layout_constraintStart_toStartOf="@id/left_guideline"
                     app:layout_constraintTop_toBottomOf="@id/main_image"
-                    tools:text="Title" />
+                    tools:text="This is the title. Can be truncated if it's too long. Example: too long" />
+
+                <ImageView
+                    android:id="@+id/emphasis_decoration"
+                    android:layout_width="@dimen/margin_small"
+                    android:layout_height="0dp"
+                    android:background="?attr/colorAccent"
+                    app:layout_constraintStart_toStartOf="@id/left_guideline"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_definition"
+                    app:layout_constraintTop_toTopOf="@id/tv_definition"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_definition"
+                    app:layout_constraintHorizontal_chainStyle="spread"/>
 
                 <TextView
                     android:id="@+id/tv_definition"
-                    style="@style/text_box"
-                    android:layout_width="wrap_content"
-                    app:article_extract="@{viewModel.articleResponse.query.pages.get(0).extract}"
+                    style="@style/definition_text_box"
                     android:textSize="@dimen/emphasized_size"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:article_extract="@{viewModel.articleResponse.query.pages.get(0).extract}"
+                    app:layout_constraintEnd_toEndOf="@id/right_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/emphasis_decoration"
                     app:layout_constraintTop_toBottomOf="@id/tv_title"
-                    tools:text="This is the definition if the article" />
+                    tools:text="This is the definition of the article. Can span unlimited lines." />
 
                 <TextView
                     android:id="@+id/tv_text"
                     style="@style/text_box"
-                    android:layout_width="match_parent"
-                    app:article_extract="@{viewModel.articleResponse.query.pages.get(0).extract}"
                     android:textSize="@dimen/body_size"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_definition" />
+                    app:article_extract="@{viewModel.articleResponse.query.pages.get(0).extract}"
+                    app:layout_constraintEnd_toEndOf="@id/right_guideline"
+                    app:layout_constraintStart_toStartOf="@id/left_guideline"
+                    app:layout_constraintTop_toBottomOf="@id/tv_definition"
+                    tools:text="Pellentesque consectetur nec condimentum eget portaest scelerisque tortor suspendisse nisi nisl adipiscing nec morbi rutrum id molestie mi aliquam aliquam et euismod enim elit varius. Maximus ac sollicitudin felis ipsum gravida consectetur rutrum lorem cursus tincidunt vel enim leo suspendisse lorem id molestie urna eget sed id suspendisse gravida orci." />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/left_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/margin_large" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/right_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/margin_large" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
