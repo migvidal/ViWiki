@@ -63,7 +63,7 @@ interface WikipediaApiService {
     suspend fun getArticleResponse(
         @Query("titles") title: String,
         @Query("prop") prop: String = "extracts",
-        @Query("exsentences") exsentences: Int = 1,
+        @Query("exsentences") exsentences: Int = 30,
         @Query("explaintext") explaintext: Int = 1,
         @Query("formatversion") formatVersion: Int = 2
     ): ArticleResponse

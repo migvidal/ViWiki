@@ -29,13 +29,13 @@ class ArticleViewModel : ViewModel(), GenericWikiViewModel {
 
     /**
      * Fetches an article by the provided title
-     * @param name The title of the article
+     * @param title The title of the article
      */
-    fun fetchArticleByTitle(name: String) {
+    fun fetchArticleByTitle(title: String) {
         viewModelScope.launch {
             _status.value = ResponseStatus.LOADING
             try {
-                val response = WikipediaApiImpl.wikipediaApiService.getArticleResponse(name)
+                val response = WikipediaApiImpl.wikipediaApiService.getArticleResponse(title)
                 _articleResponse.value = response
                 _status.value = ResponseStatus.DONE
             } catch (e: Exception) {
@@ -44,7 +44,7 @@ class ArticleViewModel : ViewModel(), GenericWikiViewModel {
         }
         viewModelScope.launch {
             // Image has its own status. Errors are handled by the loader (Coil)
-            val imagesResponse = WikipediaApiImpl.wikipediaApiService.getImagesResponse(name)
+            val imagesResponse = WikipediaApiImpl.wikipediaApiService.getImagesResponse(title)
             _articleImagesResponse.value = imagesResponse
         }
     }

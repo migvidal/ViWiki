@@ -43,10 +43,10 @@
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     app:imageUrl="@{viewModel.articleImagesResponse.query.pages.get(0).thumbnail.source}"
+                    android:background="@android:color/darker_gray"
                     app:layout_constraintDimensionRatio="3:2"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/ic_launcher_background" />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
                     android:id="@+id/tv_title"
@@ -64,22 +64,21 @@
                     android:id="@+id/tv_definition"
                     style="@style/text_box"
                     android:layout_width="wrap_content"
-                    android:text="@{viewModel.articleResponse.query.pages.get(0).extract}"
+                    app:article_extract="@{viewModel.articleResponse.query.pages.get(0).extract}"
                     android:textSize="@dimen/emphasized_size"
-                    android:textStyle="italic"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_title"
-                    tools:text="Definition definition definition definition" />
+                    tools:text="This is the definition if the article" />
 
                 <TextView
                     android:id="@+id/tv_text"
                     style="@style/text_box"
                     android:layout_width="match_parent"
-                    android:text=""
+                    app:article_extract="@{viewModel.articleResponse.query.pages.get(0).extract}"
                     android:textSize="@dimen/body_size"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_definition" />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

@@ -3,7 +3,8 @@
     <dimen name="main_header_size">35sp</dimen>
     <dimen name="header2_size">20sp</dimen>
     <dimen name="emphasized_size">16sp</dimen>
-    <dimen name="body_size">10sp</dimen>
-    <dimen name="margin_small">8dp</dimen>
+    <dimen name="body_size">16sp</dimen>
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="margin_medium">8dp</dimen>
     <dimen name="margin_large">16dp</dimen>
 </resources>

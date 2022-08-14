@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import coil.load
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus.*
+import com.example.viwiki.article_detail.ArticleResponse
 
 /**
  * Loads the url into the imageView
@@ -13,8 +14,7 @@ import com.example.viwiki.GenericWikiViewModel.ResponseStatus.*
 fun bindImageView(imageView: ImageView, imageUrl: String?) {
     imageUrl.let {
         imageView.load(it) {
-            placeholder(android.R.color.darker_gray)
-            error(R.drawable.ic_round_broken_image_24)
+            error(R.drawable.ic_broken_image)
         }
     }
 }
@@ -31,4 +31,14 @@ fun bindTextView(tv: TextView, status: GenericWikiViewModel.ResponseStatus?) {
         ERROR -> tv.setText(R.string.error_message)
         else -> tv.text = null
     }
+}
+
+@BindingAdapter("article_extract")
+fun bindTextView(tv: TextView, extract: String?) {
+    val DELIMITER = ". "
+    if (tv.id == R.id.tv_definition) {
+        tv.text = extract?.substringBefore(DELIMITER) + '.'
+        return
+    }
+    tv.text = extract?.substringAfter(DELIMITER)?.trim()
 }
