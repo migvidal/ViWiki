@@ -23,7 +23,7 @@
             android:id="@+id/status_screen"
             layout="@layout/status_screen_layout"
             bind:viewModel="@{viewModel}"
-            tools:visibility="gone"/>
+            tools:visibility="gone" />
 
         <ScrollView
             android:id="@+id/fragment_article_scroll"
@@ -71,11 +71,11 @@
                     android:layout_width="@dimen/margin_small"
                     android:layout_height="0dp"
                     android:background="?attr/colorAccent"
-                    app:layout_constraintStart_toStartOf="@id/left_guideline"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_definition"
-                    app:layout_constraintTop_toTopOf="@id/tv_definition"
                     app:layout_constraintBottom_toBottomOf="@id/tv_definition"
-                    app:layout_constraintHorizontal_chainStyle="spread"/>
+                    app:layout_constraintEnd_toStartOf="@+id/tv_definition"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="@id/left_guideline"
+                    app:layout_constraintTop_toTopOf="@id/tv_definition" />
 
                 <TextView
                     android:id="@+id/tv_definition"

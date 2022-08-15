@@ -5,7 +5,6 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import coil.load
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus.*
-import com.example.viwiki.article_detail.ArticleResponse
 
 /**
  * Loads the url into the imageView

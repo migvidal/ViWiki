@@ -1,12 +1,13 @@
-# ViWiki
-A basic but very visual Wikipedia client. Demo app to show my programming and Android knowledge.
+# ENGLISH - ViWiki
+A basic but very visual Wikipedia client. Demo app to show my programming and Android / Kotlin knowledge.
 
 ## Issues and discoveries (will update during the development)
 
 ### Kotlin and Android
 - === compares reference, == compares data. Careful!
-- Don't forget to add android:name to manifest when using a custom Application class
+- Don't forget to add `android:name` to manifest when using a custom Application class
 - To implement a regular SearchView, an additional Activity must be used. Thus, this won't be a single activity app.
+- Drawable icons can be customized for night theme by adding the night version in a new folder "drawable-night-<dpi>". I had to do it with the 'X' icon in the ArticleFragment's Action Bar. 
 
 ### Programming tips
 - When the stack trace doesn't go deep enough, add a try-catch(print) block in the error line.
@@ -46,3 +47,4 @@ A basic but very visual Wikipedia client. Demo app to show my programming and An
 - I prefer to leave the SAM constructor, even if redundant, for better legibility.
   `viewModel.featuredArticleResponse.observe(viewLifecycleOwner, Observer {`
 - I leave code blocks inline with comments, rather than in small functions, unless I need to reuse it. This makes it easier to follow the execution flow.
+- I try to docblock / comment everything, even if redundant. It helps other devs understand the code, makes features easier to find (ctrl + F), and forces me to make sure I understand my code. 
