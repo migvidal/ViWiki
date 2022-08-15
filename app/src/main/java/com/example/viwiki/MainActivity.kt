@@ -23,10 +23,17 @@ class MainActivity : AppCompatActivity() {
         val navController = this.findNavController(R.id.search_nav_host)
         NavigationUI.setupActionBarWithNavController(this, navController)
 
+    }
+
+    override fun onStart() {
+        super.onStart()
         // Handle intent
         if (intent.hasExtra(ARTICLE_TITLE_EXTRA_KEY)) {
             // Get intent
             val searchedArticleName = intent.getStringExtra(ARTICLE_TITLE_EXTRA_KEY)
+
+            // Clear intent
+            intent.removeExtra(ARTICLE_TITLE_EXTRA_KEY)
 
             // Put article name into a bundle
             val bundle = Bundle()
