@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.viwiki.databinding.FragmentAboutBinding
 
 
 /**
@@ -19,23 +20,33 @@ class AboutFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        // Inflate the layout with data binding
+        val binding = FragmentAboutBinding.inflate(inflater, container, false)
 
-        val githubUri = Uri.Builder()
-            .scheme("https")
-            .authority("github.com")
-            .appendPath("migvidal")
-            .build()
+        // Builder for contact URIs
+        fun uriBuilder() = Uri.Builder()
+            .scheme(getString(R.string.web_url_scheme))
 
-        val websiteUri = Uri.Builder()
-            .scheme("https")
-            .authority("migvidal.github.io")
-            .build()
+        // Listener for website link button
+        binding.btnLinkGithub.setOnClickListener {
+            val githubUri = uriBuilder()
+                .authority(getString(R.string.github_authority))
+                .appendPath(getString(R.string.personal_github_path))
+                .build()
+            // Open the URI
+            startActivity(Intent(Intent.ACTION_VIEW, githubUri))
+        }
+        // Listener for Github link button
+        binding.btnLinkWebsite.setOnClickListener {
+            val websiteUri = uriBuilder()
+                .authority(getString(R.string.personal_website_authority))
+                .build()
+            // Open the URI
+            startActivity(Intent(Intent.ACTION_VIEW, websiteUri))
+        }
 
-        val intent = Intent(Intent.ACTION_VIEW, githubUri)
-        startActivity(intent)
-
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        // Return the view
+        return binding.root
     }
 
- }
+}

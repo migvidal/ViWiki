@@ -14,4 +14,11 @@
     <string name="article_label">Article</string>
     <string name="blank_response_message">There are no results</string>
     <string name="about_text">A lightweight and visual Wikipedia client. App made by Miguel Vidal. Soon to be updated with more features.</string>
+    <string name="personal_website_authority" translatable="false">migvidal.github.io</string>
+    <string name="web_url_scheme" translatable="false">https</string>
+    <string name="github_authority">github.com</string>
+    <string name="personal_github_path">migvidal</string>
+    <string name="action_search_title">Search</string>
+    <string name="action_refresh_title">Refresh</string>
+    <string name="action_about_title">About...</string>
 </resources>

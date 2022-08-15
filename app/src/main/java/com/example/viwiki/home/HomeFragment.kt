@@ -61,9 +61,17 @@ class HomeFragment : Fragment() {
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {}
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                // Refresh action
-                if (R.id.action_refresh == menuItem.itemId) {
-                    viewModel.fetchTodayFeaturedArticle() // Refetch the data
+                menuItem.itemId.let {
+                    // Refresh action
+                    if (R.id.action_refresh == it) {
+                        viewModel.fetchTodayFeaturedArticle() // Refetch the data
+                    }
+                    // About action
+                    if (R.id.action_about == it) {
+                        // Navigate to About
+                        findNavController().navigate(R.id.action_homeFragment_to_aboutFragment)
+
+                    }
                 }
                 return true
             }
