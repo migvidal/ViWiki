@@ -59,8 +59,6 @@ class SearchFragment : Fragment() {
             setHasFixedSize(true)
         }
 
-        // TODO USE OBSERVER
-
         // Observe the SearchResponse
         viewModel.searchResponse.observe(viewLifecycleOwner) { response ->
             val query = response.query
