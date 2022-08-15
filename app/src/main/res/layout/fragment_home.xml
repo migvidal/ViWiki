@@ -1,16 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".HomeFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.example.viwiki.GenericWikiViewModel.ResponseStatus" />
+
+        <variable
+            name="viewModel"
+            type="com.example.viwiki.home.HomeViewModel" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/home_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/status_screen"
+            layout="@layout/status_screen_layout"
+            bind:viewModel="@{viewModel}" />
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:visibility="@{viewModel.status == ResponseStatus.DONE ? View.VISIBLE : View.GONE}"
+            tools:context=".HomeFragment">
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_featured"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardElevation="4dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/image_featured"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        app:imageUrl="@{viewModel.featuredArticleResponse.tfa.thumbnail.source}"
+                        app:layout_constraintDimensionRatio="4:3"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/ic_launcher_background" />
+
+                    <TextView
+                        android:id="@+id/tv_header"
+                        style="@style/tapered_box"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="@dimen/margin_large"
+                        android:letterSpacing="0.05"
+                        android:text="@string/header_text"
+                        android:textAllCaps="true"
+                        android:textColor="@color/primaryDarkColor"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/image_featured" />
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        style="@style/tapered_box"
+                        android:layout_width="wrap_content"
+                        android:paddingTop="@dimen/margin_small"
+                        android:paddingBottom="@dimen/margin_small"
+                        android:text="@{viewModel.featuredArticleResponse.tfa.normalizedTitle}"
+                        android:textSize="@dimen/header2_size"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_header"
+                        tools:text="Lorem ipsum portaest molestie" />
+
+
+                    <TextView
+                        android:id="@+id/tv_definition"
+                        style="@style/tapered_box"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_large"
+                        android:ellipsize="middle"
+                        android:textSize="@dimen/emphasized_size"
+                        app:article_extract="@{viewModel.featuredArticleResponse.tfa.extract}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_title"
+                        tools:text="Amet magna dolor elementum nec fusce mi quisque molestie portaest molestie massa proin eu erat maecenas id molestie nec vivamus congue consectetur maecenas purus quisque." />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </ScrollView>
     </FrameLayout>
+
 </layout>
