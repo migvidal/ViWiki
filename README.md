@@ -31,7 +31,7 @@ A basic but very visual Wikipedia client. Demo app to show my programming and An
 
 ### Wikipedia API
 - Some REST APIs, (like this one) are quite messy and poorly documented.
-- Need to add the paremeter `pilicense=any` to stop some images from getting blocked.
+- Need to add the parameter `pilicense=any` to stop some images from getting blocked.
 
 
 ## Naming decisions

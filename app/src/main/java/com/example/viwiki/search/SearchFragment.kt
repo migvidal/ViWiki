@@ -86,7 +86,7 @@ class SearchFragment : Fragment() {
                 }
 
                 // Update adapter data
-                searchAdapter?.dataSet = query.search
+                searchAdapter?.submitList(query.search)
             }
         }
 
