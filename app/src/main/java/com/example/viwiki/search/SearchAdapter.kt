@@ -2,15 +2,13 @@ package com.example.viwiki.search
 
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viwiki.MainActivity
 import com.example.viwiki.MainActivity.Companion.ARTICLE_TITLE_EXTRA_KEY
-import com.example.viwiki.R
+import com.example.viwiki.databinding.ResultListItemBinding
 import com.example.viwiki.search.SearchResponse.SearchQuery.Search
 
 /**
@@ -22,16 +20,39 @@ class SearchAdapter(private val context: SearchActivity) :
     /**
      * Used by onCreateViewHolder
      */
-    class SearchViewHolder private constructor(view: View) : RecyclerView.ViewHolder(view) {
-        val tvResult: TextView = view.findViewById(R.id.tv_result)
+    class SearchViewHolder private constructor(val binding: ResultListItemBinding)
+        : RecyclerView.ViewHolder(binding.root) {
+
+        /**
+         * Binds the article data and the click listener to the viewHolder
+         * @param articleTitle The article title
+         * @param context The context for the click listener's intent
+         */
+        // TODO REFACTOR: DIVIDE IN bind and setclicklistener
+        fun bind(articleTitle: String?, context: SearchActivity) {
+            binding.tvResult.text = articleTitle
+
+            // onclick listener
+            binding.tvResult.setOnClickListener {
+                if (articleTitle !== null) {
+                    // Create intent
+                    val intent = Intent(context, MainActivity::class.java)
+                    intent.putExtra(ARTICLE_TITLE_EXTRA_KEY, articleTitle)
+                    context.startActivity(intent)
+                }
+            }
+        }
+
         companion object {
-            fun from(parent: ViewGroup): SearchViewHolder {
-                val inflater = LayoutInflater.from(parent.context)
-                val view = inflater.inflate(
-                    R.layout.result_list_item,
-                    parent,
-                    false
-                )
+            /**
+             * Creates a new viewHolder that holds the provided ViewGroup
+             * @param viewGroup The viewGroup to hold
+             */
+            fun from(viewGroup: ViewGroup): SearchViewHolder {
+                val inflater = LayoutInflater.from(viewGroup.context)
+                val view = ResultListItemBinding.inflate(inflater,
+                    viewGroup,
+                    false)
                 return SearchViewHolder(view)
             }
         }
@@ -43,18 +64,10 @@ class SearchAdapter(private val context: SearchActivity) :
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val articleTitle = getItem(position).title
-        holder.tvResult.text = articleTitle
-
-        // onclick listener
-        holder.tvResult.setOnClickListener {
-            if (articleTitle !== null) {
-                // Create intent
-                val intent = Intent(context, MainActivity::class.java)
-                intent.putExtra(ARTICLE_TITLE_EXTRA_KEY, articleTitle)
-                context.startActivity(intent)
-            }
-        }
+        holder.bind(articleTitle, context)
     }
+
+
 
     class SearchDiffCallBack : DiffUtil.ItemCallback<Search>() {
         override fun areItemsTheSame(oldItem: Search, newItem: Search): Boolean {
