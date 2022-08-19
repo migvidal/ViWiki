@@ -1,10 +1,12 @@
 # ENGLISH - ViWiki
 A basic but very visual Wikipedia client. Demo app to show my programming and Android / Kotlin knowledge.
 
+![viwiki_poster](https://user-images.githubusercontent.com/68684733/185612652-68e886af-4fe1-4759-ba7c-90c21a15bfda.png)
+
 ## Issues and discoveries (will update during the development)
 
 ### Kotlin and Android
-- === compares reference, == compares data. Careful!
+- === compares reference, == compares data. Careful!!
 - Don't forget to add `android:name` to manifest when using a custom Application class
 - To implement a regular SearchView, an additional Activity must be used. Thus, this won't be a single activity app.
 - Drawable icons can be customized for night theme by adding the night version in a new folder "drawable-night-<dpi>". I had to do it with the 'X' icon in the ArticleFragment's Action Bar. 
