@@ -53,12 +53,6 @@ class SearchFragment : Fragment() {
          */
         val searchAdapter = getActivitySafely()?.let { SearchAdapter(it) }
 
-        // Setup recycler view
-        binding.recyclerViewResults.apply {
-            adapter = searchAdapter
-            setHasFixedSize(true)
-        }
-
         // Observe the SearchResponse
         viewModel.searchResponse.observe(viewLifecycleOwner) { response ->
             val query = response.query
@@ -98,6 +92,7 @@ class SearchFragment : Fragment() {
         // Bind data
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+        binding.searchAdapter = searchAdapter
 
         // Return the view
         return binding.root

@@ -65,7 +65,4 @@ class SearchAdapter(private val context: SearchActivity) :
         }
 
     }
-
-
-
 }

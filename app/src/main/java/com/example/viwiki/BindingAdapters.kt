@@ -5,6 +5,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus.*
 import com.example.viwiki.MainActivity.Companion.ARTICLE_TITLE_EXTRA_KEY

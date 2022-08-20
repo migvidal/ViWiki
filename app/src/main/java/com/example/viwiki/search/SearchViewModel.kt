@@ -35,7 +35,6 @@ class SearchViewModel : ViewModel(), GenericWikiViewModel {
     fun searchArticles(query: String) {
         viewModelScope.launch {
             _status.value = ResponseStatus.LOADING
-            _infoMessageRes.value = R.string.loading_message
             try {
                 val response = WikipediaApiImpl.wikipediaApiService.getSearchResults(query)
                 _searchResponse.value = response
@@ -43,13 +42,11 @@ class SearchViewModel : ViewModel(), GenericWikiViewModel {
                 // Set message if there are no results
                 if (_searchResponse.value?.query?.searchInfo?.totalHits == 0) {
                     _status.value = ResponseStatus.BLANK
-                    _infoMessageRes.value = R.string.no_results_message
-                }
-                _status.value = ResponseStatus.DONE
+                } else
+                    _status.value = ResponseStatus.DONE
 
             } catch (e: Exception) {
                 _status.value = ResponseStatus.ERROR
-                _infoMessageRes.value = R.string.error_message
             }
         }
     }
