@@ -1,10 +1,16 @@
 package com.example.viwiki
 
+import android.content.Intent
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import coil.load
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus.*
+import com.example.viwiki.MainActivity.Companion.ARTICLE_TITLE_EXTRA_KEY
+import com.example.viwiki.search.SearchActivity
+import com.example.viwiki.search.SearchResponse
+import timber.log.Timber
 
 /**
  * Loads the url into the imageView
@@ -40,4 +46,13 @@ fun bindTextView(tv: TextView, extract: String?) {
         return
     }
     tv.text = extract?.substringAfter(DELIMITER)?.trim()
+}
+
+@BindingAdapter("android:onClick")
+fun FrameLayout.onClick(searchResult: SearchResponse.SearchQuery.Search) {
+    setOnClickListener {
+        val intent = Intent(context, MainActivity::class.java)
+        intent.putExtra(ARTICLE_TITLE_EXTRA_KEY, searchResult.title)
+        context.startActivity(intent)
+    }
 }

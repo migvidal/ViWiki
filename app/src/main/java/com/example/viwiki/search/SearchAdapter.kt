@@ -24,23 +24,11 @@ class SearchAdapter(private val context: SearchActivity) :
         : RecyclerView.ViewHolder(binding.root) {
 
         /**
-         * Binds the article data and the click listener to the viewHolder
-         * @param articleTitle The article title
-         * @param context The context for the click listener's intent
+         * Binds the searchResult data
+         * @param searchResult The SearchResult
          */
-        // TODO REFACTOR: DIVIDE IN bind and setclicklistener
-        fun bind(articleTitle: String?, context: SearchActivity) {
-            binding.tvResult.text = articleTitle
-
-            // onclick listener
-            binding.tvResult.setOnClickListener {
-                if (articleTitle !== null) {
-                    // Create intent
-                    val intent = Intent(context, MainActivity::class.java)
-                    intent.putExtra(ARTICLE_TITLE_EXTRA_KEY, articleTitle)
-                    context.startActivity(intent)
-                }
-            }
+        fun bind(searchResult: Search) {
+            binding.searchResult = searchResult
         }
 
         companion object {
@@ -63,15 +51,13 @@ class SearchAdapter(private val context: SearchActivity) :
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        val articleTitle = getItem(position).title
-        holder.bind(articleTitle, context)
+        val searchResult = getItem(position)
+        holder.bind(searchResult)
     }
-
-
 
     class SearchDiffCallBack : DiffUtil.ItemCallback<Search>() {
         override fun areItemsTheSame(oldItem: Search, newItem: Search): Boolean {
-            return oldItem == newItem
+            return oldItem.pageId == newItem.pageId
         }
 
         override fun areContentsTheSame(oldItem: Search, newItem: Search): Boolean {
