@@ -30,9 +30,9 @@ A basic but very visual Wikipedia client. Demo app to show my programming and An
 - You can use "listener" to log errors in Coil.
 
 ### Wikipedia API
-- Some REST APIs, (like this one) are quite messy and poorly documented.
+- Some REST APIs, (like this one) are quite complex and not very well documented.
 - Need to add the parameter `pilicense=any` to stop some images from getting blocked.
-
+- I exclude disambiguation pages from the search results. The app does not support page links, so they are not useful. 
 
 ## Naming decisions
 - Fetch or Get?
@@ -93,6 +93,7 @@ Un cliente de Wikipedia básico, pero muy visual. App de demostración para most
 
 - Algunas APIs REST, (como esta) son complicadas y están poco documentadas.
 - Necesidad de agregar el parámetro `pilicense=any` para evitar que algunas imágenes sean bloqueadas.
+- Excluyo las páginas de desambiguación de los resultados de búsqueda. La app no soporta links de página, por lo que no son útiles.
 
 ## Decisiones respecto a nombres
 
