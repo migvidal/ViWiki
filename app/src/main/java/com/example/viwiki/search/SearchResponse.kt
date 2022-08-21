@@ -7,11 +7,11 @@ import com.squareup.moshi.Json
  */
 data class SearchResponse(
     @Json(name = "batchcomplete") val batchComplete: String = "",
-    val query: SearchQuery? = SearchQuery()
+    val query: SearchQuery = SearchQuery()
 ) {
     data class SearchQuery(
         @Json(name = "searchinfo") val searchInfo: SearchInfo = SearchInfo(),
-        val search: List<Search> = listOf(Search())
+        var search: List<Search> = listOf(Search())
     ) {
         data class SearchInfo(
             /**
@@ -21,14 +21,23 @@ data class SearchResponse(
         )
 
         data class Search(
-            val ns: Int? = null,
-            val title: String? = null,
-            @Json(name = "pageid") val pageId: Int? = null,
-            val size: Int? = null,
-            @Json(name = "wordcount") val wordCount: Int? = null,
-            val snippet: String? = null,
-            @Json(name = "timestamp") val timeStamp: String? = null
+            val ns: Int = 0,
+            val title: String = "",
+            @Json(name = "pageid") val pageId: Int = 0,
+            val size: Int = 0,
+            @Json(name = "wordcount") val wordCount: Int = 0,
+            val snippet: String = "",
+            @Json(name = "timestamp") val timeStamp: String = ""
         )
+
+        /**
+         * Filters out all the results that are disambiguation articles
+         */
+        fun removeDisambiguationResults() {
+            search = search.filterNot {
+                it.title.contains("(disambiguation)")
+            }
+        }
     }
 
 }

@@ -8,6 +8,7 @@ import com.example.viwiki.GenericWikiViewModel
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus
 import com.example.viwiki.WikipediaApiImpl
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class ArticleViewModel : ViewModel(), GenericWikiViewModel {
 

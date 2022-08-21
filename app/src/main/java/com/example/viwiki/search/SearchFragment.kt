@@ -56,32 +56,30 @@ class SearchFragment : Fragment() {
         // Observe the SearchResponse
         viewModel.searchResponse.observe(viewLifecycleOwner) { response ->
             val query = response.query
-            if (query != null) {
 
-                // Generic message for action bar
-                setActionBarTitle(
-                    getString(
-                        R.string.action_bar_results_label_generic,
-                        searchQuery
-                    )
+            // Generic message for action bar
+            setActionBarTitle(
+                getString(
+                    R.string.action_bar_results_label_generic,
+                    searchQuery
                 )
+            )
 
-                // Show hits in action bar
-                query.searchInfo.totalHits.let {
-                    if (it != 0) {
-                        setActionBarTitle(
-                            getString(
-                                R.string.action_bar_results_label_number,
-                                it,
-                                searchQuery
-                            )
+            // Show hits in action bar
+            query.searchInfo.totalHits.let {
+                if (it != 0) {
+                    setActionBarTitle(
+                        getString(
+                            R.string.action_bar_results_label_number,
+                            it,
+                            searchQuery
                         )
-                    }
+                    )
                 }
-
-                // Update adapter data
-                searchAdapter?.submitList(query.search)
             }
+
+            // Update adapter data
+            searchAdapter?.submitList(query.search)
         }
 
         // Refresh button listener
