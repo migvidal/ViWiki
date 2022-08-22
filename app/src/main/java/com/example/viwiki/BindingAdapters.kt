@@ -5,13 +5,10 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus.*
 import com.example.viwiki.MainActivity.Companion.ARTICLE_TITLE_EXTRA_KEY
-import com.example.viwiki.search.SearchActivity
 import com.example.viwiki.search.SearchResponse
-import timber.log.Timber
 
 /**
  * Loads the url into the imageView
@@ -40,13 +37,20 @@ fun bindTextView(tv: TextView, status: GenericWikiViewModel.ResponseStatus?) {
 }
 
 @BindingAdapter("article_extract")
-fun bindTextView(tv: TextView, extract: String?) {
-    val DELIMITER = ". "
-    if (tv.id == R.id.tv_definition) {
-        tv.text = extract?.substringBefore(DELIMITER) + '.'
-        return
+fun bindTextView(textView: TextView, extract: String?) {
+    if (extract == null) return
+    // Separate in definition and body
+    val endOfSentencePattern = "[.](?=[\\s\n\r][A-Z])" // E.g.: First sentence(. S)econd sentence
+    val splitString = extract.split(Regex(endOfSentencePattern), 2)
+    // Set textView text
+    textView.apply {
+        text = when (id) {
+            // For definition
+            R.id.tv_definition -> splitString.first()
+            // For everything else
+            else -> splitString.last()
+        }
     }
-    tv.text = extract?.substringAfter(DELIMITER)?.trim()
 }
 
 @BindingAdapter("android:onClick")
