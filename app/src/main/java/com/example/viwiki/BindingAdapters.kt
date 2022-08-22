@@ -41,7 +41,7 @@ fun bindTextView(textView: TextView, extract: String?) {
     if (extract == null) return
     // Separate in definition and body
     val endOfSentencePattern = "[.](?=[\\s\n\r][A-Z])" // E.g.: First sentence(. S)econd sentence
-    val splitString = extract.split(Regex(endOfSentencePattern), 2)
+    val splitString: List<String> = extract.split(Regex(endOfSentencePattern), 2)
     // Set textView text
     textView.apply {
         text = when (id) {

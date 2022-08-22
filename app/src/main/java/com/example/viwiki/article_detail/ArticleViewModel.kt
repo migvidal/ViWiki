@@ -36,9 +36,13 @@ class ArticleViewModel : ViewModel(), GenericWikiViewModel {
         viewModelScope.launch {
             _status.value = ResponseStatus.LOADING
             try {
-                val response = WikipediaApiImpl.wikipediaApiService.getArticleResponse(title)
+                val response: ArticleResponse = WikipediaApiImpl.wikipediaApiService.getArticleResponse(title)
+                if (response == ArticleResponse()) {
+                    _status.value = ResponseStatus.BLANK
+                } else {
+                    _status.value = ResponseStatus.DONE
+                }
                 _articleResponse.value = response
-                _status.value = ResponseStatus.DONE
             } catch (e: Exception) {
                 _status.value = ResponseStatus.ERROR
             }

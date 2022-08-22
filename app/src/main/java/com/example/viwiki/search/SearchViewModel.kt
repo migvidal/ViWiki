@@ -32,15 +32,15 @@ class SearchViewModel : ViewModel(), GenericWikiViewModel {
                 val response = WikipediaApiImpl.wikipediaApiService.getSearchResults(query)
 
                 // Set blank status if there is no response
-                if (response.query.searchInfo?.totalHits == 0) {
+                if (response.query.searchInfo.totalHits == 0) {
                     _status.value = ResponseStatus.BLANK
                 } else {
                     // Remove the disambiguations from the results
                     response.query.removeDisambiguationResults()
-                    // Save the response
-                    _searchResponse.value = response
                     _status.value = ResponseStatus.DONE
                 }
+                // Save the response
+                _searchResponse.value = response
 
             } catch (e: Exception) {
                 _status.value = ResponseStatus.ERROR
