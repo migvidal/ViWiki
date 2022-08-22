@@ -18,8 +18,8 @@ class HomeViewModel : ViewModel(), GenericWikiViewModel {
     /**
      * Response from the WikiMediaApi
      */
-    private val _featuredArticleResponse = MutableLiveData<FeaturedArticleResponse>()
-    val featuredArticleResponse: LiveData<FeaturedArticleResponse> = _featuredArticleResponse
+    private val _articlesOfTheDayResponse = MutableLiveData<ArticlesOfTheDayResponse>()
+    val articlesOfTheDayResponse: LiveData<ArticlesOfTheDayResponse> = _articlesOfTheDayResponse
 
     /**
      * Fetch today's featured article from the API
@@ -47,11 +47,11 @@ class HomeViewModel : ViewModel(), GenericWikiViewModel {
             _status.value = ResponseStatus.LOADING
             try {
                 val response = WikiMediaApiImpl.wikiMediaApiService.getFeatured(yyyy, mm, dd)
-                _featuredArticleResponse.value = response
+                _articlesOfTheDayResponse.value = response
                 _status.value = ResponseStatus.DONE
             } catch (e: Exception) {
                 _status.value = ResponseStatus.ERROR
-                _featuredArticleResponse.value = FeaturedArticleResponse()
+                _articlesOfTheDayResponse.value = ArticlesOfTheDayResponse()
             }
 
         }

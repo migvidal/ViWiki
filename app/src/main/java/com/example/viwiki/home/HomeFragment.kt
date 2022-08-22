@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
         // - article card
         binding.cardFeatured.setOnClickListener {
             // Get the tfa (featured article)
-            viewModel.featuredArticleResponse.value?.tfa?.let { tfa ->
+            viewModel.articlesOfTheDayResponse.value?.tfa?.let { tfa ->
                 val action = HomeFragmentDirections.actionHomeFragmentToArticleFragment()
                 // Pass its title as an argument
                 action.argArticleTitle = tfa.normalizedTitle

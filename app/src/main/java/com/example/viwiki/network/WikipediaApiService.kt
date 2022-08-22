@@ -38,7 +38,6 @@ private val paramsInterceptor = Interceptor { chain ->
  */
 private val okHttpClient = OkHttpClient.Builder()
     .addInterceptor(paramsInterceptor)
-    .addInterceptor(ApiCommons.loggingInterceptor)
     .build()
 
 /**

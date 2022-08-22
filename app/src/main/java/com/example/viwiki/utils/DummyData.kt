@@ -1,7 +1,7 @@
 package com.example.viwiki.utils
 
 import com.example.viwiki.article_detail.ArticleResponse
-import com.example.viwiki.home.FeaturedArticleResponse
+import com.example.viwiki.home.ArticlesOfTheDayResponse
 import com.example.viwiki.search.SearchResponse
 
 val dummyArticle = ArticleResponse.Query.Page(
@@ -16,12 +16,12 @@ val dummyArticleResponse = ArticleResponse(
     )
 )
 
-val dummyOnThisDayArticle = FeaturedArticleResponse.OnThisDayArticle(
+val dummyOnThisDayResponse = ArticlesOfTheDayResponse.OnThisDayResponse(
     text = "Ipsum nunc hendrerit eros nec massa ac aliquam sollicitudin nisl phasellus."
 )
-val dummyFeaturedArticleResponse = FeaturedArticleResponse(
-    tfa = FeaturedArticleResponse.Tfa("type", "Title", "Title"),
-    onThisDay = listOf(dummyOnThisDayArticle)
+val dummyArticlesOfTheDayResponse = ArticlesOfTheDayResponse(
+    tfa = ArticlesOfTheDayResponse.Article("type", "Title", "Title"),
+    onThisDay = listOf(dummyOnThisDayResponse)
 )
 
 val dummySearchQuery = SearchResponse.SearchQuery(
