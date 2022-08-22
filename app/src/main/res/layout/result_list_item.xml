@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="searchResult"
             type="com.example.viwiki.search.SearchResponse.SearchQuery.Search" />
@@ -18,8 +19,8 @@
             android:id="@+id/tv_result"
             style="@style/result_list_item"
             android:layout_width="match_parent"
-            android:textSize="@dimen/emphasized_size"
             android:text="@{searchResult.title}"
-            tools:text="Result title"/>
+            android:textSize="@dimen/emphasized_size"
+            tools:text="Result title" />
     </FrameLayout>
 </layout>

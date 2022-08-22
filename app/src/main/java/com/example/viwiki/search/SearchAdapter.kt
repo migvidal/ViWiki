@@ -1,13 +1,10 @@
 package com.example.viwiki.search
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.viwiki.MainActivity
-import com.example.viwiki.MainActivity.Companion.ARTICLE_TITLE_EXTRA_KEY
 import com.example.viwiki.databinding.ResultListItemBinding
 import com.example.viwiki.search.SearchResponse.SearchQuery.Search
 
@@ -20,8 +17,8 @@ class SearchAdapter(private val context: SearchActivity) :
     /**
      * Used by onCreateViewHolder
      */
-    class SearchViewHolder private constructor(val binding: ResultListItemBinding)
-        : RecyclerView.ViewHolder(binding.root) {
+    class SearchViewHolder private constructor(val binding: ResultListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         /**
          * Binds the searchResult data
@@ -38,9 +35,11 @@ class SearchAdapter(private val context: SearchActivity) :
              */
             fun from(viewGroup: ViewGroup): SearchViewHolder {
                 val inflater = LayoutInflater.from(viewGroup.context)
-                val view = ResultListItemBinding.inflate(inflater,
+                val view = ResultListItemBinding.inflate(
+                    inflater,
                     viewGroup,
-                    false)
+                    false
+                )
                 return SearchViewHolder(view)
             }
         }

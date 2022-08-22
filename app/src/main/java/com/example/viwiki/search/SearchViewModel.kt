@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.viwiki.GenericWikiViewModel
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus
 import com.example.viwiki.WikipediaApiImpl
-import com.example.viwiki.search.SearchResponse.SearchQuery.Search
 import kotlinx.coroutines.launch
 
 class SearchViewModel : ViewModel(), GenericWikiViewModel {
@@ -47,7 +46,6 @@ class SearchViewModel : ViewModel(), GenericWikiViewModel {
             }
         }
     }
-
 
 
 }

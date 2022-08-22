@@ -8,7 +8,6 @@ import com.example.viwiki.GenericWikiViewModel
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus
 import com.example.viwiki.WikipediaApiImpl
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class ArticleViewModel : ViewModel(), GenericWikiViewModel {
 
@@ -36,7 +35,8 @@ class ArticleViewModel : ViewModel(), GenericWikiViewModel {
         viewModelScope.launch {
             _status.value = ResponseStatus.LOADING
             try {
-                val response: ArticleResponse = WikipediaApiImpl.wikipediaApiService.getArticleResponse(title)
+                val response: ArticleResponse =
+                    WikipediaApiImpl.wikipediaApiService.getArticleResponse(title)
                 if (response == ArticleResponse()) {
                     _status.value = ResponseStatus.BLANK
                 } else {

@@ -35,12 +35,12 @@
             android:id="@+id/recycler_view_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:adapter="@{searchAdapter}"
             android:orientation="vertical"
             android:scrollbars="vertical"
             android:visibility="@{viewModel.searchResponse.query.searchInfo.totalHits == 0 ? View.GONE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:adapter="@{searchAdapter}"
-            app:setHasFixedSize="@{true}"/>
+            app:setHasFixedSize="@{true}" />
 
     </FrameLayout>
 </layout>
