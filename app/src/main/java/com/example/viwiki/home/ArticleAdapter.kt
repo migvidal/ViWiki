@@ -6,15 +6,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viwiki.databinding.HomeCardBinding
-import com.example.viwiki.databinding.ResultListItemBinding
 import com.example.viwiki.home.ArticlesOfTheDayResponse.Article
-import com.example.viwiki.search.SearchResponse.SearchQuery.Search
 
 /**
  * Adapter for Articles in home
  */
-class ArticleAdapter(private val context: HomeFragment) :
-    ListAdapter<Article, ArticleAdapter.ArticleViewHolder>(SearchDiffCallBack()) {
+class ArticleAdapter :
+    ListAdapter<Article, ArticleAdapter.ArticleViewHolder>(ArticleDiffCallBack()) {
 
     /**
      * Used by onCreateViewHolder
@@ -23,8 +21,8 @@ class ArticleAdapter(private val context: HomeFragment) :
         RecyclerView.ViewHolder(binding.root) {
 
         /**
-         * Binds the searchResult data
-         * @param searchResult The SearchResult
+         * Binds the Article data
+         * @param article The Article
          */
         fun bind(article: Article) {
             binding.article = article
@@ -52,16 +50,16 @@ class ArticleAdapter(private val context: HomeFragment) :
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-        val searchResult = getItem(position)
-        holder.bind(searchResult)
+        val article = getItem(position)
+        holder.bind(article)
     }
 
-    class SearchDiffCallBack : DiffUtil.ItemCallback<Search>() {
-        override fun areItemsTheSame(oldItem: Search, newItem: Search): Boolean {
+    class ArticleDiffCallBack : DiffUtil.ItemCallback<Article>() {
+        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem.pageId == newItem.pageId
         }
 
-        override fun areContentsTheSame(oldItem: Search, newItem: Search): Boolean {
+        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem == newItem
         }
 

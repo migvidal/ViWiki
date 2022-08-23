@@ -11,7 +11,7 @@ import com.example.viwiki.search.SearchResponse.SearchQuery.Search
 /**
  * Adapter for the search RecyclerView
  */
-class SearchAdapter(private val context: SearchActivity) :
+class SearchAdapter :
     ListAdapter<Search, SearchAdapter.SearchViewHolder>(SearchDiffCallBack()) {
 
     /**

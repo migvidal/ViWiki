@@ -23,6 +23,7 @@ data class ArticlesOfTheDayResponse(
      * An article
      */
     data class Article(
+        @Json(name = "pageid") val pageId: Int = 0,
         val type: String = "",
         val title: String = "",
         @Json(name = "normalizedtitle") val normalizedTitle: String = "",

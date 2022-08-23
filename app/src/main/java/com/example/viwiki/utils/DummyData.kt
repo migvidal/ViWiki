@@ -20,7 +20,7 @@ val dummyOnThisDayResponse = ArticlesOfTheDayResponse.OnThisDayResponse(
     text = "Ipsum nunc hendrerit eros nec massa ac aliquam sollicitudin nisl phasellus."
 )
 val dummyArticlesOfTheDayResponse = ArticlesOfTheDayResponse(
-    tfa = ArticlesOfTheDayResponse.Article("type", "Title", "Title"),
+    tfa = ArticlesOfTheDayResponse.Article(),
     onThisDay = listOf(dummyOnThisDayResponse)
 )
 

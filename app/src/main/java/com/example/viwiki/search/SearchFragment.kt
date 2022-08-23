@@ -51,7 +51,7 @@ class SearchFragment : Fragment() {
         /**
          * Adapter for the recycler view
          */
-        val searchAdapter = getActivitySafely()?.let { SearchAdapter(it) }
+        val searchAdapter = getActivitySafely()?.let { SearchAdapter() }
 
         // Observe the SearchResponse
         viewModel.searchResponse.observe(viewLifecycleOwner) { response ->

@@ -8,6 +8,7 @@ import androidx.databinding.BindingAdapter
 import coil.load
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus.*
 import com.example.viwiki.MainActivity.Companion.ARTICLE_TITLE_EXTRA_KEY
+import com.example.viwiki.home.ArticlesOfTheDayResponse
 import com.example.viwiki.search.SearchResponse
 
 /**
@@ -58,6 +59,14 @@ fun FrameLayout.onClick(searchResult: SearchResponse.SearchQuery.Search) {
     setOnClickListener {
         val intent = Intent(context, MainActivity::class.java)
         intent.putExtra(ARTICLE_TITLE_EXTRA_KEY, searchResult.title)
+        context.startActivity(intent)
+    }
+}
+@BindingAdapter("android:onClick")
+fun FrameLayout.onClick(article: ArticlesOfTheDayResponse.Article) {
+    setOnClickListener {
+        val intent = Intent(context, MainActivity::class.java)
+        intent.putExtra(ARTICLE_TITLE_EXTRA_KEY, article.normalizedTitle)
         context.startActivity(intent)
     }
 }
