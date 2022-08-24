@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viwiki.databinding.HomeCardBinding
-import com.example.viwiki.home.ArticlesOfTheDayResponse.Article
+import com.example.viwiki.home.ArticlesOfTheDayResponse.OnThisDay
 
 /**
  * Adapter for Articles in home
  */
-class ArticleAdapter :
-    ListAdapter<Article, ArticleAdapter.ArticleViewHolder>(ArticleDiffCallBack()) {
+class OnThisDayAdapter :
+    ListAdapter<OnThisDay, OnThisDayAdapter.ArticleViewHolder>(ArticleDiffCallBack()) {
 
     /**
      * Used by onCreateViewHolder
@@ -22,10 +22,10 @@ class ArticleAdapter :
 
         /**
          * Binds the Article data
-         * @param article The Article
+         * @param onThisDay The Article
          */
-        fun bind(article: Article) {
-            binding.article = article
+        fun bind(onThisDay: OnThisDay) {
+            binding.onThisDay = onThisDay
         }
 
         companion object {
@@ -54,12 +54,17 @@ class ArticleAdapter :
         holder.bind(article)
     }
 
-    class ArticleDiffCallBack : DiffUtil.ItemCallback<Article>() {
-        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem.pageId == newItem.pageId
+    class ArticleDiffCallBack : DiffUtil.ItemCallback<OnThisDay>() {
+        override fun areItemsTheSame(oldItem: OnThisDay, newItem: OnThisDay): Boolean {
+            for (i in 0..oldItem.pages.size) {
+                if (oldItem.pages[i] == newItem.pages[i]) {
+                    return true
+                }
+            }
+            return false
         }
 
-        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
+        override fun areContentsTheSame(oldItem: OnThisDay, newItem: OnThisDay): Boolean {
             return oldItem == newItem
         }
 

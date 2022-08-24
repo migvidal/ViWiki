@@ -15,7 +15,7 @@
             type="com.example.viwiki.home.HomeViewModel" />
         <variable
             name="articleAdapter"
-            type="com.example.viwiki.home.ArticleAdapter" />
+            type="com.example.viwiki.home.OnThisDayAdapter" />
     </data>
 
     <FrameLayout

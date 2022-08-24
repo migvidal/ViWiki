@@ -16,12 +16,12 @@ val dummyArticleResponse = ArticleResponse(
     )
 )
 
-val dummyOnThisDayResponse = ArticlesOfTheDayResponse.OnThisDayResponse(
+val dummyOnThisDay = ArticlesOfTheDayResponse.OnThisDay(
     text = "Ipsum nunc hendrerit eros nec massa ac aliquam sollicitudin nisl phasellus."
 )
 val dummyArticlesOfTheDayResponse = ArticlesOfTheDayResponse(
     tfa = ArticlesOfTheDayResponse.Article(),
-    onThisDay = listOf(dummyOnThisDayResponse)
+    onThisDay = listOf(dummyOnThisDay)
 )
 
 val dummySearchQuery = SearchResponse.SearchQuery(

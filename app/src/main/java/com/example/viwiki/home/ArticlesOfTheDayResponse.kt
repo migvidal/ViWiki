@@ -8,13 +8,13 @@ import com.squareup.moshi.Json
  */
 data class ArticlesOfTheDayResponse(
     val tfa: Article = Article(),
-    @Json(name = "onthisday") val onThisDay: List<OnThisDayResponse> = listOf(OnThisDayResponse())
+    @Json(name = "onthisday") val onThisDay: List<OnThisDay> = listOf(OnThisDay())
 ) {
 
     /**
      * The "on this day" response
      */
-    data class OnThisDayResponse(
+    data class OnThisDay(
         val text: String = "",
         val pages: List<Article> = listOf(Article())
     )
@@ -29,7 +29,12 @@ data class ArticlesOfTheDayResponse(
         @Json(name = "normalizedtitle") val normalizedTitle: String = "",
         val thumbnail: Thumbnail = Thumbnail(),
         val extract: String = ""
-    )
+    ) {
+        override fun equals(other: Any?): Boolean
+                = other is Article
+                && this.pageId == other.pageId
+
+    }
 
 }
 

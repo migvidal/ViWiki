@@ -10,7 +10,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentHomeBinding
-import com.example.viwiki.search.SearchAdapter
 
 /**
  * Home screen of the App. Shows the article of the day.
@@ -33,18 +32,18 @@ class HomeFragment : Fragment() {
         /**
          * Adapter for the recycler view
          */
-        val articleAdapter = ArticleAdapter()
+        val onThisDayAdapter = OnThisDayAdapter()
 
         // Observe the Response
         viewModel.articlesOfTheDayResponse.observe(viewLifecycleOwner) { response ->
             val list = response.onThisDay[0].pages
-            articleAdapter.submitList(list)
+            onThisDayAdapter.submitList(list)
         }
 
         // Allow for binding to observe LiveData
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        binding.articleAdapter = articleAdapter
+        binding.articleAdapter = onThisDayAdapter
 
         // Click listeners:
 

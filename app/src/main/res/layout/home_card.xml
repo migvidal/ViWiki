@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="article"
-            type="com.example.viwiki.home.ArticlesOfTheDayResponse.Article" />
+            name="onThisDay"
+            type="com.example.viwiki.home.ArticlesOfTheDayResponse.OnThisDay" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:onClick="@{article}"
+        android:onClick="@{onThisDay}"
         app:cardElevation="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +27,7 @@
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{article.thumbnail.source}"
+                app:imageUrl="@{onThisDay.pages.get(0).thumbnail.source}"
                 app:layout_constraintDimensionRatio="4:3"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_launcher_background" />
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:paddingTop="@dimen/margin_small"
                 android:paddingBottom="@dimen/margin_small"
-                android:text="@{article.title}"
+                android:text="@{onThisDay.text}"
                 android:textSize="@dimen/header2_size"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
                 android:layout_marginBottom="@dimen/margin_large"
                 android:ellipsize="middle"
                 android:textSize="@dimen/emphasized_size"
-                app:article_extract="@{article.extract}"
+                app:article_extract="@{onThisDay.text}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_title"
