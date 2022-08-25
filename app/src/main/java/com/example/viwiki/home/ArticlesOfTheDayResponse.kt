@@ -35,6 +35,8 @@ data class ArticlesOfTheDayResponse(
                 = other is Article
                 && this.pageId == other.pageId
 
+        override fun hashCode(): Int = pageId
+
     }
 
 }
