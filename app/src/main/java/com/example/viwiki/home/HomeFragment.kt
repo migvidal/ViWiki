@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
 
         // Observe the Response
         viewModel.articlesOfTheDayResponse.observe(viewLifecycleOwner) { response ->
-            val list = response.onThisDay[0].pages
+            val list = response.onThisDay
             onThisDayAdapter.submitList(list)
         }
 

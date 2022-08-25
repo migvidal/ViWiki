@@ -16,7 +16,8 @@ data class ArticlesOfTheDayResponse(
      */
     data class OnThisDay(
         val text: String = "",
-        val pages: List<Article> = listOf(Article())
+        val pages: List<Article> = listOf(Article()),
+        val year: Int = 0
     )
 
     /**
