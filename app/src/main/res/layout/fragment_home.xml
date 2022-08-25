@@ -13,6 +13,7 @@
         <variable
             name="viewModel"
             type="com.example.viwiki.home.HomeViewModel" />
+
         <variable
             name="articleAdapter"
             type="com.example.viwiki.home.OnThisDayAdapter" />
@@ -35,10 +36,9 @@
             android:orientation="vertical"
             android:scrollbars="vertical"
             android:visibility="@{viewModel.status == ResponseStatus.DONE ? View.VISIBLE : View.GONE}"
-            app:setHasFixedSize="@{true}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:context=".HomeFragment">
-        </androidx.recyclerview.widget.RecyclerView>
+            app:setHasFixedSize="@{true}"
+            tools:context=".HomeFragment"></androidx.recyclerview.widget.RecyclerView>
     </FrameLayout>
 
 </layout>

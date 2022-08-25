@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="onThisDay"
             type="com.example.viwiki.home.ArticlesOfTheDayResponse.OnThisDay" />
@@ -44,7 +45,7 @@
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/image_featured"
-                tools:text="HEADER"/>
+                tools:text="HEADER" />
 
             <!--<TextView
                 android:id="@+id/tv_title"
@@ -70,10 +71,10 @@
                 android:ellipsize="middle"
                 android:textSize="@dimen/emphasized_size"
                 app:article_extract="@{onThisDay.text}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_header"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_header"
                 tools:text="Amet magna dolor elementum nec fusce mi quisque molestie portaest molestie massa proin eu erat maecenas id molestie nec vivamus congue consectetur maecenas purus quisque." />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

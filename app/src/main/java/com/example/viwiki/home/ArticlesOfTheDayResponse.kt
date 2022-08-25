@@ -31,8 +31,7 @@ data class ArticlesOfTheDayResponse(
         val thumbnail: Thumbnail = Thumbnail(),
         val extract: String = ""
     ) {
-        override fun equals(other: Any?): Boolean
-                = other is Article
+        override fun equals(other: Any?): Boolean = other is Article
                 && this.pageId == other.pageId
 
         override fun hashCode(): Int = pageId

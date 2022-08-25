@@ -62,6 +62,7 @@ fun FrameLayout.onClick(searchResult: SearchResponse.SearchQuery.Search) {
         context.startActivity(intent)
     }
 }
+
 @BindingAdapter("android:onClick")
 fun FrameLayout.onClick(article: ArticlesOfTheDayResponse.Article) {
     setOnClickListener {
