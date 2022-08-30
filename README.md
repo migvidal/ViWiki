@@ -1,6 +1,8 @@
 # ENGLISH - ViWiki
 A basic but very visual Wikipedia client. Demo app to show my programming and Android / Kotlin knowledge.
 
+[Download the APK](https://github.com/migvidal/ViWiki/releases/tag/v1.0-beta)
+
 ![viwiki_poster](https://user-images.githubusercontent.com/68684733/185612652-68e886af-4fe1-4759-ba7c-90c21a15bfda.png)
 
 ## Issues and discoveries (will update during the development)
@@ -57,6 +59,8 @@ A basic but very visual Wikipedia client. Demo app to show my programming and An
 # ESPAÑOL - ViWiki
 
 Un cliente de Wikipedia básico, pero muy visual. App de demostración para mostrar mis conocimientos de programación y Android / Kotlin.
+
+[Descarga la APK](https://github.com/migvidal/ViWiki/releases/tag/v1.0-beta)
 
 ## Problemas y descubrimientos (lo actualizaré durante el desarrollo)
 
