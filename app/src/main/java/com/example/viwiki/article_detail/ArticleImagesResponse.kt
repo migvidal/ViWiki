@@ -4,7 +4,7 @@ import com.example.viwiki.Thumbnail
 import com.squareup.moshi.Json
 
 /**
- * Article images response from given title
+ * Page images response from given title
  */
 data class ArticleImagesResponse(
     val query: Query = Query()

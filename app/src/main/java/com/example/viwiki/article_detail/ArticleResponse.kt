@@ -3,7 +3,7 @@ package com.example.viwiki.article_detail
 import com.squareup.moshi.Json
 
 /**
- * Article response from given title
+ * Page response from given title
  */
 data class ArticleResponse(
     val query: Query = Query()
