@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             bundle.putString("arg_article_title", searchedArticleName)
 
             // Navigate to fragment using nav controller and the Bundle
-            findNavController(R.id.search_nav_host).navigate(R.id.articleFragment, bundle)
+            findNavController(R.id.search_nav_host).navigate(R.id.pageFragment, bundle)
 
         }
     }

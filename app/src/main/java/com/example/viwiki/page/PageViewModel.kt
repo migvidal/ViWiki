@@ -1,4 +1,4 @@
-package com.example.viwiki.article_detail
+package com.example.viwiki.page
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +9,7 @@ import com.example.viwiki.GenericWikiViewModel.ResponseStatus
 import com.example.viwiki.WikipediaApiImpl
 import kotlinx.coroutines.launch
 
-class ArticleViewModel : ViewModel(), GenericWikiViewModel {
+class PageViewModel : ViewModel(), GenericWikiViewModel {
 
     private val _status = MutableLiveData<ResponseStatus>()
     override val status: LiveData<ResponseStatus> = _status
@@ -17,14 +17,14 @@ class ArticleViewModel : ViewModel(), GenericWikiViewModel {
     /**
      * Received article from the WikipediaAPI
      */
-    private val _articleResponse = MutableLiveData<ArticleResponse>()
-    val articleResponse: LiveData<ArticleResponse> = _articleResponse
+    private val _pageResponse = MutableLiveData<PageResponse>()
+    val pageResponse: LiveData<PageResponse> = _pageResponse
 
     /**
      * Received article image(s) from the WikipediaAPI
      */
-    private val _articleImagesResponse = MutableLiveData<ArticleImagesResponse>()
-    val articleImagesResponse: LiveData<ArticleImagesResponse> = _articleImagesResponse
+    private val _pageImagesResponse = MutableLiveData<PageImagesResponse>()
+    val pageImagesResponse: LiveData<PageImagesResponse> = _pageImagesResponse
 
 
     /**
@@ -35,14 +35,14 @@ class ArticleViewModel : ViewModel(), GenericWikiViewModel {
         viewModelScope.launch {
             _status.value = ResponseStatus.LOADING
             try {
-                val response: ArticleResponse =
+                val response: PageResponse =
                     WikipediaApiImpl.wikipediaApiService.getArticleResponse(title)
-                if (response == ArticleResponse()) {
+                if (response == PageResponse()) {
                     _status.value = ResponseStatus.BLANK
                 } else {
                     _status.value = ResponseStatus.DONE
                 }
-                _articleResponse.value = response
+                _pageResponse.value = response
             } catch (e: Exception) {
                 _status.value = ResponseStatus.ERROR
             }
@@ -50,7 +50,7 @@ class ArticleViewModel : ViewModel(), GenericWikiViewModel {
         viewModelScope.launch {
             // Image has its own status. Errors are handled by the loader (Coil)
             val imagesResponse = WikipediaApiImpl.wikipediaApiService.getImagesResponse(title)
-            _articleImagesResponse.value = imagesResponse
+            _pageImagesResponse.value = imagesResponse
         }
     }
 

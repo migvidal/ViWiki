@@ -12,7 +12,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.viwiki.article_detail.ArticleViewModel" />
+            type="com.example.viwiki.page.PageViewModel" />
     </data>
 
     <FrameLayout
@@ -43,7 +43,7 @@
                     android:adjustViewBounds="true"
                     android:background="@android:color/darker_gray"
                     android:scaleType="centerCrop"
-                    app:imageUrl="@{viewModel.articleImagesResponse.query.pages.get(0).thumbnail.source}"
+                    app:imageUrl="@{viewModel.pageImagesResponse.query.pages.get(0).thumbnail.source}"
                     app:layout_constraintDimensionRatio="3:2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -57,7 +57,7 @@
                     android:letterSpacing="-0.04"
                     android:lineSpacingMultiplier="0.9"
                     android:maxLines="3"
-                    android:text="@{viewModel.articleResponse.query.pages.get(0).title}"
+                    android:text="@{viewModel.pageResponse.query.pages.get(0).title}"
                     android:textAlignment="viewStart"
                     android:textSize="@dimen/main_header_size"
                     android:textStyle="bold"
@@ -82,7 +82,7 @@
                     style="@style/definition_text_box"
                     android:textSize="@dimen/emphasized_size"
                     android:textStyle="bold"
-                    app:article_extract="@{viewModel.articleResponse.query.pages.get(0).extract}"
+                    app:article_extract="@{viewModel.pageResponse.query.pages.get(0).extract}"
                     app:layout_constraintEnd_toEndOf="@id/right_guideline"
                     app:layout_constraintStart_toEndOf="@+id/emphasis_decoration"
                     app:layout_constraintTop_toBottomOf="@id/tv_title"
@@ -92,7 +92,7 @@
                     android:id="@+id/tv_text"
                     style="@style/text_box"
                     android:textSize="@dimen/body_size"
-                    app:article_extract="@{viewModel.articleResponse.query.pages.get(0).extract}"
+                    app:article_extract="@{viewModel.pageResponse.query.pages.get(0).extract}"
                     app:layout_constraintEnd_toEndOf="@id/right_guideline"
                     app:layout_constraintStart_toStartOf="@id/left_guideline"
                     app:layout_constraintTop_toBottomOf="@id/tv_definition"

@@ -1,7 +1,7 @@
 package com.example.viwiki
 
-import com.example.viwiki.article_detail.ArticleImagesResponse
-import com.example.viwiki.article_detail.ArticleResponse
+import com.example.viwiki.page.PageImagesResponse
+import com.example.viwiki.page.PageResponse
 import com.example.viwiki.network.ApiCommons
 import com.example.viwiki.domain.search.SearchResponse
 import okhttp3.Interceptor
@@ -55,7 +55,7 @@ private val retrofit = Retrofit.Builder()
  */
 interface WikipediaApiService {
     /**
-     * Fetch and return the ArticleResponse
+     * Fetch and return the PageResponse
      * @param title The exact title of the article
      * @return the article response
      */
@@ -66,7 +66,7 @@ interface WikipediaApiService {
         @Query("exsentences") exSentences: Int = 30,
         @Query("explaintext") exPlaintext: Int = 1,
         @Query("formatversion") formatVersion: Int = 2
-    ): ArticleResponse
+    ): PageResponse
 
     /**
      * Fetch and return the images response
@@ -82,7 +82,7 @@ interface WikipediaApiService {
         @Query("pithumbsize") maxThumbnailWidth: Int = 2000,
         @Query("formatversion") formatVersion: Int = 2,
         @Query("pilicense") piLicense: String = "any"
-    ): ArticleImagesResponse
+    ): PageImagesResponse
 
     /**
      * Search for the provided query

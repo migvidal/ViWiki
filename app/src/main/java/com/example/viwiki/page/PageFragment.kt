@@ -1,4 +1,4 @@
-package com.example.viwiki.article_detail
+package com.example.viwiki.page
 
 import android.os.Bundle
 import android.view.*
@@ -13,12 +13,12 @@ import com.example.viwiki.MainActivity
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentArticleBinding
 
-class ArticleFragment : Fragment() {
+class PageFragment : Fragment() {
 
     /**
      * Navigation safeargs
      */
-    private val navArgs: ArticleFragmentArgs by navArgs()
+    private val navArgs: PageFragmentArgs by navArgs()
 
     /**
      * The title of the article to show
@@ -28,7 +28,7 @@ class ArticleFragment : Fragment() {
     /**
      * View model for the data
      */
-    private val viewModel: ArticleViewModel by viewModels()
+    private val viewModel: PageViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
