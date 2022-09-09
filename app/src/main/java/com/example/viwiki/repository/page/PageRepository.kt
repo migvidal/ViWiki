@@ -3,22 +3,33 @@ package com.example.viwiki.repository.page
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.viwiki.WikipediaApiImpl
-import com.example.viwiki.domain.page.PageResponse
+import com.example.viwiki.domain.page.Page
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class PageRepository(val dao: PageDatabaseDao, val api: WikipediaApiImpl) {
+/**
+ * Source of Wikipedia pages
+ */
+class PageRepository(private val dao: PageDatabaseDao,
+                     private val api: WikipediaApiImpl) {
 
-    private val _pageResponse = MutableLiveData<PageResponse>()
-    val pageResponse: LiveData<PageResponse> = _pageResponse
+    /**
+     * The (private copy) Wikipedia page
+     */
+    private val _page = MutableLiveData<Page>()
+    /**
+     * The Wikipedia page
+     */
+    val page: LiveData<Page> = _page
 
-    private suspend fun retrievePageFromDb(pageId: Int) {
+    /**
+     * Loads the page from the appropriate data source
+     * @param title The exact title of the page
+     */
+    private suspend fun retrievePage(title: String) {
         withContext(Dispatchers.IO) {
-            dao.getPageById(pageId)
+            _page.value = dao.getPageByTitle(title) ?:
+            api.wikipediaApiService.getArticleResponse(title).query.pages[0]
         }
-    }
-
-    private suspend fun fetchPageFromNetwork(title: String) {
-        api.wikipediaApiService.getArticleResponse(title)
     }
 }

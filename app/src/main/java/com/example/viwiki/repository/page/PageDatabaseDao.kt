@@ -18,9 +18,9 @@ interface PageDatabaseDao {
     fun deletePage(page: Page)
 
     /**
-     * Returns a page by the provided id
+     * Returns a page by the provided name
      */
-    @Query("SELECT * FROM ${Page.TABLE_NAME} WHERE page_id = :pageId")
-    suspend fun getPageById(pageId: Int): Page
+    @Query("SELECT * FROM ${Page.TABLE_NAME} WHERE title = :title")
+    suspend fun getPageByTitle(title: String): Page?
 
 }
