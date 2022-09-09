@@ -1,6 +1,4 @@
-package com.example.viwiki.page
-
-import com.squareup.moshi.Json
+package com.example.viwiki.domain.page
 
 /**
  * Page response from given title

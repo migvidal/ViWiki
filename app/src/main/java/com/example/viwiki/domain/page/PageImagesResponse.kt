@@ -1,4 +1,4 @@
-package com.example.viwiki.page
+package com.example.viwiki.domain.page
 
 import com.example.viwiki.Thumbnail
 import com.squareup.moshi.Json
@@ -18,6 +18,8 @@ data class PageImagesResponse(
         /**
          * The article page
          */
+
+        // todo unify
         data class Page(
             @Json(name = "pageid") val pageId: Long = 0,
             val ns: Long = 0,

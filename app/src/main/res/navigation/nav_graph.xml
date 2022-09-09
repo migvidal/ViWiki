@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/pageFragment"
-        android:name="com.example.viwiki.page.PageFragment">
+        android:name="com.example.viwiki.domain.page.PageFragment">
         <argument
             android:name="arg_article_title"
             android:defaultValue=""

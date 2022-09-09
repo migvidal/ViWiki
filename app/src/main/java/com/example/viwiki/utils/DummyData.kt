@@ -1,6 +1,6 @@
 package com.example.viwiki.utils
 
-import com.example.viwiki.page.PageResponse
+import com.example.viwiki.domain.page.PageResponse
 import com.example.viwiki.domain.today.TodayResponse
 import com.example.viwiki.domain.search.SearchResponse
 

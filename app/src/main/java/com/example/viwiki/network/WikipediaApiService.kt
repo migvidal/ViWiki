@@ -1,7 +1,7 @@
 package com.example.viwiki
 
-import com.example.viwiki.page.PageImagesResponse
-import com.example.viwiki.page.PageResponse
+import com.example.viwiki.domain.page.PageImagesResponse
+import com.example.viwiki.domain.page.PageResponse
 import com.example.viwiki.network.ApiCommons
 import com.example.viwiki.domain.search.SearchResponse
 import okhttp3.Interceptor

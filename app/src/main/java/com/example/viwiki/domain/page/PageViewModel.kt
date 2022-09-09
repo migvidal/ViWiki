@@ -1,4 +1,4 @@
-package com.example.viwiki.page
+package com.example.viwiki.domain.page
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
