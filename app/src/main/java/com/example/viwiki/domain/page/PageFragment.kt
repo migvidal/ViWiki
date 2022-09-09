@@ -8,10 +8,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.viwiki.MainActivity
 import com.example.viwiki.R
-import com.example.viwiki.databinding.FragmentArticleBinding
+import com.example.viwiki.ViWikiApplication
+
+import com.example.viwiki.databinding.FragmentPageBinding
 
 class PageFragment : Fragment() {
 
@@ -28,7 +31,9 @@ class PageFragment : Fragment() {
     /**
      * View model for the data
      */
-    private val viewModel: PageViewModel by viewModels()
+    private val viewModel: PageViewModel by viewModels {
+        PageViewModelFactory((getMainActivity()?.application as ViWikiApplication).pageRepository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +54,8 @@ class PageFragment : Fragment() {
     ): View {
 
         // Inflate the layout for this fragment
-        val binding = DataBindingUtil.inflate<FragmentArticleBinding>(
-            inflater, R.layout.fragment_article, container, false
+        val binding = DataBindingUtil.inflate<FragmentPageBinding>(
+            inflater, R.layout.fragment_page, container, false
         )
 
         // Trigger the API request if there's an article name

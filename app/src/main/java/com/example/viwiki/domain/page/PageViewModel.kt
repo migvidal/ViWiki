@@ -7,9 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.viwiki.GenericWikiViewModel
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus
 import com.example.viwiki.WikipediaApiImpl
+import com.example.viwiki.repository.page.PageRepository
 import kotlinx.coroutines.launch
 
-class PageViewModel : ViewModel(), GenericWikiViewModel {
+class PageViewModel(val pageRepository: PageRepository) : ViewModel(), GenericWikiViewModel {
 
     private val _status = MutableLiveData<ResponseStatus>()
     override val status: LiveData<ResponseStatus> = _status
@@ -17,8 +18,8 @@ class PageViewModel : ViewModel(), GenericWikiViewModel {
     /**
      * Received article from the WikipediaAPI
      */
-    private val _pageResponse = MutableLiveData<PageResponse>()
-    val pageResponse: LiveData<PageResponse> = _pageResponse
+    private val _page = MutableLiveData<Page>()
+    val page: LiveData<Page> = _page
 
     /**
      * Received article image(s) from the WikipediaAPI
@@ -26,12 +27,31 @@ class PageViewModel : ViewModel(), GenericWikiViewModel {
     private val _pageImagesResponse = MutableLiveData<PageImagesResponse>()
     val pageImagesResponse: LiveData<PageImagesResponse> = _pageImagesResponse
 
+    fun fetchArticleByTitle(title: String) {
+        viewModelScope.apply {
+            launch {
+                _status.value = ResponseStatus.LOADING
+                try {
+                    pageRepository.retrievePage(title)
+                    _page.value = pageRepository.page
+                    _status.value = ResponseStatus.DONE
+                } catch (e: Exception) {
+                    _status.value = ResponseStatus.ERROR
+                    e.printStackTrace()
+                }
+            }
+            launch {
+                val imagesResponse = WikipediaApiImpl.wikipediaApiService.getImagesResponse(title)
+                _pageImagesResponse.value = imagesResponse
+            }
+        }
+    }
 
     /**
      * Fetches an article by the provided title
      * @param title The title of the article
      */
-    fun fetchArticleByTitle(title: String) {
+    /*fun fetchArticleByTitleOld(title: String) {
         viewModelScope.launch {
             _status.value = ResponseStatus.LOADING
             try {
@@ -42,7 +62,7 @@ class PageViewModel : ViewModel(), GenericWikiViewModel {
                 } else {
                     _status.value = ResponseStatus.DONE
                 }
-                _pageResponse.value = response
+                _page.value = response.
             } catch (e: Exception) {
                 _status.value = ResponseStatus.ERROR
             }
@@ -52,7 +72,7 @@ class PageViewModel : ViewModel(), GenericWikiViewModel {
             val imagesResponse = WikipediaApiImpl.wikipediaApiService.getImagesResponse(title)
             _pageImagesResponse.value = imagesResponse
         }
-    }
+    }*/
 
 
 }
