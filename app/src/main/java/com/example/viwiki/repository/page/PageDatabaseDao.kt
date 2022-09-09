@@ -1,9 +1,10 @@
-package com.example.viwiki.database
+package com.example.viwiki.repository.page
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.viwiki.domain.page.Page
 
 /**
  * DAO for the Page database
@@ -20,6 +21,6 @@ interface PageDatabaseDao {
      * Returns a page by the provided id
      */
     @Query("SELECT * FROM ${Page.TABLE_NAME} WHERE page_id = :pageId")
-    fun getPageById(pageId: Int)
+    fun getPageById(pageId: Int): Page
 
 }

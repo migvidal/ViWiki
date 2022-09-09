@@ -1,9 +1,10 @@
-package com.example.viwiki.database
+package com.example.viwiki.repository.page
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.viwiki.domain.page.Page
 
 /**
  * Database for storing Pages
