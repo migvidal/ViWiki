@@ -21,6 +21,6 @@ interface PageDatabaseDao {
      * Returns a page by the provided id
      */
     @Query("SELECT * FROM ${Page.TABLE_NAME} WHERE page_id = :pageId")
-    fun getPageById(pageId: Int): Page
+    suspend fun getPageById(pageId: Int): Page
 
 }
