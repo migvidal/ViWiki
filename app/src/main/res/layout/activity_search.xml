@@ -6,7 +6,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_search"
-        android:name="com.example.viwiki.search.SearchFragment"
+        android:name="com.example.viwiki.domain.search.SearchFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

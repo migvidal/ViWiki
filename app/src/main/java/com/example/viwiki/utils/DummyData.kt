@@ -1,8 +1,8 @@
 package com.example.viwiki.utils
 
 import com.example.viwiki.article_detail.ArticleResponse
-import com.example.viwiki.home.ArticlesOfTheDayResponse
-import com.example.viwiki.search.SearchResponse
+import com.example.viwiki.domain.today.TodayResponse
+import com.example.viwiki.domain.search.SearchResponse
 
 val dummyArticle = ArticleResponse.Query.Page(
     1, 1, "Lorem Ipsum",
@@ -16,11 +16,11 @@ val dummyArticleResponse = ArticleResponse(
     )
 )
 
-val dummyOnThisDay = ArticlesOfTheDayResponse.OnThisDay(
+val dummyOnThisDay = TodayResponse.OnThisDay(
     text = "Ipsum nunc hendrerit eros nec massa ac aliquam sollicitudin nisl phasellus."
 )
-val dummyArticlesOfTheDayResponse = ArticlesOfTheDayResponse(
-    tfa = ArticlesOfTheDayResponse.Article(),
+val dummyTodayResponse = TodayResponse(
+    tfa = TodayResponse.Article(),
     onThisDay = listOf(dummyOnThisDay)
 )
 

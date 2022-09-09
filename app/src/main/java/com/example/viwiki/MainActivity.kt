@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.viwiki.databinding.ActivityMainBinding
-import com.example.viwiki.search.SearchActivity
+import com.example.viwiki.domain.search.SearchActivity
 
 class MainActivity : AppCompatActivity() {
 

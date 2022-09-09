@@ -12,18 +12,18 @@
 
         <variable
             name="searchAdapter"
-            type="com.example.viwiki.search.SearchAdapter" />
+            type="com.example.viwiki.domain.search.SearchAdapter" />
 
         <variable
             name="viewModel"
-            type="com.example.viwiki.search.SearchViewModel" />
+            type="com.example.viwiki.domain.search.SearchViewModel" />
     </data>
 
     <FrameLayout
         android:id="@+id/search_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".search.SearchFragment">
+        tools:context=".domain.search.SearchFragment">
 
         <include
             android:id="@+id/status_screen"

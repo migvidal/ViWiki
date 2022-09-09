@@ -1,4 +1,4 @@
-package com.example.viwiki.search
+package com.example.viwiki.domain.search
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

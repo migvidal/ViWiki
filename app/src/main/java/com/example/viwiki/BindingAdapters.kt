@@ -8,8 +8,8 @@ import androidx.databinding.BindingAdapter
 import coil.load
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus.*
 import com.example.viwiki.MainActivity.Companion.ARTICLE_TITLE_EXTRA_KEY
-import com.example.viwiki.home.ArticlesOfTheDayResponse
-import com.example.viwiki.search.SearchResponse
+import com.example.viwiki.domain.today.TodayResponse
+import com.example.viwiki.domain.search.SearchResponse
 
 /**
  * Loads the url into the imageView
@@ -64,7 +64,7 @@ fun FrameLayout.onClick(searchResult: SearchResponse.SearchQuery.Search) {
 }
 
 @BindingAdapter("android:onClick")
-fun FrameLayout.onClick(article: ArticlesOfTheDayResponse.Article) {
+fun FrameLayout.onClick(article: TodayResponse.Article) {
     setOnClickListener {
         val intent = Intent(context, MainActivity::class.java)
         intent.putExtra(ARTICLE_TITLE_EXTRA_KEY, article.normalizedTitle)

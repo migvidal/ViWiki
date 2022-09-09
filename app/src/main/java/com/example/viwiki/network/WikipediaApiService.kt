@@ -3,7 +3,7 @@ package com.example.viwiki
 import com.example.viwiki.article_detail.ArticleImagesResponse
 import com.example.viwiki.article_detail.ArticleResponse
 import com.example.viwiki.network.ApiCommons
-import com.example.viwiki.search.SearchResponse
+import com.example.viwiki.domain.search.SearchResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

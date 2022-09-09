@@ -1,4 +1,4 @@
-package com.example.viwiki.home
+package com.example.viwiki.domain.today
 
 import com.example.viwiki.Thumbnail
 import com.squareup.moshi.Json
@@ -6,7 +6,7 @@ import com.squareup.moshi.Json
 /**
  * Featured article response from given date
  */
-data class ArticlesOfTheDayResponse(
+data class TodayResponse(
     val tfa: Article = Article(),
     @Json(name = "onthisday") val onThisDay: List<OnThisDay> = listOf(OnThisDay())
 ) {

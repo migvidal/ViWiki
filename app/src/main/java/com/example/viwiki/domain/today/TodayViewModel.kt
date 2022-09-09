@@ -1,4 +1,4 @@
-package com.example.viwiki.home
+package com.example.viwiki.domain.today
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +10,7 @@ import com.example.viwiki.WikiMediaApiImpl
 import kotlinx.coroutines.launch
 import java.util.*
 
-class HomeViewModel : ViewModel(), GenericWikiViewModel {
+class TodayViewModel : ViewModel(), GenericWikiViewModel {
 
     private val _status = MutableLiveData<ResponseStatus>()
     override val status: LiveData<ResponseStatus> = _status
@@ -18,8 +18,8 @@ class HomeViewModel : ViewModel(), GenericWikiViewModel {
     /**
      * Response from the WikiMediaApi
      */
-    private val _articlesOfTheDayResponse = MutableLiveData<ArticlesOfTheDayResponse>()
-    val articlesOfTheDayResponse: LiveData<ArticlesOfTheDayResponse> = _articlesOfTheDayResponse
+    private val _todayResponse = MutableLiveData<TodayResponse>()
+    val todayResponse: LiveData<TodayResponse> = _todayResponse
 
     /**
      * Fetch today's featured article from the API
@@ -47,11 +47,11 @@ class HomeViewModel : ViewModel(), GenericWikiViewModel {
             _status.value = ResponseStatus.LOADING
             try {
                 val response = WikiMediaApiImpl.wikiMediaApiService.getFeatured(yyyy, mm, dd)
-                _articlesOfTheDayResponse.value = response
+                _todayResponse.value = response
                 _status.value = ResponseStatus.DONE
             } catch (e: Exception) {
                 _status.value = ResponseStatus.ERROR
-                _articlesOfTheDayResponse.value = ArticlesOfTheDayResponse()
+                _todayResponse.value = TodayResponse()
             }
 
         }

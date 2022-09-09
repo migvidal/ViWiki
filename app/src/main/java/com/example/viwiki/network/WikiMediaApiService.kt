@@ -1,6 +1,6 @@
 package com.example.viwiki
 
-import com.example.viwiki.home.ArticlesOfTheDayResponse
+import com.example.viwiki.domain.today.TodayResponse
 import com.example.viwiki.network.ApiCommons
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -51,7 +51,7 @@ interface WikiMediaApiService {
         @Path("yyyy") yyyy: String,
         @Path("mm") mm: String,
         @Path("dd") dd: String
-    ): ArticlesOfTheDayResponse
+    ): TodayResponse
 }
 
 /**

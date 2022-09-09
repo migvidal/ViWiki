@@ -12,11 +12,11 @@
 
         <variable
             name="viewModel"
-            type="com.example.viwiki.home.HomeViewModel" />
+            type="com.example.viwiki.domain.today.TodayViewModel" />
 
         <variable
             name="articleAdapter"
-            type="com.example.viwiki.home.OnThisDayAdapter" />
+            type="com.example.viwiki.domain.today.TodayAdapter" />
     </data>
 
     <FrameLayout

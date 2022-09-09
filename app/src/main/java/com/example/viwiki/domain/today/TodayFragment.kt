@@ -1,4 +1,4 @@
-package com.example.viwiki.home
+package com.example.viwiki.domain.today
 
 import android.os.Bundle
 import android.view.*
@@ -9,14 +9,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.viwiki.R
-import com.example.viwiki.databinding.FragmentHomeBinding
+import com.example.viwiki.databinding.FragmentTodayBinding
 
 /**
  * Home screen of the App. Shows the article of the day.
  */
-class HomeFragment : Fragment() {
+class TodayFragment : Fragment() {
 
-    val viewModel: HomeViewModel by viewModels()
+    val viewModel: TodayViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,27 +27,28 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        val binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val binding = FragmentTodayBinding.inflate(inflater, container, false)
 
         /**
          * Adapter for the recycler view
          */
-        val onThisDayAdapter = OnThisDayAdapter()
+        val todayAdapter = TodayAdapter()
 
         // Observe the Response
-        viewModel.articlesOfTheDayResponse.observe(viewLifecycleOwner) { response ->
+        viewModel.todayResponse.observe(viewLifecycleOwner) { response ->
             val list = response.onThisDay
-            onThisDayAdapter.submitList(list)
+            todayAdapter.submitList(list)
         }
 
         // Allow for binding to observe LiveData
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        binding.articleAdapter = onThisDayAdapter
+        binding.articleAdapter = todayAdapter
 
         // Click listeners:
 
         // - refresh button
+        // TODO in xml
         binding.statusScreen.btnRefresh.setOnClickListener {
             viewModel.fetchTodayFeaturedArticle()
         }
@@ -55,8 +56,9 @@ class HomeFragment : Fragment() {
         // - article card
         binding.homeContainer.setOnClickListener {
             // Get the tfa (featured article)
-            viewModel.articlesOfTheDayResponse.value?.tfa?.let { tfa ->
-                val action = HomeFragmentDirections.actionHomeFragmentToArticleFragment()
+            viewModel.todayResponse.value?.tfa?.let { tfa ->
+                val action =
+                    TodayFragmentDirections.actionHomeFragmentToArticleFragment()
                 // Pass its title as an argument
                 action.argArticleTitle = tfa.normalizedTitle
                 // Navigate to fragment
