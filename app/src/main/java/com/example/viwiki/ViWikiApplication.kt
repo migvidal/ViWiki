@@ -12,7 +12,7 @@ class ViWikiApplication : Application() {
     // DB
     val db by lazy { PageDatabase.getInstance(this).pageDatabaseDao }
     // Repo
-    val pageRepository by lazy { PageRepository(db, WikipediaApiImpl) }
+    val pageRepository by lazy { PageRepository(db, WikipediaApiImpl, this) }
     override fun onCreate() {
         super.onCreate()
 

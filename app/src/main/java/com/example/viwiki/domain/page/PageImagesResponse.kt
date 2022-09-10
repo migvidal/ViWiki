@@ -18,8 +18,6 @@ data class PageImagesResponse(
         /**
          * The article page
          */
-
-        // todo unify
         data class Page(
             @Json(name = "pageid") val pageId: Long = 0,
             val ns: Long = 0,

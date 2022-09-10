@@ -63,9 +63,13 @@ interface WikipediaApiService {
     @GET("/")
     suspend fun getArticleResponse(
         @Query("titles") title: String,
-        @Query("prop") prop: String = "extracts",
-        @Query("exsentences") exSentences: Int = 30,
-        @Query("explaintext") exPlaintext: Int = 1,
+        @Query("prop") prop: String = "extracts|pageimages",
+        @Query("exsentences") exSentences: Int = 10,
+        @Query("explaintext") exPlainText: Int = 1,
+
+        @Query("piprop") piprop: String = "thumbnail",
+        @Query("pithumbsize") maxThumbnailWidth: Int = 2000,
+        @Query("pilicense") piLicense: String = "any",
         @Query("formatversion") formatVersion: Int = 2
     ): PageResponse
 

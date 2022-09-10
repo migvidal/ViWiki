@@ -1,5 +1,6 @@
 package com.example.viwiki.domain.page
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,8 +29,7 @@ class PageViewModel(val pageRepository: PageRepository) : ViewModel(), GenericWi
     val pageImagesResponse: LiveData<PageImagesResponse> = _pageImagesResponse
 
     fun fetchArticleByTitle(title: String) {
-        viewModelScope.apply {
-            launch {
+        viewModelScope.launch {
                 _status.value = ResponseStatus.LOADING
                 try {
                     pageRepository.retrievePage(title)
@@ -40,10 +40,15 @@ class PageViewModel(val pageRepository: PageRepository) : ViewModel(), GenericWi
                     e.printStackTrace()
                 }
             }
-            launch {
-                val imagesResponse = WikipediaApiImpl.wikipediaApiService.getImagesResponse(title)
-                _pageImagesResponse.value = imagesResponse
-            }
+    }
+
+    fun onSaveBtnClicked() {
+        savePage()
+    }
+
+    private fun savePage() {
+        viewModelScope.launch {
+            _page.value?.let { pageRepository.savePage(it) }
         }
     }
 

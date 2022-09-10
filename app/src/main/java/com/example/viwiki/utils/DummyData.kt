@@ -6,9 +6,7 @@ import com.example.viwiki.domain.today.TodayResponse
 import com.example.viwiki.domain.search.SearchResponse
 
 val dummyArticle = Page(
-    1, 1, "Lorem Ipsum",
-    "Massa proin ipsum adipiscing nisi eros placerat adipiscing interdum massa rutrum a pellentesque tempus accumsan nisi mi dolor erat elit magna placerat arcu proin felis." +
-            "Aliquam tortor suspendisse eget elementum tortor interdum erat congue sollicitudin eu molestie elit tortor ipsum nunc hendrerit eros nec massa ac aliquam sollicitudin nisl phasellus."
+    1, "The title", "Lorem Ipsum"
 )
 
 val dummyPageResponse = PageResponse(
