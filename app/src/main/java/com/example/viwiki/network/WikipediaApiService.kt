@@ -1,6 +1,5 @@
 package com.example.viwiki
 
-import com.example.viwiki.domain.page.PageImagesResponse
 import com.example.viwiki.domain.page.PageResponse
 import com.example.viwiki.network.ApiCommons
 import com.example.viwiki.domain.search.SearchResponse
@@ -72,22 +71,6 @@ interface WikipediaApiService {
         @Query("pilicense") piLicense: String = "any",
         @Query("formatversion") formatVersion: Int = 2
     ): PageResponse
-
-    /**
-     * Fetch and return the images response
-     * @param title The exact title of the article
-     * @param maxThumbnailWidth Maximum desired width for the image
-     * @return The images response
-     */
-    @GET("/")
-    suspend fun getImagesResponse(
-        @Query("titles") title: String,
-        @Query("prop") prop: String = "pageimages",
-        @Query("piprop") piprop: String = "thumbnail",
-        @Query("pithumbsize") maxThumbnailWidth: Int = 2000,
-        @Query("formatversion") formatVersion: Int = 2,
-        @Query("pilicense") piLicense: String = "any"
-    ): PageImagesResponse
 
     /**
      * Search for the provided query

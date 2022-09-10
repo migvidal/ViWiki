@@ -1,9 +1,6 @@
 package com.example.viwiki.domain.page
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.example.viwiki.Thumbnail
 import com.squareup.moshi.Json
 
@@ -17,7 +14,7 @@ class Page(
     val pageId: Long = 0L,
     val title: String = "",
     val extract: String = "",
-    val thumbnail: Thumbnail = Thumbnail()
+    @Embedded val thumbnail: Thumbnail = Thumbnail()
 ) {
 
     companion object {

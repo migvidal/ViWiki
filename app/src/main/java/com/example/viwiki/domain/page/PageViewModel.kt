@@ -22,11 +22,7 @@ class PageViewModel(val pageRepository: PageRepository) : ViewModel(), GenericWi
     private val _page = MutableLiveData<Page>()
     val page: LiveData<Page> = _page
 
-    /**
-     * Received article image(s) from the WikipediaAPI
-     */
-    private val _pageImagesResponse = MutableLiveData<PageImagesResponse>()
-    val pageImagesResponse: LiveData<PageImagesResponse> = _pageImagesResponse
+
 
     fun fetchArticleByTitle(title: String) {
         viewModelScope.launch {
