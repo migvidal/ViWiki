@@ -2,7 +2,6 @@ package com.example.viwiki.repository.page
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import androidx.core.graphics.drawable.toBitmap
 import coil.request.ImageRequest
 import com.example.viwiki.WikipediaApiImpl
@@ -17,8 +16,6 @@ class PageRepository(
     private val dao: PageDatabaseDao,
     private val api: WikipediaApiImpl,
     private val context: Context
-
-
 ) {
 
     /**
@@ -29,13 +26,16 @@ class PageRepository(
     /**
      * Loads the page from the appropriate data source
      * @param title The exact title of the page
+     * @return whether it's saved in db or not
      */
-    suspend fun retrievePage(title: String) {
+    suspend fun retrievePage(title: String): Boolean {
         page = dao.getPageByTitle(title)
         if (page == null) {
             val response = api.wikipediaApiService.getArticleResponse(title)
             page = response.query.pages[0]
+            return false
         }
+        return true
     }
 
     suspend fun savePage(page: Page) {
@@ -47,11 +47,13 @@ class PageRepository(
                 onSuccess = { result ->
                     val bitmap = result.toBitmap()
                     // Save in file system
-                    val filename = "${page.pageId}_thumbnail"
-                    val file = File(context.filesDir, filename)
+                    val fileName = "${page.pageId}_thumbnail" // e.g: '124134_thumbnail.webp'
+                    val file = File(context.filesDir, fileName)
                     FileOutputStream(file).apply {
                         try {
-                            bitmap.compress(Bitmap.CompressFormat.WEBP_LOSSLESS, 100, this)
+                            bitmap.compress(Bitmap.CompressFormat.WEBP_LOSSLESS,
+                                100,
+                                this)
                             close()
                         } catch (e: Exception) {
                             e.printStackTrace()

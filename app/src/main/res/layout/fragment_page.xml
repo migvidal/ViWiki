@@ -43,7 +43,7 @@
                     android:adjustViewBounds="true"
                     android:background="@android:color/darker_gray"
                     android:scaleType="centerCrop"
-                    app:imageUrl="@{viewModel.page.thumbnail.source}"
+                    app:imageSource="@{viewModel}"
                     app:layout_constraintDimensionRatio="3:2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -99,7 +99,7 @@
                     tools:text="Pellentesque consectetur nec condimentum eget portaest scelerisque tortor suspendisse nisi nisl adipiscing nec morbi rutrum id molestie mi aliquam aliquam et euismod enim elit varius. Maximus ac sollicitudin felis ipsum gravida consectetur rutrum lorem cursus tincidunt vel enim leo suspendisse lorem id molestie urna eget sed id suspendisse gravida orci." />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/btn_save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Save"

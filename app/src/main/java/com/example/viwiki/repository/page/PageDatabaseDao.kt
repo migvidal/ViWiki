@@ -12,7 +12,7 @@ import com.example.viwiki.domain.page.Page
 @Dao
 interface PageDatabaseDao {
     @Insert
-    fun insertPage(page: Page)
+    suspend fun insertPage(page: Page)
 
     @Delete
     fun deletePage(page: Page)

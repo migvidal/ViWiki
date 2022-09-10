@@ -17,10 +17,16 @@ class PageViewModel(val pageRepository: PageRepository) : ViewModel(), GenericWi
     override val status: LiveData<ResponseStatus> = _status
 
     /**
-     * Received article from the WikipediaAPI
+     * Received page from the WikipediaAPI
      */
     private val _page = MutableLiveData<Page>()
     val page: LiveData<Page> = _page
+
+    /**
+     * Page is saved in the database
+     */
+    private val _isSaved = MutableLiveData<Boolean>()
+    val isSaved: LiveData<Boolean> = _isSaved
 
 
 
@@ -28,7 +34,7 @@ class PageViewModel(val pageRepository: PageRepository) : ViewModel(), GenericWi
         viewModelScope.launch {
                 _status.value = ResponseStatus.LOADING
                 try {
-                    pageRepository.retrievePage(title)
+                    _isSaved.value = pageRepository.retrievePage(title)
                     _page.value = pageRepository.page
                     _status.value = ResponseStatus.DONE
                 } catch (e: Exception) {

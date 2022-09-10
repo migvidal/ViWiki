@@ -8,7 +8,6 @@ import androidx.room.PrimaryKey
  */
 @Entity(tableName = Thumbnail.TABLE_NAME)
 data class Thumbnail(
-    val id: Long = 0L,
     val source: String = "",
     val width: Int = 0,
     val height: Int = 0
