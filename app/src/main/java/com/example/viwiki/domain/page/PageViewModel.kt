@@ -1,13 +1,11 @@
 package com.example.viwiki.domain.page
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.viwiki.GenericWikiViewModel
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus
-import com.example.viwiki.WikipediaApiImpl
 import com.example.viwiki.repository.page.PageRepository
 import kotlinx.coroutines.launch
 
@@ -29,19 +27,21 @@ class PageViewModel(val pageRepository: PageRepository) : ViewModel(), GenericWi
     val isSaved: LiveData<Boolean> = _isSaved
 
 
-
     fun fetchArticleByTitle(title: String) {
         viewModelScope.launch {
-                _status.value = ResponseStatus.LOADING
-                try {
-                    _isSaved.value = pageRepository.retrievePage(title)
-                    _page.value = pageRepository.page
-                    _status.value = ResponseStatus.DONE
-                } catch (e: Exception) {
-                    _status.value = ResponseStatus.ERROR
-                    e.printStackTrace()
+            _status.value = ResponseStatus.LOADING
+            try {
+                pageRepository.apply {
+                    getPage(title)
+                    _page.value = mPage
+                    _isSaved.value = mSaved
                 }
+                _status.value = ResponseStatus.DONE
+            } catch (e: Exception) {
+                _status.value = ResponseStatus.ERROR
+                e.printStackTrace()
             }
+        }
     }
 
     fun onSaveBtnClicked() {

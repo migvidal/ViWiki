@@ -19,12 +19,13 @@ import java.io.File
 @BindingAdapter("imageSource")
 fun bindImageView(imageView: ImageView, viewModel: PageViewModel?) {
     if (viewModel == null) return
-    val imageSource = if (viewModel.isSaved.value == true) {
-        val id = viewModel.page.value?.pageId
-        val fileName = "${id}_thumbnail"
-        File(imageView.context.applicationContext.filesDir, fileName)
-    } else {
-        viewModel.page.value?.thumbnail?.source!!
+    val imageSource = when (viewModel.isSaved.value) {
+        true -> {
+            val id = viewModel.page.value?.pageId
+            val fileName = "${id}_thumbnail"
+            File(imageView.context.applicationContext.filesDir, fileName)
+        }
+        else -> viewModel.page.value?.thumbnail?.source
     }
     imageSource.let {
         imageView.load(it) {
@@ -72,7 +73,8 @@ fun bindTextView(tv: TextView, status: GenericWikiViewModel.ResponseStatus?) {
 fun bindTextView(textView: TextView, extract: String?) {
     if (extract == null) return
     // Separate in definition and body
-    val endOfSentencePattern = "[.](?=[\\s\n\r][A-Z])" // E.g.: First sentence(. S)econd sentence
+    val endOfSentencePattern =
+        "[.](?=[\\s\n\r][A-Z])" // E.g.: First sentence(. S)econd sentence
     val splitString: List<String> = extract.split(Regex(endOfSentencePattern), 2)
     // Set textView text
     textView.apply {
