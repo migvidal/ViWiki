@@ -9,7 +9,13 @@ import com.example.viwiki.GenericWikiViewModel.ResponseStatus
 import com.example.viwiki.repository.page.PageRepositoryImpl
 import kotlinx.coroutines.launch
 
-class PageViewModel(val pageRepositoryImpl: PageRepositoryImpl, val title: String) : ViewModel(), GenericWikiViewModel {
+/**
+ * Handles UI state for a Wikipedia page
+ */
+class PageViewModel(
+    private val pageRepositoryImpl: PageRepositoryImpl,
+    val title: String
+) : ViewModel(), GenericWikiViewModel {
 
     private val _status = MutableLiveData<ResponseStatus>()
     override val status: LiveData<ResponseStatus> = _status
@@ -21,13 +27,15 @@ class PageViewModel(val pageRepositoryImpl: PageRepositoryImpl, val title: Strin
     val page: LiveData<Page> = _page
 
     /**
-     * Page is saved in the database
+     * Says whether page is saved in the database
      */
     private val _isSaved = MutableLiveData<Boolean>()
     val isSaved: LiveData<Boolean> = _isSaved
 
-
-    fun updatePage() {
+    /**
+     * Get page from the data source
+     */
+    fun refreshPage() {
         viewModelScope.launch {
             _status.value = ResponseStatus.LOADING
             try {
@@ -44,10 +52,16 @@ class PageViewModel(val pageRepositoryImpl: PageRepositoryImpl, val title: Strin
         }
     }
 
+    /**
+     * Save button handler
+     */
     fun onSaveBtnClicked() {
         savePage()
     }
 
+    /**
+     * Save the page locally
+     */
     private fun savePage() {
         viewModelScope.launch {
             _page.value?.let { pageRepositoryImpl.savePage(it) }
@@ -55,33 +69,10 @@ class PageViewModel(val pageRepositoryImpl: PageRepositoryImpl, val title: Strin
     }
 
     /**
-     * Fetches an article by the provided title
-     * @param title The title of the article
+     * Init block
      */
-    /*fun fetchArticleByTitleOld(title: String) {
-        viewModelScope.launch {
-            _status.value = ResponseStatus.LOADING
-            try {
-                val response: PageResponse =
-                    WikipediaApiImpl.wikipediaApiService.getArticleResponse(title)
-                if (response == PageResponse()) {
-                    _status.value = ResponseStatus.BLANK
-                } else {
-                    _status.value = ResponseStatus.DONE
-                }
-                _page.value = response.
-            } catch (e: Exception) {
-                _status.value = ResponseStatus.ERROR
-            }
-        }
-        viewModelScope.launch {
-            // Image has its own status. Errors are handled by the loader (Coil)
-            val imagesResponse = WikipediaApiImpl.wikipediaApiService.getImagesResponse(title)
-            _pageImagesResponse.value = imagesResponse
-        }
-    }*/
     init {
-        updatePage()
+        refreshPage()
     }
 
 

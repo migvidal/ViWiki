@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -55,9 +54,7 @@ class PageFragment : Fragment() {
     ): View {
 
         // Inflate the layout for this fragment
-        val binding = DataBindingUtil.inflate<FragmentPageBinding>(
-            inflater, R.layout.fragment_page, container, false
-        )
+        val binding = FragmentPageBinding.inflate(inflater, container, false)
 
         // Refresh button listener
         binding.statusScreen.btnRefresh.setOnClickListener {
@@ -71,7 +68,7 @@ class PageFragment : Fragment() {
     }
 
     private fun updatePage() {
-        viewModel.updatePage()
+        viewModel.refreshPage()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

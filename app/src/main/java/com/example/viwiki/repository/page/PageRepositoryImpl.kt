@@ -46,7 +46,9 @@ class PageRepositoryImpl(
 
     }
 
-
+    /**
+     * Save page locally
+     */
     override suspend fun savePage(page: Page) {
         // Save thumbnail in storage
         saveThumbnail(page)
@@ -54,6 +56,9 @@ class PageRepositoryImpl(
         dao.insertPage(page)
     }
 
+    /**
+     * Save the page thumbnail
+     */
     private fun saveThumbnail(page: Page) {
         // TODO with coroutines
         val thumbnailUrl = page.thumbnail.source
@@ -69,6 +74,9 @@ class PageRepositoryImpl(
         request.build()
     }
 
+    /**
+     * Save bitmap into file system
+     */
     private fun saveBitmapAsFile(bitmap: Bitmap, fileName: String) {
         val file = File(context.filesDir, fileName)
         FileOutputStream(file).apply {

@@ -39,6 +39,7 @@ fun bindImageView(imageView: ImageView, page: Page?, isSaved: Boolean?) {
 }
 
 @BindingAdapter("imageUrl")
+// FIXME Old adapter, to be soon removed
 fun bindImageView(imageView: ImageView, imageUrl: String?) {
     imageUrl.let {
         imageView.load(it) {
@@ -48,7 +49,7 @@ fun bindImageView(imageView: ImageView, imageUrl: String?) {
 }
 
 
-@BindingAdapter("imageSource")
+/*@BindingAdapter("imageSource")
 fun bindImageView(imageView: ImageView, imageSource: Long?) {
     val fileName = "${imageSource}_thumbnail"
     val file = File(imageView.context.applicationContext.filesDir, fileName)
@@ -57,7 +58,7 @@ fun bindImageView(imageView: ImageView, imageSource: Long?) {
             error(R.drawable.ic_broken_image)
         }
     }
-}
+}*/
 
 
 /**
