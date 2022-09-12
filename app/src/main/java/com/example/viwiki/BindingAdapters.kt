@@ -8,6 +8,7 @@ import androidx.databinding.BindingAdapter
 import coil.load
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus.*
 import com.example.viwiki.MainActivity.Companion.ARTICLE_TITLE_EXTRA_KEY
+import com.example.viwiki.domain.page.Page
 import com.example.viwiki.domain.page.PageViewModel
 import com.example.viwiki.domain.search.SearchResponse
 import com.example.viwiki.domain.today.TodayResponse
@@ -16,22 +17,25 @@ import java.io.File
 /**
  * Loads the url into the imageView
  */
-@BindingAdapter("imageSource")
-fun bindImageView(imageView: ImageView, viewModel: PageViewModel?) {
-    if (viewModel == null) return
-    val imageSource = when (viewModel.isSaved.value) {
-        true -> {
-            val id = viewModel.page.value?.pageId
-            val fileName = "${id}_thumbnail"
-            File(imageView.context.applicationContext.filesDir, fileName)
-        }
-        else -> viewModel.page.value?.thumbnail?.source
+@BindingAdapter("imageSource", "isSaved")
+fun bindImageView(imageView: ImageView, page: Page?, isSaved: Boolean?) {
+    if (page == null) {
+        return
     }
-    imageSource.let {
-        imageView.load(it) {
-            error(R.drawable.ic_broken_image)
+    // Get image source
+    val imageSource =
+        when (isSaved) {
+            true -> {
+                val fileName = "${page.pageId}_thumbnail"
+                File(imageView.context.applicationContext.filesDir, fileName)
+            }
+            else -> page.thumbnail.source
         }
+    // Load image
+    imageView.load(imageSource) {
+        error(R.drawable.ic_broken_image)
     }
+
 }
 
 @BindingAdapter("imageUrl")

@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.viwiki.MainActivity
 import com.example.viwiki.R
@@ -24,15 +23,17 @@ class PageFragment : Fragment() {
     private val navArgs: PageFragmentArgs by navArgs()
 
     /**
-     * The title of the article to show
+     * The title of the page to show
      */
-    private var articleTitle: String? = null
+    private lateinit var pageTitle: String
 
     /**
      * View model for the data
      */
     private val viewModel: PageViewModel by viewModels {
-        PageViewModelFactory((getMainActivity()?.application as ViWikiApplication).pageRepository)
+        PageViewModelFactory(
+            (getMainActivity()?.application as ViWikiApplication).pageRepositoryImpl,
+        pageTitle)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,10 +43,10 @@ class PageFragment : Fragment() {
 
         // Get the article title passed by `navArgs`
         navArgs.apply {
-            if (argArticleTitle.isNotBlank()) {
-                articleTitle = argArticleTitle
-            }
+            pageTitle = argArticleTitle
         }
+
+
     }
 
     override fun onCreateView(
@@ -58,12 +59,9 @@ class PageFragment : Fragment() {
             inflater, R.layout.fragment_page, container, false
         )
 
-        // Trigger the API request if there's an article name
-        fetchArticle()
-
         // Refresh button listener
         binding.statusScreen.btnRefresh.setOnClickListener {
-            fetchArticle() // fetch the article again
+            updatePage() // fetch the article again
         }
 
         // Allow for binding to observe LiveData
@@ -72,14 +70,11 @@ class PageFragment : Fragment() {
         return binding.root
     }
 
-    private fun fetchArticle() {
-        if (articleTitle !== null) {
-            viewModel.fetchArticleByTitle(articleTitle!!)
-        }
+    private fun updatePage() {
+        viewModel.updatePage()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         // Override control of the options menu in this fragment.
         // Used to hide / show the menu.
         val menuHost: MenuHost = requireActivity()
@@ -97,7 +92,7 @@ class PageFragment : Fragment() {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         // Set action bar title
-        getMainActivity()?.supportActionBar?.title = articleTitle
+        getMainActivity()?.supportActionBar?.title = pageTitle
     }
 
     /**

@@ -2,7 +2,7 @@ package com.example.viwiki
 
 import android.app.Application
 import com.example.viwiki.repository.page.PageDatabase
-import com.example.viwiki.repository.page.PageRepository
+import com.example.viwiki.repository.page.PageRepositoryImpl
 import timber.log.Timber
 
 /**
@@ -12,7 +12,7 @@ class ViWikiApplication : Application() {
     // DB
     val db by lazy { PageDatabase.getInstance(this).pageDatabaseDao }
     // Repo
-    val pageRepository by lazy { PageRepository(db, WikipediaApiImpl, this) }
+    val pageRepositoryImpl by lazy { PageRepositoryImpl(db, WikipediaApiImpl, this) }
     override fun onCreate() {
         super.onCreate()
 

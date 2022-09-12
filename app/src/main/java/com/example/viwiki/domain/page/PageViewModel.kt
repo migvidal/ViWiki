@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.viwiki.GenericWikiViewModel
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus
-import com.example.viwiki.repository.page.PageRepository
+import com.example.viwiki.repository.page.PageRepositoryImpl
 import kotlinx.coroutines.launch
 
-class PageViewModel(val pageRepository: PageRepository) : ViewModel(), GenericWikiViewModel {
+class PageViewModel(val pageRepositoryImpl: PageRepositoryImpl, val title: String) : ViewModel(), GenericWikiViewModel {
 
     private val _status = MutableLiveData<ResponseStatus>()
     override val status: LiveData<ResponseStatus> = _status
@@ -27,14 +27,14 @@ class PageViewModel(val pageRepository: PageRepository) : ViewModel(), GenericWi
     val isSaved: LiveData<Boolean> = _isSaved
 
 
-    fun fetchArticleByTitle(title: String) {
+    fun updatePage() {
         viewModelScope.launch {
             _status.value = ResponseStatus.LOADING
             try {
-                pageRepository.apply {
-                    getPage(title)
-                    _page.value = mPage
-                    _isSaved.value = mSaved
+                pageRepositoryImpl.apply {
+                    val x = getPage(title)
+                    _page.value = x
+                    _isSaved.value = savedLocally
                 }
                 _status.value = ResponseStatus.DONE
             } catch (e: Exception) {
@@ -50,7 +50,7 @@ class PageViewModel(val pageRepository: PageRepository) : ViewModel(), GenericWi
 
     private fun savePage() {
         viewModelScope.launch {
-            _page.value?.let { pageRepository.savePage(it) }
+            _page.value?.let { pageRepositoryImpl.savePage(it) }
         }
     }
 
@@ -80,6 +80,9 @@ class PageViewModel(val pageRepository: PageRepository) : ViewModel(), GenericWi
             _pageImagesResponse.value = imagesResponse
         }
     }*/
+    init {
+        updatePage()
+    }
 
 
 }
