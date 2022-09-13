@@ -1,6 +1,7 @@
 package com.example.viwiki
 
 import android.app.Application
+import com.example.viwiki.network.WikipediaApiImpl
 import com.example.viwiki.repository.page.PageDatabase
 import com.example.viwiki.repository.page.PageRepositoryImpl
 import timber.log.Timber

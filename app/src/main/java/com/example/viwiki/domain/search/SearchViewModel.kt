@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.viwiki.GenericWikiViewModel
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus
-import com.example.viwiki.WikipediaApiImpl
+import com.example.viwiki.network.WikipediaApiImpl
 import kotlinx.coroutines.launch
 
 class SearchViewModel : ViewModel(), GenericWikiViewModel {

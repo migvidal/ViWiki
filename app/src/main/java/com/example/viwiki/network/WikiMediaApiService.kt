@@ -15,7 +15,7 @@ import retrofit2.http.Path
 /**
  * Base URL for the Wikimedia API
  */
-private val WIKIMEDIA_BASE_URL: String = "https://api.wikimedia.org/"
+private const val WIKIMEDIA_BASE_URL: String = "https://api.wikimedia.org/"
 
 /**
  * HTTP client

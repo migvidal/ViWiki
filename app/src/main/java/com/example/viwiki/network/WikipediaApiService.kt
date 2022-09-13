@@ -1,8 +1,7 @@
-package com.example.viwiki
+package com.example.viwiki.network
 
 import com.example.viwiki.domain.page.PageResponse
 import com.example.viwiki.domain.search.SearchResponse
-import com.example.viwiki.network.ApiCommons
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -11,9 +10,9 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 /**
- * Base URL for the WikiPedia API
+ * Base URL for the Wikipedia API
  */
-private val WIKIPEDIA_BASE_URL = "https://en.wikipedia.org/"
+private const val WIKIPEDIA_BASE_URL = "https://en.wikipedia.org/"
 
 
 /**

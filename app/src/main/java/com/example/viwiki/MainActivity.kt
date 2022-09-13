@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         /**
          * The key for the extra `articleTitle` in the received intent
          */
-        val PAGE_TITLE_EXTRA_KEY = "articleTitle"
+        const val PAGE_TITLE_EXTRA_KEY = "articleTitle"
     }
 
 

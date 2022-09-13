@@ -5,11 +5,10 @@ import android.graphics.Bitmap
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import coil.Coil
 import coil.imageLoader
 import coil.request.ImageRequest
-import com.example.viwiki.WikipediaApiImpl
 import com.example.viwiki.domain.page.Page
+import com.example.viwiki.network.WikipediaApiImpl
 import timber.log.Timber
 import java.io.File
 import java.io.FileOutputStream

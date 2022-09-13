@@ -19,7 +19,7 @@ class AboutFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout with data binding
         val binding = FragmentAboutBinding.inflate(inflater, container, false)
 

@@ -38,7 +38,7 @@
             android:visibility="@{viewModel.status == ResponseStatus.DONE ? View.VISIBLE : View.GONE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:setHasFixedSize="@{true}"
-            tools:context=".HomeFragment"></androidx.recyclerview.widget.RecyclerView>
+            tools:context=".HomeFragment" />
     </FrameLayout>
 
 </layout>

@@ -1,6 +1,5 @@
 package com.example.viwiki.domain.today
 
-import com.example.viwiki.Thumbnail
 import com.example.viwiki.domain.page.Page
 import com.squareup.moshi.Json
 
