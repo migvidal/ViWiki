@@ -9,11 +9,15 @@ import timber.log.Timber
  * Main application class
  */
 class ViWikiApplication : Application() {
-    // DB
-    val db by lazy { PageDatabase.getInstance(this).pageDatabaseDao }
+    /**
+     * Database for storing Wikipedia pages
+     */
+    private val database by lazy { PageDatabase.getInstance(this).pageDatabaseDao }
 
-    // Repo
-    val pageRepositoryImpl by lazy { PageRepositoryImpl(db, WikipediaApiImpl, this) }
+    /**
+     * Single source of truth for Wikipedia pages
+     */
+    val pageRepositoryImpl by lazy { PageRepositoryImpl(database, WikipediaApiImpl, this) }
     override fun onCreate() {
         super.onCreate()
 

@@ -14,4 +14,6 @@ interface PageRepository {
     suspend fun getPage(title: String): Page
 
     suspend fun savePage(page: Page)
+
+    suspend fun deletePage(page: Page)
 }

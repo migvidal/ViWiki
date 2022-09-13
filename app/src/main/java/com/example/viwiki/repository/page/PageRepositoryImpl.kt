@@ -3,9 +3,14 @@ package com.example.viwiki.repository.page
 import android.content.Context
 import android.graphics.Bitmap
 import androidx.core.graphics.drawable.toBitmap
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import coil.Coil
+import coil.imageLoader
 import coil.request.ImageRequest
 import com.example.viwiki.WikipediaApiImpl
 import com.example.viwiki.domain.page.Page
+import timber.log.Timber
 import java.io.File
 import java.io.FileOutputStream
 
@@ -19,29 +24,30 @@ class PageRepositoryImpl(
 ) : PageRepository {
 
     /**
-     * Whether the Page is saved locally or not
+     * FIXME CAN'T BE A MEMBER!!!!
      */
-    var savedLocally = false
+    private val _savedLocally = MutableLiveData<Boolean>()
+    val savedLocally: LiveData<Boolean> = _savedLocally
 
     /**
      * Loads the page from the appropriate data source
      * @param title The exact title of the page
-     * @return live data with the Page
+     * @return the page
      */
     override suspend fun getPage(title: String): Page {
         // A - From the database
         dao.getPageByTitle(title).also {
             if (it != null) {
-                savedLocally = true
+                _savedLocally.value = true
                 return it
             }
         }
         // B - From the network
+        _savedLocally.value = false
         // TODO RENAME OLD "ARTICLE" REFERENCES
         api.wikipediaApiService.getPageResponse(title).apply {
             return query.pages[0]
         }
-
     }
 
     /**
@@ -63,13 +69,19 @@ class PageRepositoryImpl(
         val request = ImageRequest.Builder(context)
             .data(thumbnailUrl)
             .target(
+                onError = { error ->
+                    Timber.i("img_error!")
+                },
                 onSuccess = { result ->
+
                     val bitmap = result.toBitmap()
                     val fileName = "${page.pageId}_thumbnail"
                     saveBitmapAsFile(bitmap, fileName)
                 }
             )
-        request.build()
+        request.build().let {
+            context.imageLoader.enqueue(it)
+        }
     }
 
     /**
@@ -89,6 +101,15 @@ class PageRepositoryImpl(
                 e.printStackTrace()
             }
         }
+    }
+
+    override suspend fun deletePage(page: Page) {
+        dao.deletePage(page)
+        _savedLocally.value = false
+    }
+
+    fun deleteThumbnail() {
+        TODO()
     }
 
 }

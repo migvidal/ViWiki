@@ -40,9 +40,8 @@ class PageViewModel(
             _status.value = ResponseStatus.LOADING
             try {
                 pageRepositoryImpl.apply {
-                    val x = getPage(title)
-                    _page.value = x
-                    _isSaved.value = savedLocally
+                    _page.value = getPage(title)
+                    _isSaved.value = savedLocally.value
                 }
                 _status.value = ResponseStatus.DONE
             } catch (e: Exception) {
@@ -56,7 +55,22 @@ class PageViewModel(
      * Save button handler
      */
     fun onSaveBtnClicked() {
+        if (_isSaved.value == true) {
+            // TODO
+            deletePage()
+            _isSaved.value = false
+            return
+        }
         savePage()
+    }
+
+    /**
+     * Delete the page
+     */
+    private fun deletePage() {
+        viewModelScope.launch {
+            _page.value?.let { pageRepositoryImpl.deletePage(it) }
+        }
     }
 
     /**
