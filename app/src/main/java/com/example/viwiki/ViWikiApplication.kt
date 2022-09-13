@@ -11,6 +11,7 @@ import timber.log.Timber
 class ViWikiApplication : Application() {
     // DB
     val db by lazy { PageDatabase.getInstance(this).pageDatabaseDao }
+
     // Repo
     val pageRepositoryImpl by lazy { PageRepositoryImpl(db, WikipediaApiImpl, this) }
     override fun onCreate() {

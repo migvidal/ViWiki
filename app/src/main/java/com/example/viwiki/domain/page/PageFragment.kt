@@ -32,7 +32,8 @@ class PageFragment : Fragment() {
     private val viewModel: PageViewModel by viewModels {
         PageViewModelFactory(
             (getMainActivity()?.application as ViWikiApplication).pageRepositoryImpl,
-        pageTitle)
+            pageTitle
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

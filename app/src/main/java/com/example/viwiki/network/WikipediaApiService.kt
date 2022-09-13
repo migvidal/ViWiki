@@ -1,8 +1,8 @@
 package com.example.viwiki
 
 import com.example.viwiki.domain.page.PageResponse
-import com.example.viwiki.network.ApiCommons
 import com.example.viwiki.domain.search.SearchResponse
+import com.example.viwiki.network.ApiCommons
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

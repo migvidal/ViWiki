@@ -2,8 +2,8 @@ package com.example.viwiki.utils
 
 import com.example.viwiki.domain.page.Page
 import com.example.viwiki.domain.page.PageResponse
-import com.example.viwiki.domain.today.TodayResponse
 import com.example.viwiki.domain.search.SearchResponse
+import com.example.viwiki.domain.today.TodayResponse
 
 val dummyArticle = Page(
     1, "The title", "Lorem Ipsum"

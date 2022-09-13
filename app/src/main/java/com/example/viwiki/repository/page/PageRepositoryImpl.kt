@@ -3,8 +3,6 @@ package com.example.viwiki.repository.page
 import android.content.Context
 import android.graphics.Bitmap
 import androidx.core.graphics.drawable.toBitmap
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import coil.request.ImageRequest
 import com.example.viwiki.WikipediaApiImpl
 import com.example.viwiki.domain.page.Page

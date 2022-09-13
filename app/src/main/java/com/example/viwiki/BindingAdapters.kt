@@ -9,7 +9,6 @@ import coil.load
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus.*
 import com.example.viwiki.MainActivity.Companion.ARTICLE_TITLE_EXTRA_KEY
 import com.example.viwiki.domain.page.Page
-import com.example.viwiki.domain.page.PageViewModel
 import com.example.viwiki.domain.search.SearchResponse
 import com.example.viwiki.domain.today.TodayResponse
 import java.io.File
