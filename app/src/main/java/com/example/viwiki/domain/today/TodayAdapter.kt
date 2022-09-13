@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.viwiki.databinding.HomeCardBinding
+import com.example.viwiki.databinding.TodayCardBinding
 import com.example.viwiki.domain.today.TodayResponse.OnThisDay
 
 /**
@@ -17,7 +17,7 @@ class TodayAdapter :
     /**
      * Used by onCreateViewHolder
      */
-    class ArticleViewHolder private constructor(val binding: HomeCardBinding) :
+    class ArticleViewHolder private constructor(val binding: TodayCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         /**
@@ -35,7 +35,7 @@ class TodayAdapter :
              */
             fun from(viewGroup: ViewGroup): ArticleViewHolder {
                 val inflater = LayoutInflater.from(viewGroup.context)
-                val view = HomeCardBinding.inflate(
+                val view = TodayCardBinding.inflate(
                     inflater,
                     viewGroup,
                     false

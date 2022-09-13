@@ -28,12 +28,12 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         // Handle intent
-        if (intent.hasExtra(ARTICLE_TITLE_EXTRA_KEY)) {
+        if (intent.hasExtra(PAGE_TITLE_EXTRA_KEY)) {
             // Get intent
-            val searchedArticleName = intent.getStringExtra(ARTICLE_TITLE_EXTRA_KEY)
+            val searchedArticleName = intent.getStringExtra(PAGE_TITLE_EXTRA_KEY)
 
             // Clear intent
-            intent.removeExtra(ARTICLE_TITLE_EXTRA_KEY)
+            intent.removeExtra(PAGE_TITLE_EXTRA_KEY)
 
             // Put article name into a bundle
             val bundle = Bundle()
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         /**
          * The key for the extra `articleTitle` in the received intent
          */
-        val ARTICLE_TITLE_EXTRA_KEY = "articleTitle"
+        val PAGE_TITLE_EXTRA_KEY = "articleTitle"
     }
 
 

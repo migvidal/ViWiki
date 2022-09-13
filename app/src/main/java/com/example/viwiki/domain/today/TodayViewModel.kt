@@ -1,11 +1,13 @@
 package com.example.viwiki.domain.today
 
+import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.viwiki.GenericWikiViewModel
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus
+import com.example.viwiki.MainActivity
 import com.example.viwiki.WikiMediaApiImpl
 import kotlinx.coroutines.launch
 import java.util.*
@@ -56,6 +58,7 @@ class TodayViewModel : ViewModel(), GenericWikiViewModel {
 
         }
     }
+
 
     init {
         fetchTodayFeaturedArticle()

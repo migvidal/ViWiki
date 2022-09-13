@@ -5,13 +5,13 @@ import com.example.viwiki.domain.page.PageResponse
 import com.example.viwiki.domain.search.SearchResponse
 import com.example.viwiki.domain.today.TodayResponse
 
-val dummyArticle = Page(
+val dummyPage = Page(
     1, "The title", "Lorem Ipsum"
 )
 
 val dummyPageResponse = PageResponse(
     PageResponse.Query(
-        listOf(dummyArticle)
+        listOf(dummyPage)
     )
 )
 
@@ -19,7 +19,7 @@ val dummyOnThisDay = TodayResponse.OnThisDay(
     text = "Ipsum nunc hendrerit eros nec massa ac aliquam sollicitudin nisl phasellus."
 )
 val dummyTodayResponse = TodayResponse(
-    tfa = TodayResponse.Article(),
+    tfa = Page(),
     onThisDay = listOf(dummyOnThisDay)
 )
 

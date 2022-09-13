@@ -56,11 +56,11 @@ private val retrofit = Retrofit.Builder()
 interface WikipediaApiService {
     /**
      * Fetch and return the PageResponse
-     * @param title The exact title of the article
-     * @return the article response
+     * @param title The exact title of the page
+     * @return the page response
      */
     @GET("/")
-    suspend fun getArticleResponse(
+    suspend fun getPageResponse(
         @Query("titles") title: String,
         @Query("prop") prop: String = "extracts|pageimages",
         @Query("exsentences") exSentences: Int = 10,

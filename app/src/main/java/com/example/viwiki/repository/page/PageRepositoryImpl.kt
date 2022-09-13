@@ -38,7 +38,7 @@ class PageRepositoryImpl(
         }
         // B - From the network
         // TODO RENAME OLD "ARTICLE" REFERENCES
-        api.wikipediaApiService.getArticleResponse(title).apply {
+        api.wikipediaApiService.getPageResponse(title).apply {
             return query.pages[0]
         }
 
