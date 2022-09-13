@@ -1,6 +1,6 @@
 package com.example.viwiki
 
-import com.example.viwiki.home.ArticlesOfTheDayResponse
+import com.example.viwiki.domain.today.TodayResponse
 import com.example.viwiki.network.ApiCommons
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -21,7 +21,7 @@ private val WIKIMEDIA_BASE_URL: String = "https://api.wikimedia.org/"
  * HTTP client
  */
 private val okHttpClient = OkHttpClient.Builder()
-    .addInterceptor(ApiCommons.loggingInterceptor) // TODO: remove in production
+    .addInterceptor(ApiCommons.loggingInterceptor)
     .build()
 
 /**
@@ -51,7 +51,7 @@ interface WikiMediaApiService {
         @Path("yyyy") yyyy: String,
         @Path("mm") mm: String,
         @Path("dd") dd: String
-    ): ArticlesOfTheDayResponse
+    ): TodayResponse
 }
 
 /**

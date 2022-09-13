@@ -6,7 +6,7 @@
 
         <variable
             name="searchResult"
-            type="com.example.viwiki.search.SearchResponse.SearchQuery.Search" />
+            type="com.example.viwiki.domain.search.SearchResponse.SearchQuery.Search" />
     </data>
 
     <FrameLayout

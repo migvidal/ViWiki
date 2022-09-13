@@ -1,4 +1,4 @@
-package com.example.viwiki.search
+package com.example.viwiki.domain.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viwiki.databinding.ResultListItemBinding
-import com.example.viwiki.search.SearchResponse.SearchQuery.Search
+import com.example.viwiki.domain.search.SearchResponse.SearchQuery.Search
 
 /**
  * Adapter for the search RecyclerView

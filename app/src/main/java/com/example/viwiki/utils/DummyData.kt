@@ -1,26 +1,25 @@
 package com.example.viwiki.utils
 
-import com.example.viwiki.article_detail.ArticleResponse
-import com.example.viwiki.home.ArticlesOfTheDayResponse
-import com.example.viwiki.search.SearchResponse
+import com.example.viwiki.domain.page.Page
+import com.example.viwiki.domain.page.PageResponse
+import com.example.viwiki.domain.search.SearchResponse
+import com.example.viwiki.domain.today.TodayResponse
 
-val dummyArticle = ArticleResponse.Query.Page(
-    1, 1, "Lorem Ipsum",
-    "Massa proin ipsum adipiscing nisi eros placerat adipiscing interdum massa rutrum a pellentesque tempus accumsan nisi mi dolor erat elit magna placerat arcu proin felis." +
-            "Aliquam tortor suspendisse eget elementum tortor interdum erat congue sollicitudin eu molestie elit tortor ipsum nunc hendrerit eros nec massa ac aliquam sollicitudin nisl phasellus."
+val dummyPage = Page(
+    1, "The title", "Lorem Ipsum"
 )
 
-val dummyArticleResponse = ArticleResponse(
-    ArticleResponse.Query(
-        listOf(dummyArticle)
+val dummyPageResponse = PageResponse(
+    PageResponse.Query(
+        listOf(dummyPage)
     )
 )
 
-val dummyOnThisDay = ArticlesOfTheDayResponse.OnThisDay(
+val dummyOnThisDay = TodayResponse.OnThisDay(
     text = "Ipsum nunc hendrerit eros nec massa ac aliquam sollicitudin nisl phasellus."
 )
-val dummyArticlesOfTheDayResponse = ArticlesOfTheDayResponse(
-    tfa = ArticlesOfTheDayResponse.Article(),
+val dummyTodayResponse = TodayResponse(
+    tfa = Page(),
     onThisDay = listOf(dummyOnThisDay)
 )
 

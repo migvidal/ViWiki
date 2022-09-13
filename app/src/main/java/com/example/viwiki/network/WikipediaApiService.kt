@@ -1,9 +1,8 @@
 package com.example.viwiki
 
-import com.example.viwiki.article_detail.ArticleImagesResponse
-import com.example.viwiki.article_detail.ArticleResponse
+import com.example.viwiki.domain.page.PageResponse
+import com.example.viwiki.domain.search.SearchResponse
 import com.example.viwiki.network.ApiCommons
-import com.example.viwiki.search.SearchResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -38,6 +37,7 @@ private val paramsInterceptor = Interceptor { chain ->
  */
 private val okHttpClient = OkHttpClient.Builder()
     .addInterceptor(paramsInterceptor)
+    .addInterceptor(ApiCommons.loggingInterceptor) // TODO: remove in production
     .build()
 
 /**
@@ -55,34 +55,22 @@ private val retrofit = Retrofit.Builder()
  */
 interface WikipediaApiService {
     /**
-     * Fetch and return the ArticleResponse
-     * @param title The exact title of the article
-     * @return the article response
+     * Fetch and return the PageResponse
+     * @param title The exact title of the page
+     * @return the page response
      */
     @GET("/")
-    suspend fun getArticleResponse(
+    suspend fun getPageResponse(
         @Query("titles") title: String,
-        @Query("prop") prop: String = "extracts",
-        @Query("exsentences") exSentences: Int = 30,
-        @Query("explaintext") exPlaintext: Int = 1,
-        @Query("formatversion") formatVersion: Int = 2
-    ): ArticleResponse
+        @Query("prop") prop: String = "extracts|pageimages",
+        @Query("exsentences") exSentences: Int = 10,
+        @Query("explaintext") exPlainText: Int = 1,
 
-    /**
-     * Fetch and return the images response
-     * @param title The exact title of the article
-     * @param maxThumbnailWidth Maximum desired width for the image
-     * @return The images response
-     */
-    @GET("/")
-    suspend fun getImagesResponse(
-        @Query("titles") title: String,
-        @Query("prop") prop: String = "pageimages",
         @Query("piprop") piprop: String = "thumbnail",
         @Query("pithumbsize") maxThumbnailWidth: Int = 2000,
-        @Query("formatversion") formatVersion: Int = 2,
-        @Query("pilicense") piLicense: String = "any"
-    ): ArticleImagesResponse
+        @Query("pilicense") piLicense: String = "any",
+        @Query("formatversion") formatVersion: Int = 2
+    ): PageResponse
 
     /**
      * Search for the provided query

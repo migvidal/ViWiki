@@ -17,7 +17,7 @@
         android:theme="@style/Theme.ViWiki"
         tools:targetApi="31">
         <activity
-            android:name=".search.SearchActivity"
+            android:name=".domain.search.SearchActivity"
             android:exported="false"
             android:label="@string/search_label"
             android:parentActivityName=".MainActivity">

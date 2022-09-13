@@ -1,23 +1,23 @@
-package com.example.viwiki.home
+package com.example.viwiki.domain.today
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.viwiki.databinding.HomeCardBinding
-import com.example.viwiki.home.ArticlesOfTheDayResponse.OnThisDay
+import com.example.viwiki.databinding.TodayCardBinding
+import com.example.viwiki.domain.today.TodayResponse.OnThisDay
 
 /**
  * Adapter for Articles in home
  */
-class OnThisDayAdapter :
-    ListAdapter<OnThisDay, OnThisDayAdapter.ArticleViewHolder>(ArticleDiffCallBack()) {
+class TodayAdapter :
+    ListAdapter<OnThisDay, TodayAdapter.ArticleViewHolder>(ArticleDiffCallBack()) {
 
     /**
      * Used by onCreateViewHolder
      */
-    class ArticleViewHolder private constructor(val binding: HomeCardBinding) :
+    class ArticleViewHolder private constructor(val binding: TodayCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         /**
@@ -35,7 +35,7 @@ class OnThisDayAdapter :
              */
             fun from(viewGroup: ViewGroup): ArticleViewHolder {
                 val inflater = LayoutInflater.from(viewGroup.context)
-                val view = HomeCardBinding.inflate(
+                val view = TodayCardBinding.inflate(
                     inflater,
                     viewGroup,
                     false

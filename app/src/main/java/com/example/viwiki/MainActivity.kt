@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.viwiki.databinding.ActivityMainBinding
-import com.example.viwiki.search.SearchActivity
+import com.example.viwiki.domain.search.SearchActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,19 +28,19 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         // Handle intent
-        if (intent.hasExtra(ARTICLE_TITLE_EXTRA_KEY)) {
+        if (intent.hasExtra(PAGE_TITLE_EXTRA_KEY)) {
             // Get intent
-            val searchedArticleName = intent.getStringExtra(ARTICLE_TITLE_EXTRA_KEY)
+            val searchedArticleName = intent.getStringExtra(PAGE_TITLE_EXTRA_KEY)
 
             // Clear intent
-            intent.removeExtra(ARTICLE_TITLE_EXTRA_KEY)
+            intent.removeExtra(PAGE_TITLE_EXTRA_KEY)
 
             // Put article name into a bundle
             val bundle = Bundle()
             bundle.putString("arg_article_title", searchedArticleName)
 
             // Navigate to fragment using nav controller and the Bundle
-            findNavController(R.id.search_nav_host).navigate(R.id.articleFragment, bundle)
+            findNavController(R.id.search_nav_host).navigate(R.id.pageFragment, bundle)
 
         }
     }
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         /**
          * The key for the extra `articleTitle` in the received intent
          */
-        val ARTICLE_TITLE_EXTRA_KEY = "articleTitle"
+        val PAGE_TITLE_EXTRA_KEY = "articleTitle"
     }
 
 

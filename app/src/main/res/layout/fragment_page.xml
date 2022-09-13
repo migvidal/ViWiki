@@ -12,7 +12,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.viwiki.article_detail.ArticleViewModel" />
+            type="com.example.viwiki.domain.page.PageViewModel" />
     </data>
 
     <FrameLayout
@@ -43,7 +43,9 @@
                     android:adjustViewBounds="true"
                     android:background="@android:color/darker_gray"
                     android:scaleType="centerCrop"
-                    app:imageUrl="@{viewModel.articleImagesResponse.query.pages.get(0).thumbnail.source}"
+                    app:imageSource="@{viewModel.page}"
+                    app:isSaved="@{viewModel.isSaved}"
+
                     app:layout_constraintDimensionRatio="3:2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -57,7 +59,7 @@
                     android:letterSpacing="-0.04"
                     android:lineSpacingMultiplier="0.9"
                     android:maxLines="3"
-                    android:text="@{viewModel.articleResponse.query.pages.get(0).title}"
+                    android:text="@{viewModel.page.title}"
                     android:textAlignment="viewStart"
                     android:textSize="@dimen/main_header_size"
                     android:textStyle="bold"
@@ -82,7 +84,7 @@
                     style="@style/definition_text_box"
                     android:textSize="@dimen/emphasized_size"
                     android:textStyle="bold"
-                    app:article_extract="@{viewModel.articleResponse.query.pages.get(0).extract}"
+                    app:article_extract="@{viewModel.page.extract}"
                     app:layout_constraintEnd_toEndOf="@id/right_guideline"
                     app:layout_constraintStart_toEndOf="@+id/emphasis_decoration"
                     app:layout_constraintTop_toBottomOf="@id/tv_title"
@@ -92,11 +94,23 @@
                     android:id="@+id/tv_text"
                     style="@style/text_box"
                     android:textSize="@dimen/body_size"
-                    app:article_extract="@{viewModel.articleResponse.query.pages.get(0).extract}"
+                    app:article_extract="@{viewModel.page.extract}"
                     app:layout_constraintEnd_toEndOf="@id/right_guideline"
                     app:layout_constraintStart_toStartOf="@id/left_guideline"
                     app:layout_constraintTop_toBottomOf="@id/tv_definition"
                     tools:text="Pellentesque consectetur nec condimentum eget portaest scelerisque tortor suspendisse nisi nisl adipiscing nec morbi rutrum id molestie mi aliquam aliquam et euismod enim elit varius. Maximus ac sollicitudin felis ipsum gravida consectetur rutrum lorem cursus tincidunt vel enim leo suspendisse lorem id molestie urna eget sed id suspendisse gravida orci." />
+
+                <Button
+                    android:id="@+id/btn_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->viewModel.onSaveBtnClicked()}"
+                    android:text="@{viewModel.isSaved ? @string/saved_text : @string/save_text}"
+                    android:backgroundTint="@{viewModel.isSaved ? @color/secondaryColor : @color/primaryColor}"
+                    app:layout_constraintEnd_toEndOf="@id/right_guideline"
+                    app:layout_constraintStart_toStartOf="@id/left_guideline"
+                    app:layout_constraintTop_toBottomOf="@id/tv_text"
+                    tools:text="@string/save_text"/>
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/left_guideline"
