@@ -15,5 +15,5 @@ interface PageRepository {
 
     suspend fun savePage(page: Page)
 
-    suspend fun deletePage(page: Page)
+    suspend fun deletePage(page: Page): Boolean
 }

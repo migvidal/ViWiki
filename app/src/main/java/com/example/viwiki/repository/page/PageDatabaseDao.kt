@@ -15,7 +15,7 @@ interface PageDatabaseDao {
     suspend fun insertPage(page: Page)
 
     @Delete
-    fun deletePage(page: Page)
+    suspend fun deletePage(page: Page)
 
     /**
      * Returns a page by the provided name

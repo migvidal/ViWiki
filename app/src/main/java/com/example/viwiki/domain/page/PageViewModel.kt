@@ -8,6 +8,7 @@ import com.example.viwiki.GenericWikiViewModel
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus
 import com.example.viwiki.repository.page.PageRepositoryImpl
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 /**
  * Handles UI state for a Wikipedia page
@@ -55,31 +56,40 @@ class PageViewModel(
      * Save button handler
      */
     fun onSaveBtnClicked() {
-        if (_isSaved.value == true) {
-            // TODO
-            deletePage()
-            _isSaved.value = false
-            return
+        // TODO confirmation message
+        viewModelScope.launch {
+            _status.value = ResponseStatus.LOADING
+            _isSaved.value = when (_isSaved.value) {
+                true -> {
+                    deletePage()
+                    false
+                }
+                else -> {
+                    savePage()
+                    true
+                }
+            }
+            _status.value = ResponseStatus.DONE
+
         }
-        savePage()
     }
 
     /**
      * Delete the page
      */
-    private fun deletePage() {
-        viewModelScope.launch {
-            _page.value?.let { pageRepositoryImpl.deletePage(it) }
+    private suspend fun deletePage() {
+        _page.value?.let {
+            if (pageRepositoryImpl.deletePage(it)) {
+                Timber.i("Page -${it.title}- Deleted")
+            }
         }
     }
 
     /**
      * Save the page locally
      */
-    private fun savePage() {
-        viewModelScope.launch {
-            _page.value?.let { pageRepositoryImpl.savePage(it) }
-        }
+    private suspend fun savePage() {
+        _page.value?.let { pageRepositoryImpl.savePage(it) }
     }
 
     /**

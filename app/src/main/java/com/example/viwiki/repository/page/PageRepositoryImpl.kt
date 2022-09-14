@@ -90,25 +90,30 @@ class PageRepositoryImpl(
         val file = File(context.filesDir, fileName)
         FileOutputStream(file).apply {
             try {
-                bitmap.compress(
-                    Bitmap.CompressFormat.WEBP_LOSSLESS,
-                    100,
-                    this
-                )
+                bitmap.compress(Bitmap.CompressFormat.WEBP_LOSSLESS, 100, this)
                 close()
             } catch (e: Exception) {
-                e.printStackTrace()
+                Timber.e(e)
             }
         }
     }
 
-    override suspend fun deletePage(page: Page) {
-        dao.deletePage(page)
-        _savedLocally.value = false
-    }
-
-    fun deleteThumbnail() {
-        TODO()
+    /**
+     * Deletes a saved page and its data
+     */
+    override suspend fun deletePage(page: Page): Boolean {
+        val fileName = "${page.pageId}_thumbnail"
+        try {
+            val deletionSuccessful = File(context.filesDir, fileName).delete()
+            if (deletionSuccessful) {
+                dao.deletePage(page)
+                _savedLocally.value = false
+            }
+            return deletionSuccessful
+        } catch (se: SecurityException) {
+            Timber.e(se)
+            return false
+        }
     }
 
 }
