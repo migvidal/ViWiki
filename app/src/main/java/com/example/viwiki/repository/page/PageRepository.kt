@@ -16,4 +16,6 @@ interface PageRepository {
     suspend fun savePage(page: Page)
 
     suspend fun deletePage(page: Page): Boolean
+
+    suspend fun getAllPages(): List<Page>
 }

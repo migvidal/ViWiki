@@ -23,4 +23,10 @@ interface PageDatabaseDao {
     @Query("SELECT * FROM ${Page.TABLE_NAME} WHERE title = :title")
     suspend fun getPageByTitle(title: String): Page?
 
+    /**
+     * Returns all pages
+     */
+    @Query("SELECT * FROM ${Page.TABLE_NAME}")
+    suspend fun getAllPages(): List<Page>
+
 }

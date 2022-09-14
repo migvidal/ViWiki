@@ -116,4 +116,8 @@ class PageRepositoryImpl(
         }
     }
 
+    override suspend fun getAllPages(): List<Page> {
+        return dao.getAllPages()
+    }
+
 }
