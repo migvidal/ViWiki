@@ -44,14 +44,12 @@ class SearchFragment : Fragment() {
         /**
          * Data binding
          */
-        val binding = DataBindingUtil.inflate<FragmentSearchBinding>(
-            inflater, R.layout.fragment_search, container, false
-        )
+        val binding = FragmentSearchBinding.inflate(inflater, container, false)
 
         /**
          * Adapter for the recycler view
          */
-        val searchAdapter = getActivitySafely()?.let { SearchAdapter() }
+        val searchAdapter = SearchAdapter()
 
         // Observe the SearchResponse
         viewModel.searchResponse.observe(viewLifecycleOwner) { response ->
@@ -79,7 +77,7 @@ class SearchFragment : Fragment() {
             }
 
             // Update adapter data
-            searchAdapter?.submitList(query.search)
+            searchAdapter.submitList(query.search)
         }
 
         // Refresh button listener
