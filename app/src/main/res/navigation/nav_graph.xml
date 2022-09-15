@@ -38,5 +38,9 @@
     <fragment
         android:id="@+id/savedFragment"
         android:name="com.example.viwiki.domain.saved.SavedFragment"
-        android:label="SavedFragment" />
+        android:label="SavedFragment" >
+        <action
+            android:id="@+id/action_savedFragment_to_pageFragment"
+            app:destination="@id/pageFragment" />
+    </fragment>
 </navigation>

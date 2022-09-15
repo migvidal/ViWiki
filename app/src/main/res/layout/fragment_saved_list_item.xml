@@ -11,8 +11,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
-        android:onClick="@{}">
+        android:background="?android:attr/selectableItemBackground">
 
         <TextView
             android:id="@+id/tv_result"

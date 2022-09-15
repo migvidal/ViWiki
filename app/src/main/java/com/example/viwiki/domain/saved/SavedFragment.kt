@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.viwiki.R
 import com.example.viwiki.ViWikiApplication
@@ -25,7 +26,14 @@ class SavedFragment : Fragment() {
             (activity?.application as ViWikiApplication).pageRepositoryImpl
         )
     }
-    private val savedAdapter: SavedAdapter = SavedAdapter()
+    private val savedAdapter by lazy {
+        val listener = View.OnClickListener {
+            val action = SavedFragmentDirections.actionSavedFragmentToPageFragment()
+            action.argArticleTitle = ""
+            findNavController().navigate(action)
+        }
+        SavedAdapter(listener)
+    }
 
 
     override fun onCreateView(
