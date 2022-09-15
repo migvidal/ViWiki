@@ -9,16 +9,19 @@
         android:name="com.example.viwiki.domain.today.TodayFragment"
         android:label="@string/app_name">
         <action
-            android:id="@+id/action_homeFragment_to_articleFragment"
+            android:id="@+id/action_todayFragment_to_articleFragment"
             app:destination="@id/pageFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
         <action
-            android:id="@+id/action_homeFragment_to_aboutFragment"
+            android:id="@+id/action_todayFragment_to_aboutFragment"
             app:destination="@id/aboutFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_todayFragment_to_savedFragment"
+            app:destination="@id/savedFragment" />
     </fragment>
     <fragment
         android:id="@+id/pageFragment"
@@ -32,4 +35,8 @@
         android:id="@+id/aboutFragment"
         android:name="com.example.viwiki.AboutFragment"
         android:label="AboutFragment" />
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.example.viwiki.domain.saved.SavedFragment"
+        android:label="SavedFragment" />
 </navigation>

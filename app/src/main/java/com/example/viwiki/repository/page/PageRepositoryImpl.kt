@@ -9,6 +9,8 @@ import coil.imageLoader
 import coil.request.ImageRequest
 import com.example.viwiki.domain.page.Page
 import com.example.viwiki.network.WikipediaApiImpl
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.io.File
 import java.io.FileOutputStream
@@ -117,7 +119,9 @@ class PageRepositoryImpl(
     }
 
     override suspend fun getAllPages(): List<Page> {
-        return dao.getAllPages()
+        return withContext(Dispatchers.IO) {
+         dao.getAllPages()
+        }
     }
 
 }

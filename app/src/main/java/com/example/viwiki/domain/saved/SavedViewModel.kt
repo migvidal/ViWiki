@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.viwiki.domain.page.Page
 import com.example.viwiki.repository.page.PageRepositoryImpl
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class SavedViewModel(private val pageRepositoryImpl: PageRepositoryImpl) : ViewModel() {
     private val _savedPages: MutableLiveData<List<Page>> = MutableLiveData(listOf(Page()))
@@ -16,9 +17,14 @@ class SavedViewModel(private val pageRepositoryImpl: PageRepositoryImpl) : ViewM
         get()
     }
 
-    private fun get() {
+    fun get() {
         viewModelScope.launch {
-            _savedPages.value = pageRepositoryImpl.getAllPages()
+            try {
+                val x = pageRepositoryImpl.getAllPages()
+                _savedPages.value = x
+            } catch (e: Exception) {
+                Timber.e(e)
+            }
         }
     }
 

@@ -54,7 +54,7 @@ class TodayFragment : Fragment() {
             // Get the tfa (featured article)
             viewModel.todayResponse.value?.tfa?.let { tfa ->
                 val action =
-                    TodayFragmentDirections.actionHomeFragmentToArticleFragment()
+                    TodayFragmentDirections.actionTodayFragmentToArticleFragment()
                 // Pass its title as an argument
                 action.argArticleTitle = tfa.normalizedTitle
                 // Navigate to fragment
@@ -70,17 +70,15 @@ class TodayFragment : Fragment() {
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {}
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                menuItem.itemId.let {
+                when (menuItem.itemId) {
                     // Refresh action
-                    if (R.id.action_refresh == it) {
-                        viewModel.fetchTodayFeaturedArticle() // Refetch the data
-                    }
+                    R.id.action_refresh -> viewModel.fetchTodayFeaturedArticle() // Refresh the data
+                    // Saved articles action
+                    R.id.action_saved -> findNavController()
+                        .navigate(R.id.action_todayFragment_to_savedFragment) // Navigate to Saved
                     // About action
-                    if (R.id.action_about == it) {
-                        // Navigate to About
-                        findNavController().navigate(R.id.action_homeFragment_to_aboutFragment)
-
-                    }
+                    R.id.action_about -> findNavController()
+                        .navigate(R.id.action_todayFragment_to_aboutFragment) // Navigate to About
                 }
                 return true
             }
