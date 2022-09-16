@@ -1,17 +1,15 @@
 package com.example.viwiki.domain.saved
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viwiki.databinding.FragmentSavedListItemBinding
 import com.example.viwiki.domain.page.Page
-import com.example.viwiki.generated.callback.OnClickListener
 
-class SavedAdapter(val onClickListener: View.OnClickListener)
-    : ListAdapter<Page, SavedAdapter.SavedViewHolder>(SavedDiffCallback()) {
+class SavedAdapter(val onClickListener: SavedFragment.AdapterClickListener) :
+    ListAdapter<Page, SavedAdapter.SavedViewHolder>(SavedDiffCallback()) {
 
     class SavedViewHolder private constructor(val binding: FragmentSavedListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -51,6 +49,8 @@ class SavedAdapter(val onClickListener: View.OnClickListener)
     override fun onBindViewHolder(holder: SavedViewHolder, position: Int) {
         val page = getItem(position)
         holder.bind(page)
-        holder.itemView.setOnClickListener(onClickListener)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(page.title)
+        }
     }
 }

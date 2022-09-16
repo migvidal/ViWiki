@@ -1,19 +1,14 @@
 package com.example.viwiki.domain.saved
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import com.example.viwiki.R
 import com.example.viwiki.ViWikiApplication
 import com.example.viwiki.databinding.FragmentSavedBinding
-import com.example.viwiki.domain.page.PageFragmentArgs
 
 class SavedFragment : Fragment() {
 
@@ -27,12 +22,29 @@ class SavedFragment : Fragment() {
         )
     }
     private val savedAdapter by lazy {
-        val listener = View.OnClickListener {
+        // Create a listener to navigate to the page
+        val listener = AdapterClickListener { pageTitle ->
             val action = SavedFragmentDirections.actionSavedFragmentToPageFragment()
-            action.argArticleTitle = ""
+            action.argArticleTitle = pageTitle
             findNavController().navigate(action)
         }
+        // Instantiate adapter
         SavedAdapter(listener)
+    }
+
+
+    /**
+     * Click listener to use in the adapter
+     * @param callback function to execute on click
+     */
+    inner class AdapterClickListener(private val callback: (pageTitle: String) -> Unit) {
+        /**
+         * Calls the callback function
+         * @param the page title
+         */
+        fun onClick(pageTitle: String) {
+            return callback(pageTitle)
+        }
     }
 
 
