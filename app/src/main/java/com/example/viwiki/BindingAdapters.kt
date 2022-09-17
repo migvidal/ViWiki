@@ -10,6 +10,7 @@ import com.example.viwiki.GenericWikiViewModel.ResponseStatus.*
 import com.example.viwiki.MainActivity.Companion.PAGE_TITLE_EXTRA_KEY
 import com.example.viwiki.domain.page.Page
 import com.example.viwiki.domain.search.SearchResponse
+import timber.log.Timber
 import java.io.File
 
 /**
@@ -76,16 +77,24 @@ fun bindTextView(tv: TextView, status: GenericWikiViewModel.ResponseStatus?) {
 fun bindTextView(textView: TextView, extract: String?) {
     if (extract == null) return
     // Separate in definition and body
-    val endOfSentencePattern =
-        "[.](?=[\\s\n\r][A-Z])" // E.g.: First sentence(. S)econd sentence
-    val splitString: List<String> = extract.split(Regex(endOfSentencePattern), 2)
+    val endOfSentenceRegex =
+        Regex("""[.](?=[\s\n\r].)""") // E.g.: First sentence(. S)econd sentence
+    val splitString: List<String> = extract.split(endOfSentenceRegex, 2)
     // Set textView text
     textView.apply {
         text = when (id) {
             // For definition
-            R.id.tv_definition -> splitString.first()
+            R.id.tv_definition -> splitString.first() + '.'
             // For everything else
-            else -> splitString.last()
+            else -> {
+                try {
+                    splitString.last().trim()
+                } catch (e: IndexOutOfBoundsException) {
+                    // If for some odd reason there was no more text
+                    Timber.e(e)
+                    ""
+                }
+            }
         }
     }
 }
