@@ -23,28 +23,13 @@ class SavedFragment : Fragment() {
     }
     private val savedAdapter by lazy {
         // Create a listener to navigate to the page
-        val listener = AdapterClickListener { pageTitle ->
+        val listener = ListItemClickListener { pageTitle ->
             val action = SavedFragmentDirections.actionSavedFragmentToPageFragment()
             action.argArticleTitle = pageTitle
             findNavController().navigate(action)
         }
         // Instantiate adapter
         SavedAdapter(listener)
-    }
-
-
-    /**
-     * Click listener to use in the adapter
-     * @param callback function to execute on click
-     */
-    inner class AdapterClickListener(private val callback: (pageTitle: String) -> Unit) {
-        /**
-         * Calls the callback function
-         * @param the page title
-         */
-        fun onClick(pageTitle: String) {
-            return callback(pageTitle)
-        }
     }
 
 

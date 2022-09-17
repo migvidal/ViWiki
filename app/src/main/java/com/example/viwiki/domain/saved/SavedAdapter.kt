@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.viwiki.databinding.FragmentSavedListItemBinding
 import com.example.viwiki.domain.page.Page
 
-class SavedAdapter(val onClickListener: SavedFragment.AdapterClickListener) :
+class SavedAdapter(val onClickListener: ListItemClickListener) :
     ListAdapter<Page, SavedAdapter.SavedViewHolder>(SavedDiffCallback()) {
 
     class SavedViewHolder private constructor(val binding: FragmentSavedListItemBinding) :

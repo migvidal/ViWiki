@@ -6,16 +6,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentSearchBinding
+import com.example.viwiki.domain.saved.ListItemClickListener
 
 /**
  * Fragment for the search results screen
  */
 class SearchFragment : Fragment() {
+    class AdapterClickListener(val callback: () -> Unit) {
+
+    }
 
     /**
      * SearchViewModel instance
@@ -49,7 +52,7 @@ class SearchFragment : Fragment() {
         /**
          * Adapter for the recycler view
          */
-        val searchAdapter = SearchAdapter()
+        val searchAdapter = SearchAdapter(ListItemClickListener{})
 
         // Observe the SearchResponse
         viewModel.searchResponse.observe(viewLifecycleOwner) { response ->

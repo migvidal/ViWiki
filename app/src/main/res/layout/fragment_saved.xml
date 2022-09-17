@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="savedAdapter"
-            type="com.example.viwiki.domain.saved.SavedAdapter" />
+            name="listAdapter"
+            type="com.example.viwiki.domain.BaseListAdapter" />
     </data>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -15,6 +15,6 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
         android:scrollbars="vertical"
-        android:adapter="@{savedAdapter}"
+        android:adapter="@{listAdapter}"
         app:setHasFixedSize="@{true}" />
 </layout>

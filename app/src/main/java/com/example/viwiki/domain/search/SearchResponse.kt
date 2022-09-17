@@ -1,5 +1,6 @@
 package com.example.viwiki.domain.search
 
+import com.example.viwiki.domain.BasePage
 import com.squareup.moshi.Json
 
 /**
@@ -20,15 +21,16 @@ data class SearchResponse(
             @Json(name = "totalhits") val totalHits: Int = 0
         )
 
+        /**
+         * The search result
+         */
         data class Search(
-            val ns: Int = 0,
-            val title: String = "",
-            @Json(name = "pageid") val pageId: Int = 0,
-            val size: Int = 0,
-            @Json(name = "wordcount") val wordCount: Int = 0,
+            @Json(name = "pageid") override val pageId: Int = 0,
+            override val title: String = "",
             val snippet: String = "",
+            @Json(name = "wordcount") val wordCount: Int = 0,
             @Json(name = "timestamp") val timeStamp: String = ""
-        )
+        ) : BasePage
 
         /**
          * Filters out all the results that are disambiguation articles

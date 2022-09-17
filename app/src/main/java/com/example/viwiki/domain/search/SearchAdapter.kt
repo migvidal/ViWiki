@@ -6,12 +6,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.viwiki.databinding.ResultListItemBinding
+import com.example.viwiki.domain.saved.ListItemClickListener
 import com.example.viwiki.domain.search.SearchResponse.SearchQuery.Search
 
 /**
  * Adapter for the search RecyclerView
  */
-class SearchAdapter :
+class SearchAdapter(val onClickListener: ListItemClickListener) :
     ListAdapter<Search, SearchAdapter.SearchViewHolder>(SearchDiffCallBack()) {
 
     /**
