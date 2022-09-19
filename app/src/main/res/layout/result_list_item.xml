@@ -3,23 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
-            name="searchResult"
-            type="com.example.viwiki.domain.search.SearchResponse.SearchQuery.Search" />
+            name="basePage"
+            type="com.example.viwiki.domain.BasePage" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
-        android:onClick="@{searchResult}">
+            >
 
         <TextView
             android:id="@+id/tv_result"
             style="@style/result_list_item"
             android:layout_width="match_parent"
-            android:text="@{searchResult.title}"
+            android:text="@{basePage.title}"
             android:textSize="@dimen/emphasized_size"
             tools:text="Result title" />
     </FrameLayout>

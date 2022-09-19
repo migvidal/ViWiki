@@ -13,11 +13,7 @@ class SavedViewModel(private val pageRepositoryImpl: PageRepositoryImpl) : ViewM
     private val _savedPages: MutableLiveData<List<Page>> = MutableLiveData(listOf(Page()))
     val savedPages: LiveData<List<Page>> = _savedPages
 
-    init {
-        get()
-    }
-
-    fun get() {
+    fun loadSavedPages() {
         viewModelScope.launch {
             try {
                 val x = pageRepositoryImpl.getAllPages()

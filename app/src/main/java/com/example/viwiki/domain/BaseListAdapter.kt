@@ -15,9 +15,9 @@ import com.example.viwiki.domain.saved.ListItemClickListener
 /**
  * Adapter for the search RecyclerView
  */
-abstract class BaseListAdapter<T : BasePage>(
-    val onClickListener: ListItemClickListener,
-    @LayoutRes val layoutRes: Int
+class BaseListAdapter<T : BasePage>(
+    @LayoutRes val layoutRes: Int,
+    val onClickListener: ListItemClickListener
 ) :
     ListAdapter<T, BaseListAdapter.BaseListViewHolder>(BasicListDiffCallBack()) {
 
@@ -32,7 +32,7 @@ abstract class BaseListAdapter<T : BasePage>(
          * Binds the searchResult data
          */
         fun <T : BasePage> bind(data: T) {
-            binding.setVariable(BR.listAdapter, data)
+            binding.setVariable(BR.basePage, data)
         }
 
         companion object {
@@ -58,8 +58,12 @@ abstract class BaseListAdapter<T : BasePage>(
     }
 
     override fun onBindViewHolder(holder: BaseListViewHolder, position: Int) {
-        val searchResult = getItem(position)
-        holder.bind(searchResult)
+        val listItem = getItem(position)
+        holder.bind(listItem)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(listItem.title)
+        }
+
     }
 
     class BasicListDiffCallBack<T : BasePage> : DiffUtil.ItemCallback<T>() {

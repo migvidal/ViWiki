@@ -2,18 +2,13 @@ package com.example.viwiki.domain
 
 import com.squareup.moshi.Json
 
+/**
+ * Interface for a basic Wikipedia information entity
+ */
 interface BasePage {
     @Json(name = "pageid")
     val pageId: Int
     val title: String
-}
-
-abstract class BasePageImpl : BasePage {
-    override fun equals(other: Any?): Boolean {
-        return super.equals(other)
-    }
-
-    override fun hashCode(): Int {
-        return javaClass.hashCode()
-    }
+    override fun equals(other: Any?): Boolean
+    override fun hashCode(): Int
 }

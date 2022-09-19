@@ -26,7 +26,7 @@ class SearchAdapter(val onClickListener: ListItemClickListener) :
          * @param searchResult The SearchResult
          */
         fun bind(searchResult: Search) {
-            binding.searchResult = searchResult
+            binding.basePage = searchResult
         }
 
         companion object {

@@ -43,7 +43,7 @@ val dummySearchResponse = SearchResponse(
         searchInfo = SearchResponse.SearchQuery.SearchInfo(0),
         search = listOf(
             SearchResponse.SearchQuery.Search(
-                0, "", 0, 0, 0, "", ""
+                0, "", "Lorem ipsum", 0, ""
             )
         )
     )

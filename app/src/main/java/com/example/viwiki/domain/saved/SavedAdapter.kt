@@ -14,7 +14,7 @@ class SavedAdapter(val onClickListener: ListItemClickListener) :
     class SavedViewHolder private constructor(val binding: FragmentSavedListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(page: Page) {
-            binding.page = page
+            binding.basePage = page
         }
 
         companion object {

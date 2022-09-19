@@ -8,6 +8,7 @@ import androidx.databinding.BindingAdapter
 import coil.load
 import com.example.viwiki.GenericWikiViewModel.ResponseStatus.*
 import com.example.viwiki.MainActivity.Companion.PAGE_TITLE_EXTRA_KEY
+import com.example.viwiki.domain.BasePage
 import com.example.viwiki.domain.page.Page
 import com.example.viwiki.domain.search.SearchResponse
 import timber.log.Timber
@@ -100,19 +101,10 @@ fun bindTextView(textView: TextView, extract: String?) {
 }
 
 @BindingAdapter("android:onClick")
-fun FrameLayout.onClick(searchResult: SearchResponse.SearchQuery.Search) {
+fun FrameLayout.onClick(searchResult: BasePage) {
     setOnClickListener {
         val intent = Intent(context, MainActivity::class.java)
         intent.putExtra(PAGE_TITLE_EXTRA_KEY, searchResult.title)
-        context.startActivity(intent)
-    }
-}
-
-@BindingAdapter("android:onClick")
-fun FrameLayout.onClick(page: Page) {
-    setOnClickListener {
-        val intent = Intent(context, MainActivity::class.java)
-        intent.putExtra(PAGE_TITLE_EXTRA_KEY, page.normalizedTitle)
         context.startActivity(intent)
     }
 }

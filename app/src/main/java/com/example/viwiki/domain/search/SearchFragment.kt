@@ -8,23 +8,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.viwiki.MainActivity
 import com.example.viwiki.R
 import com.example.viwiki.databinding.FragmentSearchBinding
+import com.example.viwiki.domain.BaseListAdapter
 import com.example.viwiki.domain.saved.ListItemClickListener
 
 /**
  * Fragment for the search results screen
  */
 class SearchFragment : Fragment() {
-    class AdapterClickListener(val callback: () -> Unit) {
-
-    }
 
     /**
-     * SearchViewModel instance
+     * Search query
+     */
+    private lateinit var searchQuery: String
+
+    /**
+     * Adapter for the recycler view
+     */
+    private lateinit var listAdapter: BaseListAdapter<SearchResponse.SearchQuery.Search>
+
+    /**
+     * Search ViewModel
      */
     private val viewModel: SearchViewModel by viewModels()
-    private lateinit var searchQuery: String
 
     /**
      * Load instance state and trigger search
@@ -32,8 +40,16 @@ class SearchFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Verify intents
-        doSearch()
+        // instantiate adapter
+        listAdapter = BaseListAdapter(
+            R.layout.result_list_item, ListItemClickListener { pageTitle ->
+                val intent = Intent(context, MainActivity::class.java)
+                intent.putExtra(MainActivity.PAGE_TITLE_EXTRA_KEY, pageTitle)
+                context?.startActivity(intent)
+            }
+        )
+
+        doSearch() // Verify intents and search
     }
 
 
@@ -47,12 +63,6 @@ class SearchFragment : Fragment() {
         /**
          * Data binding
          */
-        val binding = FragmentSearchBinding.inflate(inflater, container, false)
-
-        /**
-         * Adapter for the recycler view
-         */
-        val searchAdapter = SearchAdapter(ListItemClickListener{})
 
         // Observe the SearchResponse
         viewModel.searchResponse.observe(viewLifecycleOwner) { response ->
@@ -80,18 +90,22 @@ class SearchFragment : Fragment() {
             }
 
             // Update adapter data
-            searchAdapter.submitList(query.search)
+            listAdapter.submitList(query.search)
         }
 
-        // Refresh button listener
-        binding.statusScreen.btnRefresh.setOnClickListener {
-            doSearch() // search again
+        // data binding
+        val binding = FragmentSearchBinding.inflate(inflater, container, false)
+        binding.let {
+            it.lifecycleOwner = viewLifecycleOwner
+            it.viewModel = viewModel
+            it.listAdapter = listAdapter
+            // Refresh button listener
+            it.statusScreen.btnRefresh.setOnClickListener {
+                doSearch() // search again
+            }
+
         }
 
-        // Bind data
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
-        binding.searchAdapter = searchAdapter
 
         // Return the view
         return binding.root

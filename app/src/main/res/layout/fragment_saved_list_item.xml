@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="page"
-            type="com.example.viwiki.domain.page.Page" />
+            name="basePage"
+            type="com.example.viwiki.domain.BasePage" />
     </data>
 
     <FrameLayout
@@ -17,7 +17,7 @@
             android:id="@+id/tv_result"
             style="@style/result_list_item"
             android:layout_width="match_parent"
-            android:text="@{page.title}"
+            android:text="@{basePage.title}"
             android:textSize="@dimen/emphasized_size"
             tools:text="Result title" />
     </FrameLayout>
