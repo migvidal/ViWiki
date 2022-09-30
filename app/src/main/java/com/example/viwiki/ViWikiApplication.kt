@@ -18,7 +18,7 @@ class ViWikiApplication : Application() {
     /**
      * Single source of truth for Wikipedia pages
      */
-    val pageRepositoryImpl by lazy { PageRepositoryImpl(database, WikipediaApiImpl, this) }
+    val pageRepositoryImpl by lazy { PageRepositoryImpl(database, this) }
     override fun onCreate() {
         super.onCreate()
 

@@ -20,7 +20,6 @@ import java.io.FileOutputStream
  */
 class PageRepositoryImpl(
     private val dao: PageDatabaseDao,
-    private val api: WikipediaApiImpl,
     private val context: Context
 ) : PageRepository {
 
@@ -28,7 +27,8 @@ class PageRepositoryImpl(
      * FIXME CAN'T BE A MEMBER!!!!
      */
     private val _savedLocally = MutableLiveData<Boolean>()
-    val savedLocally: LiveData<Boolean> = _savedLocally
+    val savedLocally: LiveData<Boolean>
+        get() = _savedLocally
 
     /**
      * Loads the page from the appropriate data source
@@ -46,7 +46,7 @@ class PageRepositoryImpl(
         // B - From the network
         _savedLocally.value = false
         // TODO RENAME OLD "ARTICLE" REFERENCES
-        api.wikipediaApiService.getPageResponse(title).apply {
+        WikipediaApiImpl.wikipediaApiService.getPageResponse(title).apply {
             return query.pages[0]
         }
     }
@@ -58,7 +58,7 @@ class PageRepositoryImpl(
         // Save thumbnail in storage
         saveThumbnail(page)
         // Save article in db
-        dao.insertPage(page)
+        dao.insertAll(page)
     }
 
     /**
@@ -120,7 +120,7 @@ class PageRepositoryImpl(
 
     override suspend fun getAllPages(): List<Page> {
         return withContext(Dispatchers.IO) {
-         dao.getAllPages()
+            dao.getAllPages()
         }
     }
 

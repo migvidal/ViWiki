@@ -11,8 +11,9 @@ import com.example.viwiki.domain.page.Page
  */
 @Dao
 interface PageDatabaseDao {
+
     @Insert
-    suspend fun insertPage(page: Page)
+    suspend fun insertAll(vararg pages: Page)
 
     @Delete
     suspend fun deletePage(page: Page)

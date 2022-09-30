@@ -10,7 +10,7 @@ import com.example.viwiki.domain.page.Page
  * Database for storing Pages
  */
 @Database(entities = [Page::class], version = 1, exportSchema = false)
-abstract class PageDatabase : RoomDatabase() {
+abstract class PageDatabase private constructor(): RoomDatabase() {
     /**
      * Connects DB to the DAO.
      */
@@ -20,22 +20,20 @@ abstract class PageDatabase : RoomDatabase() {
         /**
          * Database instance
          */
-        private var INSTANCE: PageDatabase? = null
+        private lateinit var INSTANCE: PageDatabase
 
         /**
          * Get the singleton db instance
          */
         fun getInstance(context: Context): PageDatabase {
-            var instance = INSTANCE
-            if (instance == null) {
-                instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    PageDatabase::class.java,
-                    "page_db"
-                ).build()
-                INSTANCE = instance
+            synchronized(this) {
+                if (!::INSTANCE.isInitialized) {
+                    INSTANCE = Room.databaseBuilder(context.applicationContext,
+                        PageDatabase::class.java,
+                        "page_db").build()
+                }
             }
-            return instance
+            return INSTANCE
         }
     }
 }
