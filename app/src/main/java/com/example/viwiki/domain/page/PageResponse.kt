@@ -1,7 +1,7 @@
 package com.example.viwiki.domain.page
 
 /**
- * Page response from given title
+ * DatabasePage response from given title
  */
 data class PageResponse(
     val query: Query = Query()

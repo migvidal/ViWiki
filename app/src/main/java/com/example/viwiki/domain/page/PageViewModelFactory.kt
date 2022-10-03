@@ -6,7 +6,7 @@ import com.example.viwiki.repository.page.PageRepositoryImpl
 
 /**
  * Factory for PageViewModel.
- * @param repository The repository for Page data
+ * @param repository The repository for DatabasePage data
  */
 class PageViewModelFactory(
     private val repository: PageRepositoryImpl,

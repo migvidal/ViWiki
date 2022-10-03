@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.example.viwiki.domain.page.Page
 
 /**
- * DAO for the Page database
+ * DAO for the DatabasePage database
  */
 @Dao
 interface PageDatabaseDao {

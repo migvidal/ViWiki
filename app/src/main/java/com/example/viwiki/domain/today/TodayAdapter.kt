@@ -21,8 +21,8 @@ class TodayAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         /**
-         * Binds the Page data
-         * @param onThisDay The Page
+         * Binds the DatabasePage data
+         * @param onThisDay The DatabasePage
          */
         fun bind(onThisDay: OnThisDay) {
             binding.onThisDay = onThisDay

@@ -80,7 +80,7 @@ class PageViewModel(
     private suspend fun deletePage() {
         _page.value?.let {
             if (pageRepositoryImpl.deletePage(it)) {
-                Timber.i("Page -${it.title}- Deleted")
+                Timber.i("DatabasePage -${it.title}- Deleted")
             }
         }
     }

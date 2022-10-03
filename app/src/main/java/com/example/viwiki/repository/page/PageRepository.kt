@@ -9,7 +9,7 @@ interface PageRepository {
     /**
      * Loads the page from the appropriate data source
      * @param title The exact title of the page
-     * @return live data with the Page
+     * @return live data with the DatabasePage
      */
     suspend fun getPage(title: String): Page
 
