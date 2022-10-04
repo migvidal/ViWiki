@@ -13,21 +13,21 @@ import com.example.viwiki.domain.page.Page
 interface PageDatabaseDao {
 
     @Insert
-    suspend fun insertAll(vararg pages: Page)
+    suspend fun insertAll(vararg pages: DatabasePage)
 
     @Delete
-    suspend fun deletePage(page: Page)
+    suspend fun deletePage(page: DatabasePage)
 
     /**
      * Returns a page by the provided name
      */
     @Query("SELECT * FROM ${Page.TABLE_NAME} WHERE title = :title")
-    suspend fun getPageByTitle(title: String): Page?
+    suspend fun getPageByTitle(title: String): DatabasePage?
 
     /**
      * Returns all pages
      */
     @Query("SELECT * FROM ${Page.TABLE_NAME}")
-    suspend fun getAllPages(): List<Page>
+    suspend fun getAllPages(): List<DatabasePage>
 
 }

@@ -1,6 +1,6 @@
 package com.example.viwiki.network
 
-import com.example.viwiki.domain.page.PageResponse
+import com.example.viwiki.network.PageResponse
 import com.example.viwiki.domain.search.SearchResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

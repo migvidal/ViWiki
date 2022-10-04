@@ -19,26 +19,11 @@ data class DatabasePage(
     val extract: String,
     @ColumnInfo(name = "normalized_title")
     val normalizedTitle: String,
-    @Embedded val thumbnail: DatabaseThumbnail
+    @Embedded val thumbnail: Thumbnail
 ) : BasePage {
 
     companion object {
         const val TABLE_NAME = "page_table"
-    }
-}
-
-
-/**
- * Database entity for the page thumbnail
- */
-@Entity(tableName = Thumbnail.TABLE_NAME)
-data class DatabaseThumbnail(
-    val source: String,
-    val width: Int,
-    val height: Int
-) {
-    companion object {
-        const val TABLE_NAME = "thumbnail_table"
     }
 }
 
