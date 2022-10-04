@@ -1,7 +1,9 @@
 package com.example.viwiki.network
 
+import com.example.viwiki.Thumbnail
 import com.example.viwiki.domain.BasePage
 import com.example.viwiki.domain.page.Page
+import com.example.viwiki.repository.page.DatabasePage
 import com.squareup.moshi.Json
 
 
@@ -18,6 +20,25 @@ data class PageResponse(
     data class Query(
         val pages: List<Page> = listOf(Page())
     )
+}
+
+/**
+ * Converts the PageResponse to a list of DatabasePage models
+ */
+fun PageResponse.asDatabaseModel(): Array<DatabasePage> {
+    return query.pages.map {
+        DatabasePage(
+            pageId = it.pageId,
+            title = it.title,
+            extract = it.extract,
+            normalizedTitle = it.normalizedTitle,
+            thumbnail = Thumbnail(
+                source = it.thumbnail.source,
+                width = it.thumbnail.width,
+                height = it.thumbnail.height
+            )
+        )
+    }.toTypedArray()
 }
 
 

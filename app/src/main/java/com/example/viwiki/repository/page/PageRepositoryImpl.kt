@@ -9,6 +9,7 @@ import coil.imageLoader
 import coil.request.ImageRequest
 import com.example.viwiki.domain.page.Page
 import com.example.viwiki.network.WikipediaApiImpl
+import com.example.viwiki.network.asDatabaseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -22,6 +23,16 @@ class PageRepositoryImpl(
     private val dao: PageDatabaseDao,
     private val context: Context
 ) : PageRepository {
+
+    /**
+     * Refresh the article stored in the local cache
+     */
+    suspend fun refreshPage(title: String) {
+        withContext(Dispatchers.IO) {
+            val pageResponse = WikipediaApiImpl.wikipediaApiService.getPageResponse(title)
+            dao.insertAll(*pageResponse.asDatabaseModel())
+        }
+    }
 
     /**
      * FIXME CAN'T BE A MEMBER!!!!
