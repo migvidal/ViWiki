@@ -25,13 +25,33 @@ class PageRepositoryImpl(
 ) : PageRepository {
 
     /**
-     * Refresh the article stored in the local cache
+     * Refresh the article stored in the offline cache
      */
-    suspend fun refreshPage(title: String) {
-        withContext(Dispatchers.IO) {
-            val pageResponse = WikipediaApiImpl.wikipediaApiService.getPageResponse(title)
-            dao.insertAll(*pageResponse.asDatabaseModel())
+    private suspend fun refreshPage(title: String) {
+        try {
+            withContext(Dispatchers.IO) {
+                val pageResponse = WikipediaApiImpl.wikipediaApiService.getPageResponse(title)
+                dao.insertAll(*pageResponse.asDatabaseModel())
+            }
+        } catch (e: Exception) {
+            Timber.e(e)
         }
+    }
+
+    /**
+     * Get page from offline cache. Null if there is and error.
+     */
+    override suspend fun getPage(title: String): Page? {
+        var page: DatabasePage?
+        withContext(Dispatchers.IO) {
+            // query offline cache for the page
+            page = dao.getPageByTitle(title)
+        }
+        if (page !== null) return page?.asDomainModel()
+        // if not cached, refreshed the cache
+        refreshPage(title)
+        getPage(title)
+        return null
     }
 
     /**
@@ -46,12 +66,12 @@ class PageRepositoryImpl(
      * @param title The exact title of the page
      * @return the page
      */
-    override suspend fun getPage(title: String): Page {
+    suspend fun oldGetPage(title: String): Page {
         // A - From the database
         dao.getPageByTitle(title).also {
             if (it != null) {
                 _savedLocally.value = true
-                return it
+                return it.asDomainModel()
             }
         }
         // B - From the network
@@ -69,7 +89,7 @@ class PageRepositoryImpl(
         // Save thumbnail in storage
         saveThumbnail(page)
         // Save article in db
-        dao.insertAll(page)
+        dao.insertAll(page.asDatabaseModel())
     }
 
     /**
@@ -119,7 +139,7 @@ class PageRepositoryImpl(
         try {
             val deletionSuccessful = File(context.filesDir, fileName).delete()
             if (deletionSuccessful) {
-                dao.deletePage(page)
+                dao.deletePage(page.asDatabaseModel())
                 _savedLocally.value = false
             }
             return deletionSuccessful
@@ -131,7 +151,9 @@ class PageRepositoryImpl(
 
     override suspend fun getAllPages(): List<Page> {
         return withContext(Dispatchers.IO) {
-            dao.getAllPages()
+            dao.getAllPages().map {
+                it.asDomainModel()
+            }
         }
     }
 

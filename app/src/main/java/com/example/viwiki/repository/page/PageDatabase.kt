@@ -10,7 +10,7 @@ import com.example.viwiki.domain.page.Page
  * Database for storing Pages
  */
 @Database(entities = [DatabasePage::class], version = 1, exportSchema = false)
-abstract class PageDatabase private constructor(): RoomDatabase() {
+abstract class PageDatabase : RoomDatabase() {
     /**
      * Connects DB to the DAO.
      */

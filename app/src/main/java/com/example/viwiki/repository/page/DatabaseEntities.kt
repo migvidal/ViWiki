@@ -22,27 +22,26 @@ data class DatabasePage(
     @Embedded val thumbnail: Thumbnail
 ) : BasePage {
 
+    /**
+     * Converts a list of DatabasePage to a list of Page
+     */
+    fun asDomainModel(): Page {
+        return Page(
+            pageId = this.pageId,
+            title = this.title,
+            extract = this.extract,
+            normalizedTitle = this.normalizedTitle,
+            thumbnail = Thumbnail(
+                source = this.thumbnail.source,
+                width = this.thumbnail.width,
+                height = this.thumbnail.height
+            )
+        )
+    }
+
     companion object {
         const val TABLE_NAME = "page_table"
     }
 }
 
 
-/**
- * Converts a list of DatabasePage to a list of Page
- */
-fun List<DatabasePage>.asDomainModel(): List<Page> {
-    return map {
-        Page(
-            pageId = it.pageId,
-            title = it.title,
-            extract = it.extract,
-            normalizedTitle = it.normalizedTitle,
-            thumbnail = Thumbnail(
-                source = it.thumbnail.source,
-                width = it.thumbnail.width,
-                height = it.thumbnail.height
-            )
-        )
-    }
-}

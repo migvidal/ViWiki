@@ -42,7 +42,6 @@ class PageViewModel(
             try {
                 pageRepositoryImpl.apply {
                     _page.value = getPage(title)
-                    _isSaved.value = savedLocally.value
                 }
                 _status.value = ResponseStatus.DONE
             } catch (e: Exception) {

@@ -11,7 +11,7 @@ interface PageRepository {
      * @param title The exact title of the page
      * @return live data with the DatabasePage
      */
-    suspend fun getPage(title: String): Page
+    suspend fun getPage(title: String): Page?
 
     suspend fun savePage(page: Page)
 
